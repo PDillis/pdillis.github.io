@@ -17,5 +17,7 @@ print_hi('Tom')
 #=> prints 'Hi, Tom'.
 {% endhighlight %}
 
+Trying the Markdown: $$x^2+y^2 = z^2$$
+
 [jekyll-gh]: https://github.com/mojombo/jekyll
 [jekyll]:    http://jekyllrb.com
