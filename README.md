@@ -36,7 +36,7 @@ Some important configuration can be done in the file `_config.yml`. To use the C
 
 ```
 markdown: kramdown
-theme: jekyll-theme-cayman
+theme:    jekyll-theme-cayman
 ```
 
 # License
