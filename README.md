@@ -32,7 +32,12 @@ For more details read about [Jekyll][1] on its web page.
 
 ## Setup
 
-Some important configuration can be done in the file `_config.yml`. Please, check the Setup section in that file.
+Some important configuration can be done in the file `_config.yml`. To use the Cayman theme and use Markdown, I have added the following:
+
+```
+markdown: kramdown
+theme: jekyll-theme-cayman
+```
 
 # License
 
