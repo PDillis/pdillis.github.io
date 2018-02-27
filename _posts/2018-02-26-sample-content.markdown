@@ -17,7 +17,11 @@ print_hi('Tom')
 #=> prints 'Hi, Tom'.
 {% endhighlight %}
 
-Trying the Markdown: $$x^2+y^2 = z^2$$
+Trying the Markdown: $$x^2+y^2 = z^2 \label{eq1}$$
+
+Ref. Equation \ref{eq1}.
+
+But also, $J = \sum_{k=1}^{+\infty}a_{k}$
 
 [jekyll-gh]: https://github.com/mojombo/jekyll
 [jekyll]:    http://jekyllrb.com
