@@ -1,11 +1,11 @@
 # Setup
-title:        Diego Porres blog
-description: "I love fools' experiments. I am always making them. -C. Darwin"
-github_username: PDillis
+title:              Diego Porres blog
+description:        Musings from far away.
+github_username:    PDillis
 
 # About/contact
 author:
-  name:       Diego Porres
+  name:             Diego Porres
   url:        
 
 # Gems
@@ -13,13 +13,13 @@ gems:
   - jekyll-paginate
 
 #Others
-markdown: kramdown
-theme: jekyll-theme-cayman
+markdown:           kramdown
+theme:              jekyll-theme-cayman
 
-permalink: pretty
+permalink:          pretty
 
-highlighter: rouge
+highlighter:        rouge
 kramdown:
-  input: GFM
-  auto_ids: true
+  input:            GFM
+  auto_ids:         true
 syntax_highlighter: rouge
