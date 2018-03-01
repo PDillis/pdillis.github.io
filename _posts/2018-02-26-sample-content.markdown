@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 title:  "Welcome to my blog!"
 date:   2018-02-26 22:00:00
 categories: main
