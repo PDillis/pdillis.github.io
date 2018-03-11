@@ -1,0 +1,26 @@
+---
+layout: post
+title:  "Deep Learning Specialization and 42 Silicon Valley"
+date:   2018-03-10 18:00:00
+categories: main
+---
+
+Welcome again!
+
+I am (slowly) growing accustomed to the idea of having a blow now, but for now I can share my latest accomplishment: I have finally obtained the [Deep Learning Specialization](https://www.coursera.org/account/accomplishments/specialization/certificate/M94FBCS34JG5) from deeplearning.ai and Coursera! I do not regret one bit obtaining this specialization, as many of the algorithms in Deep Learning that are used in the [A3C](https://arxiv.org/pdf/1602.01783.pdf) algorithm used in my internship at the Computer Vision Center were eluding me, specifically CNNs and LSTMs. I will expand more what I accomplished in this internship (and henceforth) in a future blog post.
+
+The DL Specialization also made my mind wander off into applications of new and unexplored algorithms I hadn't yet tried before, especially as some programming exercised involved us toying with generating new Jazz music with LSTMs, recognizing objects with CNNs, and neural style transfer again with CNNs. With the latter, I chose to generate the following 'classical' example of using a known landmark or real-world image, and applying the artistic style of a renowned piece of art. For this, I chose the Louvre as the real-world photograph (*Content*) and a sample of a [huipil](https://en.wikipedia.org/wiki/Huipil) from the area of Chichicastenango in Guatemala as art (*Style*). The result (*Generated Image*) is shown here:
+
+Louvre (*Content*)             |  Huipil from Chichicastenango (*Style*)          | Generated Image
+:-------------------------:|:-------------------------:|:---------------:
+![louvre_small](https://user-images.githubusercontent.com/24496178/37248155-c060be48-247e-11e8-9986-ea8e79f106b8.jpg "Louvre")  |  ![chichi1](https://user-images.githubusercontent.com/24496178/37248152-b655d9a6-247e-11e8-93de-b2e2d1f96527.jpg "Huipil") |![generated_image](https://user-images.githubusercontent.com/24496178/37248158-cca7f1bc-247e-11e8-881e-1dbbc0592e24.jpg "Generated Image")
+
+This is a very interesting area, as recognizing not only from which area in Guatemala (or even Mesoamerica) does a huipil come from is an interesting problem to solve (as hidden patterns may emerge), but also one of deep importance to the Mayan community. This is due to the movement for intellectual property of the designs is [gaining momentum](https://indiancountrymedianetwork.com/news/indigenous-peoples/mayan-weavers-seek-legal-protection-designs/) and rightly so, as checking whether or not some products being sold online have paid a fair price, or even paid at all for the design is a problem worth solving. 
+
+As a last note on the Deep Learning Specialization, the Jazz improvisation using LSTMs coding exercise was extremely fun, and I wish to use them to not only generate dialogue of my favorite books (though this will require more learning), but also I wish to apply the same idea to generate [marimba](https://en.wikipedia.org/wiki/Marimba) music, as it is the national instrument from my country and I feel it to be a very expressive instrument, with many [adaptations](https://www.youtube.com/watch?v=qYtrnr4chfU) outside of the [classical marimba music](https://www.youtube.com/watch?v=azEJkeZ90Ok) that I am used to. 
+
+Sadly, I won't be updating this as much as I would like as I have briefly mentioned it in the [first blog post](https://pdillis.github.io/main/2018/03/02/Welcome/), starting on Monday March 12th, I will be attending [42's Piscine](https://www.42.us.org/program/intensive-basic-training/)! The Piscine is a 1-month intensive programming bootcamp where 7 days a week, roughly 20 hours a day, we will be working towards being accepted to [42's full program](https://www.42.us.org/program/the-42-program/). My understanding of the Piscine is that we will be learning both the programming language C and *how* to program, which is great since my background in Physics and Mathematics that simply involved using well-known packages or very high-level programming languages like Python, never fully understanding the background.
+
+I hope to come back with more news, but I will be focusing more on the Piscine, and will of course write in another blog post my experiences there.
+
+See you soon!
