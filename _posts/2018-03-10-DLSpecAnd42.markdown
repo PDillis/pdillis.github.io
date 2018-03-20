@@ -4,7 +4,6 @@ title:  "Deep Learning Specialization and 42 Silicon Valley"
 date:   2018-03-10 18:00:00
 categories: main
 ---
-## Deep learning Specialization
 Welcome again!
 
 I am (slowly) growing accustomed to the idea of having a blog now, but for now I can share my latest accomplishment: I have finally obtained the [Deep Learning Specialization](https://www.coursera.org/account/accomplishments/specialization/certificate/M94FBCS34JG5) from deeplearning.ai and Coursera! I do not regret one bit obtaining this specialization, as many of the algorithms in Deep Learning that are used in the [A3C](https://arxiv.org/pdf/1602.01783.pdf) algorithm used in my internship at the Computer Vision Center were eluding me, specifically CNNs and LSTMs. I will expand more what I accomplished in this internship (and henceforth) in a future blog post.
