@@ -33,3 +33,42 @@
   settings:
     height: "'auto'"
     effect: "'fade'"
+    
+- selector: slider2
+  bullets: true
+  captions: true
+    - src: /img/42/24_hour_coding_victim1.jpg
+      title: 24 hour coding starts...
+    - src: /img/42/24_hour_coding_victim1a.jpg
+    - src: /img/42/24_hour_coding_victim2.jpg
+    - src: /img/42/24_hour_coding_victim3.jpg
+      title: ...and ends
+    - src: /img/42/42_zone2.jpg
+      title: Zone 2 of the main campus
+      alt: A nice labyrinth indeed
+    - src: /img/42/zion_sleeps_at_the_lab.jpg
+      title: Zion's bedroom is the lab
+      alt: He doesn't know what the dorms are for.
+    - src: /img/42/viraj_cant_use_computers.jpg
+      title: Viraj doesn't understand MACs
+      alt: Don't hold it against him
+    - src: /img/42/uniforms.jpg
+      title: For group projects, it is mandatory to wear uniforms
+      alt: Little known fact.
+    - src: /img/42/jane_teaches_julia.jpg
+      title: Jane Herriman's intro to Julia
+      alt: Introduction to the power of Julia
+      href: www.juliabox.com
+    - src: /img/42/carlos_hacks.jpg
+      alt: Carlos knows the secrets of the internet...
+    - src: /img/42/carlos_hacks2.jpg
+      alt: ...and reveals them
+      href: https://youtu.be/9Ni-Eea8n48
+    - src: /img/42/second_in_battleship.jpg
+      alt: Second place in the (un)official battleship tournament
+    - src: /img/42/bryan_isdisappointed.jpg
+      title: I am proud to have met these people...
+      alt: ...bound for a great future.
+  settings:
+    height: "'auto'"
+    effect: "'fade'"
