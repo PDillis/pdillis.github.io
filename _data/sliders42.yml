@@ -5,7 +5,7 @@
     - src: /img/42/welcoming_talk.jpg
       title: Welcome talk by Gaetan
       alt: A few inspiring words.
-    - src /img/42/ice_breaking.jpg
+    - src: /img/42/ice_breaking.jpg
       title: Some ice breaking
       alt: A small distraction whilst the network gets repaired.
     - src: /img/42/sd_track.jpg
@@ -19,9 +19,9 @@
       alt: Can anyone correctly code ft_putchar.c whilst blind?...
     - src: /img/42/whipped_cream1.jpg
       alt: Apparently...
-    - src /img/42/whipped_cream2.jpg
+    - src: /img/42/whipped_cream2.jpg
       alt: ...Zion could!
-    - src /img/42/whipped_cream3.jpg
+    - src: /img/42/whipped_cream3.jpg
       alt: Viewer beware.
     - src: /img/42/campus_view.jpg
     - src: /img/42/hauling_cubes.jpg
@@ -37,11 +37,11 @@
 - selector: slider2
   bullets: true
   captions: true
-    - src /img/42/24_hour_coding_victim1.jpg
+    - src: /img/42/24_hour_coding_victim1.jpg
       title: 24 hour coding starts...
-    - src /img/42/24_hour_coding_victim1a.jpg
-    - src /img/42/24_hour_coding_victim2.jpg
-    - src /img/42/24_hour_coding_victim3.jpg
+    - src: /img/42/24_hour_coding_victim1a.jpg
+    - src: /img/42/24_hour_coding_victim2.jpg
+    - src: /img/42/24_hour_coding_victim3.jpg
       title: ...and ends
     - src: /img/42/42_zone2.jpg
       title: Zone 2 of the main campus
