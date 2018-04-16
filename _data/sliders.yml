@@ -64,6 +64,6 @@
       title: I am proud to have met these people...
       alt: ...bound for a great future.
   settings:
-    height: '4:3'
+    height: "'4:3'"
     effect: "'fade'"
     keyboardNav: true
