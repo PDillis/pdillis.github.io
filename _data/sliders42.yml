@@ -30,15 +30,6 @@
       href: https://tenor.com/xlJO.gif
     - src: /img/42/one_last_song.jpg
       alt: A farewell performance.
-   settings:
-    height: "'auto'"
-    effect: "'fade'"
-    keyboardNav: true
-
-- selector: slider2
-  bullets: true
-  captions: true
-  images:
     - src: /img/42/24_hour_coding_victim1.jpg
       title: 24 hour coding starts...
     - src: /img/42/24_hour_coding_victim1a.jpg
