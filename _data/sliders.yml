@@ -33,6 +33,7 @@
     - src: /img/42/24_hour_coding_victim1.jpg
       title: 24 hour coding starts...
     - src: /img/42/24_hour_coding_victim1a.jpg
+      href: https://youtu.be/x84m3YyO2oU
     - src: /img/42/24_hour_coding_victim2.jpg
     - src: /img/42/24_hour_coding_victim3.jpg
       title: ...and ends
@@ -63,6 +64,6 @@
       title: I am proud to have met these people...
       alt: ...bound for a great future.
   settings:
-    height: 800
+    height: '4:3'
     effect: "'fade'"
     keyboardNav: true
