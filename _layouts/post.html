@@ -2,7 +2,17 @@
 layout: default
 comments: true
 ---
-<h2>{{ page.title }}</h2>
-<p class="meta">{{ page.date | date_to_string }}</p>
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+  <head>
+    {% include slider_styles.html %}
+  </head>
+  <body>
+    <h2>{{ page.title }}</h2>
+    <p class="meta">{{ page.date | date_to_string }}</p>
 
-{{ content }}
+    {{ content }}
+
+    {% include slider_scripts.html %}
+  </body>
+</html>
