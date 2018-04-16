@@ -33,7 +33,8 @@
    settings:
     height: "'auto'"
     effect: "'fade'"
-    
+    keyboardNav: true
+
 - selector: slider2
   bullets: true
   captions: true
@@ -73,3 +74,4 @@
   settings:
     height: "'auto'"
     effect: "'fade'"
+    keyboardNav: true
