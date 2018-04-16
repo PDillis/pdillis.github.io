@@ -15,7 +15,7 @@ While not my original end goal, there are many different paths to take during li
 
 If you are curious, you can find (almost) all the code I generated, along with a bit more information of the Piscine in [my Github](https://github.com/PDillis/42SiliconValley). If you plan to attend any future Piscine, ignore the code and just go with a clean mind; it's for the best. Else, know that most of the coding was done in [C](https://en.wikipedia.org/wiki/C_(programming_language)), but on the first days there was some [Shell](https://en.wikipedia.org/wiki/Shell_(computing)) scripting, which I found to be extremely insightful.
 
-Without further ado, I leave you with some pictures I managed to take during this month of coding:
+Without further ado, I leave you with some pictures I managed to take during this month of coding (some pictures have secret hidden links):
 
 {% include slider.html selector="slider1" %}
 
