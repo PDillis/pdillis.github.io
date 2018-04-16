@@ -52,7 +52,7 @@
     - src: /img/42/jane_teaches_julia.jpg
       title: Jane Herriman's intro to Julia
       alt: Introduction to the power of Julia
-      href: www.juliabox.com
+      href: https://www.juliabox.com/
     - src: /img/42/carlos_hacks.jpg
       alt: Carlos knows the secrets of the internet...
     - src: /img/42/carlos_hacks2.jpg
