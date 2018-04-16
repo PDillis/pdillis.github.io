@@ -14,10 +14,10 @@ After a month of blood, sweat and tears (usually all three in the form of code),
 The Piscine requires a lot of planning: given that the projects, daily exercises, and sometimes even exams overlap the majority of the time, it is up to you to decide what to give priority to, not only because you don't have the time to do them all, but because they're not worth the same amount of points (of course, do the exams!). This taught me a lot on how to plan ahead, as well as to rely on the previous knowledge of my fellow pisciners. The conjecture we arrived as to what the final grade received per project is as follows:
 
 $$
-final_grade(MGrade, AVGrade)=
+final\_grade(MGrade, AVGrade)=
 \begin{cases}
-max(MGrade, AVGrade), if \abs{MGrade - AVGrade} <= 10\\
-min(MGrade, AVGrade), otherwise 
+\max(MGrade, AVGrade), \text{if} |MGrade - AVGrade| <= 10\\
+\min(MGrade, AVGrade), \text{otherwise} 
 \end{cases}
 $$
 
