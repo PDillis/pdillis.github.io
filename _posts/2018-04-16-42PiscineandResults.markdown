@@ -13,14 +13,13 @@ After a month of blood, sweat and tears (usually all three in the form of code),
 
 The Piscine requires a lot of planning: given that the projects, daily exercises, and sometimes even exams overlap the majority of the time, it is up to you to decide what to give priority to, not only because you don't have the time to do them all, but because they're not worth the same amount of points (of course, do the exams!). This taught me a lot on how to plan ahead, as well as to rely on the previous knowledge of my fellow pisciners. The conjecture we arrived as to what the final grade received per project is as follows:
 
-\\[ \small
+$$ \small
 final\_grade(MGrade, AVGrade)=
 \begin{cases}
 \max(MGrade, AVGrade), \text{ if } |MGrade - AVGrade| <= 10\\
 \min(MGrade, AVGrade), \text{ otherwise} 
 \end{cases}
-\\]
-
+\$$
 where $MGrade$ is the grade given by Moulinette, a computer program that automatically graded your work, and $AVGrade$ is the average grade given to you by your fellow correctors (some projects required 1 corrector, others up to 3 correctors).
 
 While not my original end goal, there are many different paths to take during life as a 42 Cadet, which makes their offer very hard to say no to. The constant flow of speakers like [Deon Nicholas](https://angel.co/deon-nicholas) from [Forethought AI](https://www.forethought.ai/) and [Jane Herriman](https://twitter.com/janeherriman) presenting [Julia](https://www.juliabox.com/), combined with the presence of students pushing themselves forward, is the perfect recipe for success. It is not to be taken lightly, and now I do wish to become a part of the 42 school.
