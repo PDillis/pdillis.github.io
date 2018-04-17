@@ -19,7 +19,7 @@ final\_grade(MGrade, AVGrade)=
 \max(MGrade, AVGrade), \text{ if } |MGrade - AVGrade| <= 10\\
 \min(MGrade, AVGrade), \text{ otherwise} 
 \end{cases}
-]\
+\]
 
 where $MGrade$ is the grade given by Moulinette, a computer program that automatically graded your work, and $AVGrade$ is the average grade given to you by your fellow correctors (some projects required 1 corrector, others up to 3 correctors).
 
