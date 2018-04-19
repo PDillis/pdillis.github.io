@@ -19,16 +19,30 @@ By this point I have decided to build my own chatbot, and this is where we are n
 
 ## A bit of history
 
-Since we are trying to start making our own chatbots, it is natural for us to look back in time and study (albeit superficially) the first chatbot ever made. This was [ELIZA](https://en.wikipedia.org/wiki/ELIZA), created by [Joseph Weizenbaum](http://history.computer.org/pioneers/weizenbaum.html) from 1964 to 1966 at the MIT Artificial Intelligence Laboratory. ELIZA was born https://www.cse.buffalo.edu//~rapaport/572/S02/weizenbaum.eliza.1966.pdf
+Since we are trying to start making our own chatbots, it is natural for us to look back in time and read about the first chatbot ever made. This was [ELIZA](https://en.wikipedia.org/wiki/ELIZA), created by [Joseph Weizenbaum](http://history.computer.org/pioneers/weizenbaum.html) from 1964 to 1966 at the MIT Artificial Intelligence Laboratory. ELIZA was born with the capacity to gain better language abilities, [as its name implies](https://en.wikipedia.org/wiki/Eliza_Doolittle). 
 
+[An extract](https://www.cse.buffalo.edu//~rapaport/572/S02/weizenbaum.eliza.1966.pdf) of a typical conversation between a user and the original `ELIZA` is shown next ('?' was a forbidden character, due to the implementation in the MAC system):
+
+```console
+Men are all alike.
+IN WHAT WAY
+They're always bugging us about something or other.
+CAN YOU THINK OF A SPECIFIC EXAMPLE
+Well, my boyfriend made me come here.
+YOUR BOYFRIEND MADE YOU COME HERE
+He says I'm depressed much of the time.
+I AM SORRY TO HEAR YOU ARE DEPRESSED
+.
+.
+```
+
+with the capitalized lines being the machine responses. The summary of the algorithm is as follows: the input of the user is inspected in search of a *keyword*. If found, the input is transformed according to a *rule* associated with said keyword, else, a content-free remark or an earlier transformation is retrieved. Then, the text computed is printed out to the standard output. Since the script is taken as data, then this method is not restricted to one language. Indeed, you can find a working version of `ELIZA` in Spanish [here](http://deixilabs.com/eliza.html).
 
 To Weizenbaum, we should never allow computers to make any decisions, as they lack compassion and wisdom, purely human emotions. Humans have judgement, which in turn allows us to compare apples with oranges. 
 
 This is even more apparent in the following quote (from an [excerpt found online](https://web.archive.org/web/20050508173416/http://www.smeed.org/1735)):
 
-> I want them [teachers of computer science] to have heard me affirm that the computer is a powerful new metaphor for helping us understand many aspects of the world, but that it enslaves the mind that has no other metaphors and few other resources to call on. The world is many things, and no single framework is large enough to contain them all, neither that of man's science nor of his poetry, neither that of calculating reason nor that of pure intuition. And just as the love of music does not suffice to enable one to play the violin - one must also master the craft of the instrument and the music itself - so it is not enough to love humanity in order to help it survive. The teacher's calling to his craft is therefore an honorable one. But he must do more than that: he must teach more than one metaphor, and he must teach more by the example of his conduct than by what he writes on the blackboard. He must teach the limitations of his tools as well as their power. 
-
-A recreation of ELIZA can be found [here](http://deixilabs.com/eliza.html) (in spanish)
+> I want them \[teachers of computer science\] to have heard me affirm that the computer is a powerful new metaphor for helping us understand many aspects of the world, but that it enslaves the mind that has no other metaphors and few other resources to call on. The world is many things, and no single framework is large enough to contain them all, neither that of man's science nor of his poetry, neither that of calculating reason nor that of pure intuition. And just as the love of music does not suffice to enable one to play the violin - one must also master the craft of the instrument and the music itself - so it is not enough to love humanity in order to help it survive. The teacher's calling to his craft is therefore an honorable one. But he must do more than that: he must teach more than one metaphor, and he must teach more by the example of his conduct than by what he writes on the blackboard. He must teach the limitations of his tools as well as their power. 
 
 ### Building ELIZA
 
