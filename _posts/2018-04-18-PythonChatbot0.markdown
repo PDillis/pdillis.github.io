@@ -23,7 +23,7 @@ Since we are trying to start making our own chatbots, it is natural for us to lo
 
 An extract of a typical conversation between a user and the original ELIZA can be found in the [original paper by Weizenbaum](https://www.cse.buffalo.edu//~rapaport/572/S02/weizenbaum.eliza.1966.pdf) and is shown next ('?' was a forbidden character, due to the implementation in the MAC system, hence no questions):
 
-```console
+```
 Men are all alike.
 IN WHAT WAY
 They're always bugging us about something or other.
@@ -34,7 +34,7 @@ He says I'm depressed much of the time.
 I AM SORRY TO HEAR YOU ARE DEPRESSED
 ```
 
-with the capitalized lines being the machine responses. The summary of the algorithm is as follows: the input of the user is inspected in search of a **keyword**. If found, the input is transformed according to a **rule** associated with said keyword, else, a content-free remark or an earlier transformation is retrieved. Then, the text is transformed (e.g., from third person to first person) and is printed out to the standard output. Since the script is taken as data, then this method is not restricted to one language. Indeed, you can find a working version of `ELIZA` in Spanish [here](http://deixilabs.com/eliza.html).
+with the capitalized lines being the machine responses. The summary of the algorithm is as follows: the input of the user is inspected in search of a **keyword**. If found, the input is transformed according to a **rule** associated with said keyword, else, a content-free remark or an earlier transformation is retrieved. Then, the text is transformed (e.g., from third person to first person) and is printed out to the standard output. Since the script is taken as data, then this method is not restricted to one language. Indeed, you can find a working version of ELIZA in Spanish [here](http://deixilabs.com/eliza.html).
 
 In a way, Weizenbaum was trying to show how superficial was the communication between man and machine. Indeed, while the amount of rules that ELIZA has for each keyword is vast (besides other parts of the algorithm), ELIZA did not actually possess understanding of the input. Still, some users (including Weizenbaum's secretary) found ELIZA to have a personality, even becoming emotionally attached. Perhaps this was due to the shortness of the sessions where the users interacted with ELIZA, but this still is quite interesting to note. 
 
