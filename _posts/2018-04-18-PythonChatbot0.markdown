@@ -34,8 +34,8 @@ A recreation of ELIZA can be found [here](http://deixilabs.com/eliza.html) (in s
 
 The chatbot we will build will be greatly influenced by the following: 
 
-- [Noah Moroze's simpleChatBot](https://github.com/nmoroze/SimpleChatBot)
-- [Jezz Higgin's recreation of ELIZA](https://github.com/jezhiggins/eliza.py)
+- Noah Moroze's [simpleChatBot](https://github.com/nmoroze/SimpleChatBot)
+- Jezz Higgin's [recreation of ELIZA](https://github.com/jezhiggins/eliza.py)
 - DataCamp's course on [building chatbots in Python](https://www.datacamp.com/courses/building-chatbots-in-python) given by Alan Nichol, co-founder and CTO of [Rasa](http://rasa.com/). 
 
 The latter will set the tone and direction we will take, as it helped me realize how to scale this endeavor. So, in order for the user and chatbot to engage in a conversation, we have the following template (to be filled) by the algorithm we will develop later on:
@@ -70,8 +70,8 @@ For example, we have the following:
 
 ```python
 >>> send_message("Hello there!")
-USER: Hello there!
-ELIZA: I can hear you! You said: Hello there!
+'USER: Hello there!'
+'ELIZA: I can hear you! You said: Hello there!'
 ```
 
 This might seem impressive at first, but it can trick a user only so far. This version of `ELIZA` is neither expressive, memorable or charismatic, some of the main points by which we judge a conversation with another human, perhaps even moreso a machine. 
