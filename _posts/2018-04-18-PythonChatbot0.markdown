@@ -30,7 +30,7 @@ This is even more apparent in the following quote (from an [excerpt found online
 
 A recreation of ELIZA can be found [here](http://deixilabs.com/eliza.html) (in spanish)
 
-### Building EchoBot
+### Building ELIZA
 
 The chatbot we will build will be greatly influenced by the following: 
 
@@ -38,37 +38,43 @@ The chatbot we will build will be greatly influenced by the following:
 - [Jezz Higgin's recreation of ELIZA](https://github.com/jezhiggins/eliza.py)
 - DataCamp's course on [building chatbots in Python](https://www.datacamp.com/courses/building-chatbots-in-python) given by Alan Nichol, co-founder and CTO of [Rasa](http://rasa.com/). 
 
-The latter will set the tone and direction we will take, as it helped me realize how to scale this endeavor.
-
-As a first step, we will build `EchoBot`, which will simply repeat back the message the user inputs:
+The latter will set the tone and direction we will take, as it helped me realize how to scale this endeavor. So, in order for the user and chatbot to engage in a conversation, we have the following template (to be filled) by the algorithm we will develop later on:
 
 ```python
-# This will be printed, creating the dialogue between the bot and the user
-bot_template = "BOT : {}"
 user_template = "USER : {}"
+bot_template = "ELIZA : {}"
 ```
 
+As a first step,`ELIZA` will simply repeat back the message the user inputs:
+
 ```python
-# Define a function that responds to a user's message:
 def respond(message):
 	# Concatenate the user's message to the end of a standard bot response
 	bot_message = "I can hear you! You said: " + message
 	return bot_message
 ```
 
+For the bot to receive the message sent by the user, we must define another function, `send_message()`, which will process the `message` that the user inputs, whilst printing it and the `ELIZA`'s response:
+
 ```python
-# Define a function that sends a message to the bot. This will log the message
-# and the bot's response.
 def send_message(message):
 	# Print user_template including user_message
 	print(user_template.format(message))
-	# Get the bot's response to the message:
+	# Get ELIZA's response to the message:
 	response = respond(message)
-	# Print the bot template including the bot's response:
+	# Print the bot template including ELIZA's response:
 	print(bot_template.format(response))
 ```
 
-This bot is neither expressive, memorable or charismatic, some of the main points by which we judge a conversation with another human, perhaps even moreso a machine. 
+For example, we have the following:
+
+```python
+>>> send_message("Hello there!")
+USER: Hello there!
+ELIZA: I can hear you! You said: Hello there!
+```
+
+This might seem impressive at first, but it can trick a user only so far. This version of `ELIZA` is neither expressive, memorable or charismatic, some of the main points by which we judge a conversation with another human, perhaps even moreso a machine. 
 
 Personality is essential to any chatbot, indeed to any human! This is subconciously expected by the user: if it does not meet our expectations, then we shy away from it (like I do nowadays), and this is why I particularly despise call centers. 
 
