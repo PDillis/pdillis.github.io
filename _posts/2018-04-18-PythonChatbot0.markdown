@@ -58,8 +58,8 @@ This bot is neither expressive, memorable or charismatic, some of the main point
 
 Personality is essential to any chatbot, indeed to any human! This is subconciously expected by the user: if it does not meet our expectations, then we shy away from it (like I do nowadays), and this is why I particularly despise call centers. 
 
-<div class="img">
+<div class="polaroid">
 	<img src="https://images.pexels.com/photos/41280/agent-business-call-center-41280.jpeg" alt="Your worst nightmare" width="324" height="487" class = "center">
-	<div class="thecap"><b>Hi! This is the T-1000...I mean, Jenny, I will be your representative!</b> The majority of the cases, I cannot tell the difference.
+	<div class="container"><p><b>Hi! This is the T-1000...I mean, Jenny, I will be your representative!</b> The majority of the cases, I cannot tell the difference.</p>
 		</div>
 </div>
