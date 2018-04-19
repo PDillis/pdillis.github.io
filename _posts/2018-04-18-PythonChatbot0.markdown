@@ -21,7 +21,7 @@ By this point I have decided to build my own chatbot, and this is where we are n
 
 Since we are trying to start making our own chatbots, it is natural for us to look back in time and read about the first chatbot ever made. This was [ELIZA](https://en.wikipedia.org/wiki/ELIZA), created by [Joseph Weizenbaum](http://history.computer.org/pioneers/weizenbaum.html) from 1964 to 1966 at the MIT Artificial Intelligence Laboratory. ELIZA was born with the capacity to gain better language abilities, [as its name implies](https://en.wikipedia.org/wiki/Eliza_Doolittle). 
 
-[An extract](https://www.cse.buffalo.edu//~rapaport/572/S02/weizenbaum.eliza.1966.pdf) of a typical conversation between a user and the original `ELIZA` is shown next ('?' was a forbidden character, due to the implementation in the MAC system):
+An extract of a typical conversation between a user and the original ELIZA can be found in the [original paper by Weizenbaum](https://www.cse.buffalo.edu//~rapaport/572/S02/weizenbaum.eliza.1966.pdf) and is shown next ('?' was a forbidden character, due to the implementation in the MAC system, hence no questions):
 
 ```console
 Men are all alike.
@@ -32,21 +32,23 @@ Well, my boyfriend made me come here.
 YOUR BOYFRIEND MADE YOU COME HERE
 He says I'm depressed much of the time.
 I AM SORRY TO HEAR YOU ARE DEPRESSED
-.
-.
 ```
 
-with the capitalized lines being the machine responses. The summary of the algorithm is as follows: the input of the user is inspected in search of a *keyword*. If found, the input is transformed according to a *rule* associated with said keyword, else, a content-free remark or an earlier transformation is retrieved. Then, the text computed is printed out to the standard output. Since the script is taken as data, then this method is not restricted to one language. Indeed, you can find a working version of `ELIZA` in Spanish [here](http://deixilabs.com/eliza.html).
+with the capitalized lines being the machine responses. The summary of the algorithm is as follows: the input of the user is inspected in search of a **keyword**. If found, the input is transformed according to a **rule** associated with said keyword, else, a content-free remark or an earlier transformation is retrieved. Then, the text is transformed (e.g., from third person to first person) and is printed out to the standard output. Since the script is taken as data, then this method is not restricted to one language. Indeed, you can find a working version of `ELIZA` in Spanish [here](http://deixilabs.com/eliza.html).
 
-To Weizenbaum, we should never allow computers to make any decisions, as they lack compassion and wisdom, purely human emotions. Humans have judgement, which in turn allows us to compare apples with oranges. 
+In a way, Weizenbaum was trying to show how superficial was the communication between man and machine. Indeed, while the amount of rules that ELIZA has for each keyword is vast (besides other parts of the algorithm), ELIZA did not actually possess understanding of the input. Still, some users (including Weizenbaum's secretary) found ELIZA to have a personality, even becoming emotionally attached. Perhaps this was due to the shortness of the sessions where the users interacted with ELIZA, but this still is quite interesting to note. 
 
-This is even more apparent in the following quote (from an [excerpt found online](https://web.archive.org/web/20050508173416/http://www.smeed.org/1735)):
+This clashed with Weizenbaum. According to him, we should never allow computers to make any decisions, as they lack compassion and wisdom, purely human emotions. Humans have judgement, which in turn allows us to compare apples with oranges, and a relatively short algorithm and/or mathematical expression translated to code would not be able to do this. This is even more apparent in the following quote (from an excerpt found online of his book [*Computer Power and Human Reason*](https://web.archive.org/web/20050508173416/http://www.smeed.org/1735)):
 
-> I want them \[teachers of computer science\] to have heard me affirm that the computer is a powerful new metaphor for helping us understand many aspects of the world, but that it enslaves the mind that has no other metaphors and few other resources to call on. The world is many things, and no single framework is large enough to contain them all, neither that of man's science nor of his poetry, neither that of calculating reason nor that of pure intuition. And just as the love of music does not suffice to enable one to play the violin - one must also master the craft of the instrument and the music itself - so it is not enough to love humanity in order to help it survive. The teacher's calling to his craft is therefore an honorable one. But he must do more than that: he must teach more than one metaphor, and he must teach more by the example of his conduct than by what he writes on the blackboard. He must teach the limitations of his tools as well as their power. 
+> Just because so much of a computer-science curriculum is concerned with the craft of computation, it is perhaps easy for the teacher of computer science to fall into the habit of merely training. But, were he to do that, he would surely diminish himself and his profession. He would also detach himself from the rest of the intellectual and moral life of the university. 
 
-### Building ELIZA
+The perils of computation is that of robbing us of our humanity, and it has been a [pressing issue](https://blog.openai.com/concrete-ai-safety-problems/) lately as AI has been [steadily advancing](https://blog.openai.com/preparing-for-malicious-uses-of-ai/). Hopefully, we will be ready when the time comes. 
 
-The chatbot we will build will be greatly influenced by the following: 
+Let's get started then.
+
+## Building ELIZA
+
+The chatbot we will build will be greatly influenced by the following examples found online:
 
 - Noah Moroze's [simpleChatBot](https://github.com/nmoroze/SimpleChatBot)
 - Jezz Higgin's [recreation of ELIZA](https://github.com/jezhiggins/eliza.py)
@@ -59,7 +61,7 @@ user_template = "USER : {}"
 bot_template = "ELIZA : {}"
 ```
 
-As a first step,`ELIZA` will simply repeat back the message the user inputs:
+I prefer this template to the original by Weizenbaum, as this will make it easier to separate which line is done by the user and which by `ELIZA`. As a first step, `ELIZA` will simply repeat back the message the user inputs:
 
 ```python
 def respond(message):
@@ -80,20 +82,25 @@ def send_message(message):
 	print(bot_template.format(response))
 ```
 
-For example, we have the following:
+For example, we have the following input and output:
 
 ```python
 >>> send_message("Hello there!")
 'USER: Hello there!'
 'ELIZA: I can hear you! You said: Hello there!'
+>>> send_message("I did, how are you?")
+'USER: I did, how are you?'
+'ELIZA: I can hear you! You said: I did, how are you?'
+>>> send_message("wtf")
 ```
 
-This might seem impressive at first, but it can trick a user only so far. This version of `ELIZA` is neither expressive, memorable or charismatic, some of the main points by which we judge a conversation with another human, perhaps even moreso a machine. 
+At this point, any normal human being would end the conversation, and rightly so. While the [Echo Effect](http://journals.sagepub.com/doi/abs/10.1177/0261927X13506906) might have shown some promise, the extreme case we are dealing with now of repeating back everything is detrimental at best; one can trick a user only so far. 
+
+This version of `ELIZA` lacks expression, memorability and charisma, some of the main points by which we judge a conversation with another human, perhaps even moreso a machine. 
 
 Personality is essential to any chatbot, indeed to any human! This is subconciously expected by the user: if it does not meet our expectations, then we shy away from it (like I do nowadays), and this is why I particularly despise call centers. 
 
 <div class="polaroid">
 	<img src="https://images.pexels.com/photos/41280/agent-business-call-center-41280.jpeg" alt="Your worst nightmare" width="324" height="487" class = "center">
-	<div class="container"><p><b>Hi! This is the T-1000...I mean, Jenny, I will be your representative!</b> The majority of the cases, I cannot tell the difference.</p>
-		</div>
+	<div class="container"><p><b>Hi! This is the T-1000...I mean, Jenny, I will be your customer representative today!</b> The majority of the cases, I cannot tell the difference.</p></div>
 </div>
