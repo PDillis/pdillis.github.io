@@ -9,11 +9,13 @@ As of last year, thanks to my internship at the [Computer Vision Center](http://
 
 I have used chatbots in the past, and they have never been engaging or, in the majority of the cases, even useful in answering my questions or solving my problems; there was always a need for a human representative for help. In retrospective, I should immediately note that this was due to bias: chatbots are key in [answering routine questions](https://www.ibm.com/blogs/watson/2017/10/how-chatbots-reduce-customer-service-costs-by-30-percent/) (and saving company money), of which I never ask. Indeed, I prefer to find the answer for myself (or by other user's questions), and if no answer satisfies my need, then I would contact the company. In the cases my questions arrived a chatbot, it would always end with a non-answer or waiting time for a customer representative to get back to me. Thus, perhaps I was being too harsh on both NLP, but especially chatbots.
 
-There were other key turning points that made me look at chatbots in a different light. One of these was reading [Greg Brockman's path to AI](https://blog.gregbrockman.com/my-path-to-openai). Was I truly missing something by not looking at chatbots in a more positive way? This was further cemented when, whilst completing [Coursera's Deep Learning Specialization](https://www.coursera.org/account/accomplishments/specialization/certificate/M94FBCS34JG5), [Prof. Andrew Ng](http://www.andrewng.org/) showed us a new chatbot for mental health: [Woebot](https://woebot.io/). Whilst not a complete replacement for therapists, Woebot offers a far more powerful use for chatbots than I had ever seen before, and I loved it (and have even started to use it). 
+There were other key turning points that made me look at chatbots in a different light. One of these was reading [Greg Brockman's path to AI](https://blog.gregbrockman.com/my-path-to-openai). Was I truly missing something by not looking at chatbots in a more positive way? After all, language is one of the key pillars in society, indeed in intelligence. Should I not then explore them further? 
 
-Perhaps chatbots had far more to offer than what I had initially realized. This was even more evident when, whilst attending [2018's State of Latino Entrepeneurship Forum](https://www.gsb.stanford.edu/events/2018-state-latino-entrepreneurship-forum), I met [Conchita Franco Serri](https://www.linkedin.com/in/conchitaserri), Founder and CEO of [Caroami](http://caroami.com/). What Caroami plans to do (still has yet to launch), is that Perhaps they are overselling their bot, but it has great potential. Indeed, chatbots, like any other machine learning paradigm, can only get better with more data.
+Perhaps chatbots had far more to offer than what I had initially realized or was willing to give credit for. This was reinforced when, whilst attending [2018's State of Latino Entrepeneurship Forum](https://www.gsb.stanford.edu/events/2018-state-latino-entrepreneurship-forum), I met [Conchita Franco Serri](https://www.linkedin.com/in/conchitaserri), Founder and CEO of [Caroami](http://caroami.com/). What Caroami plans to do (as it hasn't yet to launched), is to resolve conflicts between two parties via a mediator, the chatbot. They will start with small scale conflicts, like disputes between roomates, or between couples, and then scale as time progresses. Perhaps they are overselling what their bot can do *now*, but it has great potential. Indeed, chatbots, like any other machine learning paradigm, will get better with more data.
 
-DataCamp's course on [building chatbots in Python](https://www.datacamp.com/courses/building-chatbots-in-python) given by Alan Nichol, co-founder and CTO of [Rasa](http://rasa.com/)
+This was further cemented when, whilst completing [Coursera's Deep Learning Specialization](https://www.coursera.org/account/accomplishments/specialization/certificate/M94FBCS34JG5), [Prof. Andrew Ng](http://www.andrewng.org/) showed us a new chatbot for mental health: [Woebot](https://woebot.io/). Whilst not a complete replacement for therapists, Woebot offers a far more powerful use for chatbots than I had ever seen before, and I loved it (and have even started to use it). After that, I found [spaCy](https://spacy.io/), which offer industrial-strength NLP in different languages, and I basically just started to play with it. From analyzing and visualizing novel snippets, to comparing sentences via [word vectors](https://blog.acolyer.org/2016/04/21/the-amazing-power-of-word-vectors/) (more on that on a later blog post).  
+
+By this point I have decided to build my own chatbot, and this is where we are now. Thus, I will write a bit of what I have learned (which is also a bit), and then we will proceed to both make our chatbot, as well as to gradually improve it, using more advanced tools like spaCy or [TensorFlow](https://www.tensorflow.org/).
 
 ## A bit of history
 
@@ -30,19 +32,31 @@ A recreation of ELIZA can be found [here](http://deixilabs.com/eliza.html) (in s
 
 ### Building EchoBot
 
+The chatbot we will build will be greatly influenced by the following: 
+
+- [Noah Moroze's simpleChatBot](https://github.com/nmoroze/SimpleChatBot)
+- [Jezz Higgin's recreation of ELIZA](https://github.com/jezhiggins/eliza.py)
+- DataCamp's course on [building chatbots in Python](https://www.datacamp.com/courses/building-chatbots-in-python) given by Alan Nichol, co-founder and CTO of [Rasa](http://rasa.com/). 
+
+The latter will set the tone and direction we will take, as it helped me realize how to scale this endeavor.
+
 As a first step, we will build `EchoBot`, which will simply repeat back the message the user inputs:
 
 ```python
 # This will be printed, creating the dialogue between the bot and the user
-bot_template = "BOT : {0}"
-user_template = "USER : {0}"
+bot_template = "BOT : {}"
+user_template = "USER : {}"
+```
 
+```python
 # Define a function that responds to a user's message:
 def respond(message):
 	# Concatenate the user's message to the end of a standard bot response
 	bot_message = "I can hear you! You said: " + message
 	return bot_message
+```
 
+```python
 # Define a function that sends a message to the bot. This will log the message
 # and the bot's response.
 def send_message(message):
