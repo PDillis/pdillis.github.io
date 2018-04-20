@@ -34,7 +34,12 @@ He says I'm depressed much of the time.
 I AM SORRY TO HEAR YOU ARE DEPRESSED
 ```
 
-with the capitalized lines being the machine responses. The summary of the algorithm is as follows: the input of the user is inspected in search of a **keyword**. If found, the input is transformed according to a **rule** associated with said keyword, else, a content-free remark or an earlier transformation is retrieved. Then, the text is transformed (e.g., from third person to first person) and is printed out to the standard output. Since the script is taken as data, then this method is not restricted to one language. Indeed, you can find a working version of ELIZA in Spanish [here](http://deixilabs.com/eliza.html).
+with the capitalized lines being the machine responses. The summary of the algorithm is as follows: 
+
+* The standrad input (input by the user) is inspected in search of a **keyword**. 
+* If found, the input is transformed according to a **rule** associated with said keyword, else, a content-free remark or an earlier transformation is retrieved. 
+* The text is then transformed (e.g., from third person to first person) and is printed out to the standard output. 
+  * Since the script is taken as data, then this method is not restricted to one language. Indeed, you can find a working version of ELIZA in Spanish [here](http://deixilabs.com/eliza.html).
 
 In a way, Weizenbaum was trying to show how superficial was the communication between man and machine. Indeed, while the amount of rules that ELIZA has for each keyword is vast (besides other parts of the algorithm), ELIZA did not actually possess understanding of the input. Still, some users (including Weizenbaum's secretary) found ELIZA to have a personality, even becoming emotionally attached. Perhaps this was due to the shortness of the sessions where the users interacted with ELIZA, but this still is quite interesting to note. 
 
@@ -88,19 +93,37 @@ For example, we have the following input and output:
 >>> send_message("Hello there!")
 'USER: Hello there!'
 'ELIZA: I can hear you! You said: Hello there!'
->>> send_message("I did, how are you?")
-'USER: I did, how are you?'
-'ELIZA: I can hear you! You said: I did, how are you?'
+>>> send_message("So I did. How are you?")
+'USER: So I did. How are you?'
+'ELIZA: I can hear you! You said: So I did. How are you?'
 >>> send_message("wtf")
 ```
 
-At this point, any normal human being would end the conversation, and rightly so. While the [Echo Effect](http://journals.sagepub.com/doi/abs/10.1177/0261927X13506906) might have shown some promise, the extreme case we are dealing with now of repeating back everything is detrimental at best; one can trick a user only so far. 
+At this point, any normal human being would end the conversation, and rightly so. While the [Echo Effect](http://journals.sagepub.com/doi/abs/10.1177/0261927X13506906) might have shown some promise, the extreme case we are dealing with now of repeating back everything is detrimental at best; the bot can pretend to be another user only so far. 
 
-This version of `ELIZA` lacks expression, memorability and charisma, some of the main points by which we judge a conversation with another human, perhaps even moreso a machine. 
-
-Personality is essential to any chatbot, indeed to any human! This is subconciously expected by the user: if it does not meet our expectations, then we shy away from it (like I do nowadays), and this is why I particularly despise call centers. 
+This version of `ELIZA` lacks everything by which we judge a conversation with another human, perhaps even moreso a machine, as being meaningful or memorable, even less having the personality that Weizenbaum's secretary described that the original ELIZA had. Indeed, personality is essential to any chatbot, indeed to any human! This is subconciously expected by the user: if it does not meet our expectations, then we shy away from it (like I do nowadays), and this is why I particularly despise call centers and the scripts that they do not deviate from.
 
 <div class="polaroid">
 	<img src="https://images.pexels.com/photos/41280/agent-business-call-center-41280.jpeg" alt="Your worst nightmare" width="324" height="487" class = "center">
 	<div class="container"><p><b>Hi! This is the T-1000...I mean, Jenny, I will be your customer representative today!</b> The majority of the cases, I cannot tell the difference.</p></div>
 </div>
+
+As such, we can add some variety via a `responses` dictionary, with the keys being the common questions asked by the user, and the values being the answer we will have `ELIZA` answer:
+
+```python
+responses = {"what's your name?": "My name is ELIZA",
+	     "what's the weather today?": "it's rainy!",
+	     "default": "default message"}
+```
+
+And we would modify our `respond()` function accordingly:
+
+```python
+def respond(message):
+	if message in responses:
+		bot_message = responses[message]
+	else:
+		bot_message = responses["default"]
+	return bot_message
+```
+
