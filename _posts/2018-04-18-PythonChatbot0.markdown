@@ -127,3 +127,20 @@ def respond(message):
 	return bot_message
 ```
 
+Thus:
+
+```python
+>>> send_message("what's your name?")
+'USER: what's your name?'
+'ELIZA: My name is ELIZA'
+'USER: what's the weather today?'
+'ELIZA: it's rainy!'
+'USER: what's the meaning of life?'
+'ELIZA: default message'
+```
+
+We note that this solution has a weakness, in that if the user does not input *exactly* any of the keys in the `responses` dictionary, then we wouldn't get a response. That's why we introduced the `"default"` key with a `"default message"`, akin to what [Google Assistant](https://assistant.google.com/) does when the user asks something it cannot do, or when it doesn't understand the command. This default message will be later edited to say something more helpful for the user.
+
+Thus, while certainly an improvement, let us add more complexity to `ELIZA`.
+
+To be continued...
