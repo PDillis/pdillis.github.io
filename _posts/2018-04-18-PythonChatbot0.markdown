@@ -131,13 +131,13 @@ Thus:
 
 ```python
 >>> send_message("what's your name?")
-'USER: what's your name?'
+'USER: what\'s your name?'
 'ELIZA: My name is ELIZA'
->>> send_message("what's your name?")
-'USER: what's the weather today?'
-'ELIZA: it's rainy!'
->>> send_message("what's your name?")
-'USER: what's the meaning of life?'
+>>> send_message("what's the weather today?")
+'USER: what\'s the weather today?'
+'ELIZA: it\'s rainy!'
+>>> send_message("what's the meaning of life?")
+'USER: what\'s the meaning of life?'
 'ELIZA: default message'
 >>> send_message("how insightful!")
 ```
