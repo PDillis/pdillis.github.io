@@ -91,11 +91,11 @@ For example, we have the following input and output:
 
 ```python
 >>> send_message("Hello there!")
-'USER: Hello there!'
-'ELIZA: I can hear you! You said: Hello there!'
+"USER: Hello there!"
+"ELIZA: I can hear you! You said: Hello there!"
 >>> send_message("So I did. How are you?")
-'USER: So I did. How are you?'
-'ELIZA: I can hear you! You said: So I did. How are you?'
+"USER: So I did. How are you?"
+"ELIZA: I can hear you! You said: So I did. How are you?"
 >>> send_message("wtf")
 ```
 
@@ -131,14 +131,14 @@ Thus:
 
 ```python
 >>> send_message("what's your name?")
-'USER: what\'s your name?'
-'ELIZA: My name is ELIZA'
+"USER: what's your name?"
+"ELIZA: My name is ELIZA"
 >>> send_message("what's the weather today?")
-'USER: what\'s the weather today?'
-'ELIZA: it\'s rainy!'
+"USER: what's the weather today?"
+"ELIZA: it's rainy!"
 >>> send_message("what's the meaning of life?")
-'USER: what\'s the meaning of life?'
-'ELIZA: default message'
+"USER: what's the meaning of life?"
+"ELIZA: default message"
 >>> send_message("how insightful!")
 ```
 
