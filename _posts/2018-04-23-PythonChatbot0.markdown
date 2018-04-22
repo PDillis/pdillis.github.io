@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Making a Chatbot in Python - Part 0"
-date:   2018-04-18 18:00:00
+date:   2018-04-23 18:00:00
 categories: main
 ---
 
@@ -15,7 +15,7 @@ Perhaps chatbots had far more to offer than what I had initially realized or was
 
 This was further cemented when, whilst completing [Coursera's Deep Learning Specialization](https://www.coursera.org/account/accomplishments/specialization/certificate/M94FBCS34JG5), [Prof. Andrew Ng](http://www.andrewng.org/) showed us a new chatbot for mental health: [Woebot](https://woebot.io/). Whilst not a complete replacement for therapists, Woebot offers a far more powerful use for chatbots than I had ever seen before, and I loved it (and have even started to use it). After that, I found [spaCy](https://spacy.io/), which offer industrial-strength NLP in different languages, and I basically just started to play with it. From analyzing and visualizing novel snippets, to comparing sentences via [word vectors](https://blog.acolyer.org/2016/04/21/the-amazing-power-of-word-vectors/) (more on that on a later blog post).  
 
-By this point I have decided to build my own chatbot, and this is where we are now. Thus, I will write a bit of what I have learned (which is also a bit), and then we will proceed to both make our chatbot, as well as to gradually improve it, using more advanced tools like spaCy or [TensorFlow](https://www.tensorflow.org/).
+By this point I have decided to build my own chatbot, and this is where we are now. Thus, I will write a bit of what I have learned (which is also a bit), and then we will proceed to both make our chatbot, as well as to gradually improve it, using more advanced tools like spaCy and [TensorFlow](https://www.tensorflow.org/).
 
 ## A bit of history
 
@@ -101,14 +101,14 @@ For example, we have the following input and output:
 
 At this point, any normal human being would end the conversation, and rightly so. While the [Echo Effect](http://journals.sagepub.com/doi/abs/10.1177/0261927X13506906) might have shown some promise, the extreme case we are dealing with now of repeating back everything is detrimental at best; the bot can pretend to be another user only so far. 
 
-This version of `ELIZA` lacks everything by which we judge a conversation with another human, perhaps even moreso a machine, as being meaningful or memorable, even less having the personality that Weizenbaum's secretary described that the original ELIZA had. Indeed, personality is essential to any chatbot, indeed to any human! This is subconciously expected by the user: if it does not meet our expectations, then we shy away from it (like I do nowadays), and this is why I particularly despise call centers and the scripts that they do not deviate from.
+This version of `ELIZA` lacks everything by which we judge a conversation with another human, perhaps even moreso a machine, as being meaningful or memorable, even less having the personality that Weizenbaum's secretary described that the original ELIZA had. Personality is essential to any chatbot, indeed to any human! This is subconciously expected by the user: if it does not meet our expectations, then we shy away from it (like I used to do), and this is why I particularly despise call centers and the scripts that they demand their customer representatives/salesmen to not deviate from.
 
 <div class="polaroid">
 	<img src="https://images.pexels.com/photos/41280/agent-business-call-center-41280.jpeg" alt="Your worst nightmare" width="324" height="487" class = "center">
 	<div class="container"><p><b>Hi! This is the T-1000...I mean, Jenny, I will be your customer representative today!</b> The majority of the cases, I cannot tell the difference.</p></div>
 </div>
 
-As such, we can add some variety via a `responses` dictionary, with the keys being the common questions asked by the user, and the values being the answer we will have `ELIZA` answer:
+As such, we can add a `responses` dictionary, with the keys being the common questions asked by the user, and the values being the answer we will have `ELIZA` answer. Starting slowly, this means:
 
 ```python
 responses = {"what's your name?": "My name is ELIZA",
@@ -144,6 +144,35 @@ Thus:
 
 We note that this solution has a weakness, in that if the user does not input *exactly* any of the keys in the `responses` dictionary, then we wouldn't get a response. That's why we introduced the `"default"` key with a `"default message"`, akin to what [Google Assistant](https://assistant.google.com/) does when the user asks something it cannot do, or when it doesn't understand the command. This default message will be later edited to say something more helpful for the user.
 
-Thus, while certainly an improvement, let us add more complexity to `ELIZA`.
+Humans do not have a constant dictionary of answers that we resort to when asked a question, or when engaging in a conversation (we even deviate from things we think we will say beforehand). Thus, while certainly an improvement, this version of `ELIZA` still has potential for improvement, for more complexity in its interactions. 
+
+Two ways in which we can do this are as follow:
+
+* Having placeholders for variables, such as the weather, mood, or even name of our bot.
+* Add more than one way to answer a question, i.e., variety in dialogue.
+
+For the former, it is sufficient to declare variables that can be updated regularly and use them with the standard [`str.format()`](https://docs.python.org/3.5/library/stdtypes.html#str.format) method. For the latter, we will add multiple answers to each question using a list. For example, for the weather, our `responses` dictionary and new variable, `weather_today`, are:
+
+```python
+weather_today = "rainy"
+
+responses = {"what's the weather today?": ["it's {} today".format(weather_today),
+					   "the local weather is {}".format(weather_today),
+					   "it seems it will be {} today".format(weather_today)],
+	     "default": "default message"}
+```
+
+So, we will make `ELIZA` to answer the questions by randomly selecting from the list of answers using the [`random`](https://docs.python.org/3.5/library/random.html) module and modifying our `respond()` function yet again:
+
+```python
+import random
+
+def respond(message):
+	if message in responses:
+		bot_message = random.choice(responses[message])
+	else:
+		bot_message = responses["default"]
+	return bot_message
+```
 
 To be continued...
