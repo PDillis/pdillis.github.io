@@ -120,9 +120,12 @@ And we would modify our `respond()` function accordingly:
 
 ```python
 def respond(message):
+	# We check if the message has a pre-defined response
 	if message in responses:
+		# If it does, then we return the matching response
 		bot_message = responses[message]
 	else:
+		# Otherwise, return the default message
 		bot_message = responses["default"]
 	return bot_message
 ```
@@ -151,7 +154,7 @@ Two ways in which we can do this are as follow:
 * Having placeholders for variables, such as the weather, mood, or even name of our bot.
 * Add more than one way to answer a question, i.e., variety in dialogue.
 
-For the former, it is sufficient to declare variables that can be updated regularly and use them with the standard [`str.format()`](https://docs.python.org/3.5/library/stdtypes.html#str.format) method. For the latter, we will add multiple answers to each question using a list. For example, for the weather, our `responses` dictionary and new variable, `weather_today`, are:
+For the former, it is sufficient to declare variables that can be updated regularly and use them with the standard [`str.format()`](https://docs.python.org/3.5/library/stdtypes.html#str.format) method. For the latter, we will add multiple answers to each question using a list and choose randomly from them. For example, when the user asks about the weather, our `responses` dictionary and new variable `weather_today` are:
 
 ```python
 weather_today = "rainy"
@@ -159,7 +162,7 @@ weather_today = "rainy"
 responses = {"what's the weather today?": ["it's {} today".format(weather_today),
 					   "the local weather is {}".format(weather_today),
 					   "it seems it will be {} today".format(weather_today)],
-	     "default": "default message"}
+	     "default": ["default message"]}
 ```
 
 So, we will make `ELIZA` to answer the questions by randomly selecting from the list of answers using the [`random`](https://docs.python.org/3.5/library/random.html) module and modifying our `respond()` function yet again:
@@ -168,11 +171,75 @@ So, we will make `ELIZA` to answer the questions by randomly selecting from the 
 import random
 
 def respond(message):
+	# We check if the message has a pre-defined response 
 	if message in responses:
+		# We declare bot_message, which will be a random matching response to the message
 		bot_message = random.choice(responses[message])
 	else:
-		bot_message = responses["default"]
+		# We return a random matching default response, which can be more than one
+		bot_message = random.choice(responses["default"])
 	return bot_message
+```
+
+We then get:
+
+```python
+>>> send_message("what's the weather today?")
+"USER : what's the weather today?"
+"BOT : the local weather is rainy"
+>>> send_message("what's the weather today?")
+"USER : what's the weather today?"
+"BOT : it's rainy today"
+>>> send_message("will it rain today?")
+"USER : will it rain today?"
+"BOT : default message"
+```
+
+<div class="polaroid">
+	<img src="https://user-images.githubusercontent.com/24496178/39106082-a185f62c-4676-11e8-9a15-82af64a01103.png" alt="100% accuracy"  class = "center">
+	<div class="container"><p><b>The only weather forecast I need.</b></p></div>
+</div>
+
+### Questions vs. Statements
+
+To keep the conversation going, we can also have `ELIZA` ask questions to our users, regardless of what the user sends as a message. Concretely, these may not even be direct questions regarding the user input, regarding instead on whether the user's `message` was a question or a statement. Thus, we can instead have our `responses` dictionary to be the following:
+
+```python
+responses = {"question": ["I don't know T_T",
+			  "you tell me"],
+	     "statement": ["tell me more!",
+	     		   "why do you think that?"
+			   "how long have you felt this way?",
+			   "I find that extremely interesting",
+			   "tell me more!",
+			   "can you back that up?",
+			   "oh wow!",
+			   ":^)"]}
+```
+
+The easiest way to know if the user is asking a question is whether or not there's a question mark at the end of the `message` input. We reflect this in our `respond()` function:
+
+```python
+def respond(message):
+	# We check if there is a question mark
+	if message.endswith("?"):
+		# We return one of the 'question' responses
+		bot_message = random.choice(responses["question"])
+	else:
+		# Otherwise, return one of the 'statement' responses
+		bot_message = random.choice(responses["statement"])
+	return bot_message
+```
+
+A typical example of this would be:
+
+```python
+>>> send_message("what's today's weather?")
+"USER : what's today's weather?"
+"BOT : you tell me!"
+>>> send_message("I love you ELIZA!")
+"USER : I love you ELIZA!"
+"BOT : how long have you felt this way?"
 ```
 
 To be continued...
