@@ -260,7 +260,7 @@ Covering the basics, this is how we will use the `re` module:
 >>> message = "what would happen if you ate the Takis?"
 >>> match = re.search(pattern, message)
 >>> match.group(0) # Will return the entire match
-"what would happen if you ate the Takis?"
+"if you ate the Takis?"
 >>> match.group(1) # Will return only the parenthesized subgroup
 "you ate the Takis?"
 ```
