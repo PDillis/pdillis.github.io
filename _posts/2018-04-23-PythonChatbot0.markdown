@@ -110,6 +110,12 @@ The current version of `ELIZA` lacks everything by which we judge a conversation
 	<div class="container"><p><b>Hi! This is the T-1000...I mean, Jenny, I will be your customer representative today!</b> The majority of the cases, I cannot tell the difference.</p></div>
 </div>
 
+<div class="imgcap">
+<img src="https://images.pexels.com/photos/41280/agent-business-call-center-41280.jpeg">
+<div class="container"><p><b>Hi! This is the T-1000...I mean, Jenny, I will be your customer representative today!</b> The majority of the cases, I cannot tell the difference.</p></div>
+</div>
+
+
 As such, we can add a `responses` dictionary, with the keys being the common questions asked by the user, and the values being the answer we will have `ELIZA` answer. Starting slowly, this means:
 
 ```python
