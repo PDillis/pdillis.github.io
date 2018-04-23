@@ -99,9 +99,11 @@ For example, we have the following input and output:
 >>> send_message("wtf")
 ```
 
+### On the Origin of Conversation
+
 At this point, any normal human being would end the conversation, and rightly so. While the [Echo Effect](http://journals.sagepub.com/doi/abs/10.1177/0261927X13506906) might have shown some promise, the extreme case we are dealing with now of repeating back everything is detrimental at best; the bot can pretend to be another user only so far. 
 
-This version of `ELIZA` lacks everything by which we judge a conversation with another human, perhaps even moreso a machine, as being meaningful or memorable, even less having the personality that Weizenbaum's secretary described that the original ELIZA had. Personality is essential to any chatbot, indeed to any human! This is subconciously expected by the user: if it does not meet our expectations, then we shy away from it (like I used to do), and this is why I particularly despise call centers and the scripts that they demand their customer representatives/salesmen to not deviate from.
+The current version of `ELIZA` lacks everything by which we judge a conversation with another human, perhaps even moreso a machine, as being meaningful or memorable, even less having the personality that Weizenbaum's secretary described that the original ELIZA had. Personality is essential to any chatbot, indeed to any human! This is subconciously expected by the user: if it does not meet our expectations, then we shy away from it (like I used to do), and this is why I particularly despise call centers and the scripts that they demand their customer representatives/salesmen to not deviate from.
 
 <div class="polaroid">
 	<img src="https://images.pexels.com/photos/41280/agent-business-call-center-41280.jpeg" alt="Your worst nightmare" width="324" height="487" class = "center">
@@ -144,6 +146,10 @@ Thus:
 "ELIZA: default message"
 >>> send_message("how insightful!")
 ```
+
+Perhaps this subsection title promised too much, but we can do better.
+
+### Adding Complexity
 
 We note that this solution has a weakness, in that if the user does not input *exactly* any of the keys in the `responses` dictionary, then we wouldn't get a response. That's why we introduced the `"default"` key with a `"default message"`, akin to what [Google Assistant](https://assistant.google.com/) does when the user asks something it cannot do, or when it doesn't understand the command. This default message will be later edited to say something more helpful for the user.
 
@@ -241,5 +247,49 @@ A typical example of this would be:
 "USER : I love you ELIZA!"
 "BOT : how long have you felt this way?"
 ```
+
+### Regular Expressions (regex) and Grammar
+
+[**Regular expressions**](https://en.wikipedia.org/wiki/Regular_expression), or **regex**, are a sequence of characters that we will use to match `messages` with search patterns, to extract key phrases, and even to transform the sentence from the third person to first person, for example. Thus, we will need a set of rules (patterns) for matching the `messages` by the user, and we will use these in conjunction with the [`re`](https://docs.python.org/3.5/library/re.html) module from Python to use the regular expressions.
+
+Covering the basics, this is how we will use the `re` module:
+
+```python
+>>> import re
+>>> pattern = "if (.*)"
+>>> message = "what would happen if you ate the Takis?"
+>>> match = re.search(pattern, message)
+>>> match.group(0) # Will return the entire match
+"what would happen if you ate the Takis?"
+>>> match.group(1) # Will return only the parenthesized subgroup
+"you ate the Takis?"
+```
+
+Thus, our goal appears: we will find the subject that the user is asking about in the `message` string, extract it, and if necessary restructure it gramatically such that the answer that `ELIZA` gives back makes sense. For illustration, we can use the [`re.sub`](https://docs.python.org/3.5/library/re.html#re.sub) method by defining a new function, `swap_pronouns()`, like so:
+
+```python
+import re
+
+def swap_pronouns(phrase):
+	if "I" in phrase:
+		return re.sub("I", "you", phrase)
+	if "my" in phrase:
+		return re.sub("my", "your", phrase)
+	else:
+		return phrase
+```
+
+And then:
+
+```python
+>>> swap_pronouns("This is my book.")
+"This is your book."
+>>> swap_pronouns("I walk my dog.")
+"You walk your dog."
+```
+
+The huge advantage we have is that we are using the English language, which can be thus reduced to simple rules of switching pronouns (albeit many). Let us then continue on building on `ELIZA`'s complexity.
+
+### Key phrases extraction and More Grammar
 
 To be continued...
