@@ -105,14 +105,9 @@ At this point, any normal human being would end the conversation, and rightly so
 
 The current version of `ELIZA` lacks everything by which we judge a conversation with another human, perhaps even moreso a machine, as being meaningful or memorable, even less having the personality that Weizenbaum's secretary described that the original ELIZA had. Personality is essential to any chatbot, indeed to any human! This is subconciously expected by the user: if it does not meet our expectations, then we shy away from it (like I used to do), and this is why I particularly despise call centers and the scripts that they demand their customer representatives/salesmen to not deviate from.
 
-<div class="polaroid">
-	<img src="https://images.pexels.com/photos/41280/agent-business-call-center-41280.jpeg" alt="Your worst nightmare" width="324" height="487" class = "center">
-	<div class="container"><p><b>Hi! This is the T-1000...I mean, Jenny, I will be your customer representative today!</b> The majority of the cases, I cannot tell the difference.</p></div>
-</div>
-
 <div class="imgcap">
 <img src="https://images.pexels.com/photos/41280/agent-business-call-center-41280.jpeg">
-<div class="container"><p><b>Hi! This is the T-1000...I mean, Jenny, I will be your customer representative today!</b> The majority of the cases, I cannot tell the difference.</p></div>
+<div class="container"><p><b>Hi! This is the T-1000...I mean, Jenny, I will be your customer representative today!</b></p></div>
 </div>
 
 
@@ -207,9 +202,9 @@ We then get:
 "BOT : default message"
 ```
 
-<div class="polaroid">
-	<img src="https://user-images.githubusercontent.com/24496178/39106082-a185f62c-4676-11e8-9a15-82af64a01103.png" alt="100% accuracy"  class = "center">
-	<div class="container"><p><b>The only weather forecast I need.</b></p></div>
+<div class="imgcap">
+<img src="https://user-images.githubusercontent.com/24496178/39106082-a185f62c-4676-11e8-9a15-82af64a01103.png" alt="100% accuracy">
+<div class="container"><p><b>10/10, would consult again.</b></p></div>
 </div>
 
 ### Questions vs. Statements
