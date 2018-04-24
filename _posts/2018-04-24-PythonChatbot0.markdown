@@ -352,7 +352,7 @@ def replace_pronouns(message):
 	if "are" in message:
 		return re.sub("are", "am", message)
 	if ("i " or "me") in message:
-		return re.sub("i|me", "you", message)
+		return re.sub("i |me", "you", message)
 	if ("i'd" or "i would") in message:
 		return re.sub("i'd|i would", "you would", message)
 	if ("i've" or "i have") in message:
