@@ -62,8 +62,8 @@ The chatbot we will build will be greatly influenced by the following examples f
 The latter will set the tone and direction we will take, as it helped me realize how to slowly grow and scale this endeavor. We will develop our code for Python 3.5, but it can be easily translated into any other version of Python. So, in order for the user and chatbot to engage in a conversation, we have the following template (to be filled) by the algorithm we will develop later on:
 
 ```python
-user_template = "USER : {0}"
-bot_template = "ELIZA : {0}"
+user_template = "USER: {0}"
+bot_template = "ELIZA: {0}"
 ```
 
 I prefer this template to the original by Weizenbaum, as this will make it easier for the user to understand which line is done by the user and which by `ELIZA`. As a first step, `ELIZA` will simply repeat back the message the user inputs:
@@ -192,14 +192,14 @@ We then get:
 
 ```python
 >>> send_message("what's the weather today?")
-"USER : what's the weather today?"
-"BOT : the local weather is rainy"
+"USER: what's the weather today?"
+"ELIZA: the local weather is rainy"
 >>> send_message("what's the weather today?")
-"USER : what's the weather today?"
-"BOT : it's rainy today"
+"USER: what's the weather today?"
+"ELIZA: it's rainy today"
 >>> send_message("will it rain today?")
-"USER : will it rain today?"
-"BOT : default message"
+"USER: will it rain today?"
+"ELIZA: default message"
 ```
 
 <div class="imgcap">
@@ -242,11 +242,11 @@ A typical example of this would be:
 
 ```python
 >>> send_message("what's today's weather?")
-"USER : what's today's weather?"
-"BOT : you tell me!"
+"USER: what's today's weather?"
+"ELIZA: you tell me!"
 >>> send_message("I love you ELIZA!")
-"USER : I love you ELIZA!"
-"BOT : how long have you felt this way?"
+"USER: I love you ELIZA!"
+"ELIZA: how long have you felt this way?"
 ```
 
 ### Regular Expressions (regex) and Grammar
@@ -340,45 +340,96 @@ For example:
 ("Why haven't you been able to forget {0}", 'your last birthday')
 ```
 
-We are almost done, we just need to change from second to first person, and we will be ready to integrate this into what we have so far of our algorithm. For this, we define yet again another function that will help us in changing the pronouns:
+We are almost done, we just need to change from second to first person, and we will be ready to integrate this into what we have so far of our algorithm. For this, we define yet again another function that will help us in changing the pronouns (note that we could also do this with a dictionary):
 
 ```python
 def replace_pronouns(message):
 	# We lowercase our message in order to avoid any ambiguity
-	message = message.lower()
+	# as well as remove the final punctuations
+	message = message.lower().strip('.!?')
 	# We will replace "i" with "you", "you" with "me", etc.
 	if "am" in message:
-		message = re.sub("am", "are", message)
+		return re.sub("am", "are", message)
 	if "are" in message:
-		message = re.sub("are", "am", message)
+		return re.sub("are", "am", message)
 	if "i " in message:
-		message = re.sub("i ", "you ", message)
+		return re.sub("i ", "you ", message)
 	if ("i'd" or "i would") in message:
-		message = re.sub("i'd|i would", "you would", message)
+		return re.sub("i'd|i would", "you would", message)
 	if ("i've" or "i have") in message:
-		message = re.sub("i've|i have", "you have", message)
+		return re.sub("i've|i have", "you have", message)
 	if ("i'll" or "i will" or "i shall") in message:
-		message = re.sub("i'll|i will|i shall", "you will", message)
+		return re.sub("i'll|i will|i shall", "you will", message)
 	if "me" in message:
-		message = re.sub("me", "you", message)
+		return re.sub("me", "you", message)
 	if "my" in message:
-		message = re.sub("my", "your", message)
+		return re.sub("my", "your", message)
 	if "was" in message:
-		message = re.sub("was", "were", message)
-	if "you" in message:
-		message = re.sub("you", "I", message)
-	if "your" in message:
-		message = re.sub("your", "my", message)
+		return re.sub("was", "were", message)
 	if "yours" in message:
-		message = re.sub("yours", "mine", message)
+		return re.sub("yours", "mine", message)
+	if "your" in message:
+		return re.sub("your", "my", message)
+	if "you" in message:
+		return re.sub("you", "I", message)
 	if ("you'll" or "you will") in message:
-		message = re.sub("you'll|you will", "you", message)
+		return re.sub("you'll|you will", "you", message)
 	if ("you've" or "you have") in message:
-		message = re.sub("you've|you have", "I have", message)
+		return re.sub("you've|you have", "I have", message)
 	# We return either the changed message, or the original message
 	return message
 ```
 
+We test it like so:
 
+```python
+>>> replace_pronouns("my car is over there")
+'your car is over there'
+>>> replace_pronouns("when you went to the lake")
+'when I went to the lake'
+```
 
-To be continued...
+Some replacements won't make sense, grammatically speaking. This is obvious that would happen, since we are basically hard-coding all the responses that `ELIZA` will reply with. However, as a basic first step, it serves our purpose, and we then proceed with our final step.
+
+<div class="imgcap">
+<img src="https://user-images.githubusercontent.com/24496178/39205225-54847582-47b7-11e8-8f45-339b7bde7d4e.png" alt="10/10 in grammar">
+<div class="container"><p><b>All my base are belong to us.</b></p></div>
+</div>
+
+### Putting it all together
+
+In conclusion, using the functions `match_rule()`, `send_message()`, and `replace_pronouns()`, as well as the `rules` dictionary, we integrate them into a final redefinition of `respond()` like so:
+
+```python
+def respond(message):
+	# We call match_rule
+	response, phrase = match_rule(rules, message)
+	# If there is a placeholder in our response
+	if '{0}' in response:
+		# Replace the pronouns
+		phrase = replace_pronouns(phrase)
+		# Insert the phrase in the response
+		response = response.format(phrase)
+	return response
+```
+
+Thus, we can send some simple messages and see how `ELIZA` responds:
+
+```python
+>>> send_message("do you remember your last birthday?")
+"USER: do you remember your last birthday?"
+"ELIZA: What about my last birthday"
+>>> send_message("I want a robot friend")
+"USER: I want a robot friend"
+"ELIZA: Why do you want a robot friend"
+>>> send_message("do you think humans should be worried about AI")
+"USER: do you think humans should be worried about AI"
+"ELIZA: if humans should be worried about ai? Absolutely."
+```
+
+<div class="imgcap">
+<img src="https://user-images.githubusercontent.com/24496178/39206653-401edcb4-47bb-11e8-81d3-8d27f71694b5.jpg" alt="We gon die">
+<div class="container"><p><b>I knew it!</b></p></div>
+</div>
+
+#### Appendix A: Intent Classification
