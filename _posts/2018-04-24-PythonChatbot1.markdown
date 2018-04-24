@@ -1,8 +1,12 @@
 ---
 layout: post
-title:  "On Conversation - Making a Chatbot in Python - Part 0"
+title:  "On Conversation - Making a Chatbot in Python - Part 1"
 date:   2018-04-24 18:00:00
 categories: main
+---
+
+**tl;dr** We will start by building a chatbot in Python 3 in order to trick the user into thinking that the bot has actual understanding of the conversation. We want to imitate a [Rogerian psychotherapist](https://en.wikipedia.org/wiki/Person-centered_therapy), so we will answer whatever the user inputs with a question. Git clone the final version of my code [here](https://github.com/PDillis/PythonChatbots) or, if you are even lazier, copy it from [this gist](https://gist.github.com/PDillis/592b2c6a41c598e2ac260c7580473582).
+
 ---
 
 As of last year, thanks to my internship at the [Computer Vision Center](http://www.cvc.uab.es) and the [work](https://github.com/PDillis/DQN-CarRacing) [I did](https://github.com/PDillis/CartPole-Cases) [there](https://github.com/PDillis/Experiment-CarRacing) using [Reinforcement Learning](https://deeplearning4j.org/deepreinforcementlearning), I have become extremely interested in both the current state and applications of AI, as well as its origins. Without much reservation, there was an area I did not hold particularly dear: that of [Natural Language Processing](https://en.wikipedia.org/wiki/Natural-language_processing), or NLP. I believe this was due to what was presented to me as being *the* application of NLP: chatbots, in particular, chatbots for companies (I will admit another popular area in NLP is that of predictive text keyboards, which most of the times get [hilarious results](https://twitter.com/botnikstudios/status/986295833451692032) and I wish to experiment with this later on).
@@ -99,7 +103,7 @@ For example, we have the following input and output:
 >>> send_message("wtf")
 ```
 
-### On the Origin of Conversation
+### How to talk to a Bot 101
 
 At this point, any normal human being would end the conversation, and rightly so. While the [Echo Effect](http://journals.sagepub.com/doi/abs/10.1177/0261927X13506906) might have shown some promise, the extreme case we are dealing with now of repeating back everything is detrimental at best; the bot can pretend to be another user only so far. 
 
@@ -300,12 +304,12 @@ Continuing where we left off in the last section, we define a dictionary of rule
 ```python
 rules = {"I want (.*)": ["What would it mean if you got {0}?",
 			 "Why do you want {0}?",
-			 "What's stopping you from getting {0}"?],
+			 "What's stopping you from getting {0}?"],
 	 "do you remember (.*)": ["Did you think I would forget {0}?",
 	 			  "Why haven't you been able to forget {0}?",
 				  "What about {0}?",
 				  "Yes ...and?"],
-	 "do you think (.*)": ["if {0}? Absollutely.",
+	 "do you think (.*)": ["if {0}? Absolutely.",
 	 		       "No way Jose"],
 	 "if (.*)": ["Do you really think that it's likely that {0}?",
 	 	     "Do you wish that {0}?",
@@ -432,4 +436,10 @@ Thus, we can send some simple messages and see how `ELIZA` responds:
 <div class="container"><p><b>I knew it!</b></p></div>
 </div>
 
-#### Appendix A: Intent Classification
+Adding more rules, and changing our code a bit in order for it to look nicer on the output, our final code is as follows:
+
+<script src="https://gist.github.com/PDillis/592b2c6a41c598e2ac260c7580473582.js"></script>
+
+After git clonging/downloading the file from [my repository]() (or just copy and paste from here), this can be easily run on the command shell as `python ELIZA.py`, and let the conversation start! 
+
+Hope you enjoyed this as much as I did, have fun chatting with ELIZA and see you next time!
