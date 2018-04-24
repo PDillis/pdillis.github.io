@@ -348,31 +348,35 @@ def replace_pronouns(message):
 	message = message.lower()
 	# We will replace "i" with "you", "you" with "me", etc.
 	if "am" in message:
-		return re.sub("am", "are", message)
+		message = re.sub("am", "are", message)
 	if "are" in message:
-		return re.sub("are", "am", message)
-	if ("i " or "me") in message:
-		return re.sub("i |me", "you", message)
+		message = re.sub("are", "am", message)
+	if "i " in message:
+		message = re.sub("i ", "you ", message)
 	if ("i'd" or "i would") in message:
-		return re.sub("i'd|i would", "you would", message)
+		message = re.sub("i'd|i would", "you would", message)
 	if ("i've" or "i have") in message:
-		return re.sub("i've|i have", "you have", message)
+		message = re.sub("i've|i have", "you have", message)
 	if ("i'll" or "i will" or "i shall") in message:
-		return re.sub("i'll|i will|i shall", "you will", message)
+		message = re.sub("i'll|i will|i shall", "you will", message)
+	if "me" in message:
+		message = re.sub("me", "you", message)
 	if "my" in message:
-		return re.sub("my", "your", message)
+		message = re.sub("my", "your", message)
 	if "was" in message:
-		return re.sub("was", "were", message)
+		message = re.sub("was", "were", message)
 	if "you" in message:
-		return re.sub("you", "I", message)
+		message = re.sub("you", "I", message)
 	if "your" in message:
-		return re.sub("your", "my", message)
+		message = re.sub("your", "my", message)
 	if "yours" in message:
-		return re.sub("yours", "mine", message)
+		message = re.sub("yours", "mine", message)
 	if ("you'll" or "you will") in message:
-		return re.sub("you'll|you will", "you", message)
+		message = re.sub("you'll|you will", "you", message)
 	if ("you've" or "you have") in message:
-		return re.sub("you've|you have", "I have", message)
+		message = re.sub("you've|you have", "I have", message)
+	# We return either the changed message, or the original message
+	return message
 ```
 
 
