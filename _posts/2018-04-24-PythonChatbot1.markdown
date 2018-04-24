@@ -436,10 +436,15 @@ Thus, we can send some simple messages and see how `ELIZA` responds:
 <div class="container"><p><b>I knew it!</b></p></div>
 </div>
 
-Adding more rules, and changing our code a bit in order for it to look nicer on the output, our final code is as follows:
+Adding more rules, and changing our code a bit in order for it to look nicer on the output (such as removing the `'USER: {0}'` template and including the `'ELIZA : {0}'` template in the `send_message()` function), our final code is as follows:
 
 <script src="https://gist.github.com/PDillis/592b2c6a41c598e2ac260c7580473582.js"></script>
 
-After git clonging/downloading the file from [my repository]() (or just copy and paste from here), this can be easily run on the command shell as `python ELIZA.py`, and let the conversation start! 
+After git clonging/downloading the file from [my repository](https://github.com/PDillis/PythonChatbots) (or just copy and paste from here), this can be easily run on the command shell as `python ELIZA.py`. You should see something like this: 
+
+<div class="imgcap">
+<img src="https://user-images.githubusercontent.com/24496178/39219259-a26d9a10-47e6-11e8-8018-a88318939abf.png" alt="yay">
+<div class="container"><p><b>Success!</b></p></div>
+</div>
 
 Hope you enjoyed this as much as I did, have fun chatting with ELIZA and see you next time!
