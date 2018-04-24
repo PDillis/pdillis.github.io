@@ -38,7 +38,7 @@ with the capitalized lines being the machine responses. The summary of the algor
 
 * The standrad input (input by the user) is inspected in search of a **keyword**. 
 * If found, the input is transformed according to a **rule** associated with said keyword, else, a content-free remark or an earlier transformation is retrieved. 
-* The text is then transformed (e.g., from third person to first person) and is printed out to the standard output. 
+* The text is then transformed (e.g., from second person to first person) and is printed out to the standard output. 
   * Since the script is taken as data, then this method is not restricted to one language. Indeed, you can find a working version of ELIZA in Spanish [here](http://deixilabs.com/eliza.html).
 
 In a way, Weizenbaum was trying to show how superficial was the communication between man and machine. Indeed, while the amount of rules that ELIZA has for each keyword is vast (besides other parts of the algorithm), ELIZA did not actually possess understanding of the input. Still, some users (including Weizenbaum's secretary) found ELIZA to have a personality, even becoming emotionally attached. Perhaps this was due to the shortness of the sessions where the users interacted with ELIZA, but this still is quite interesting to note. 
@@ -251,7 +251,7 @@ A typical example of this would be:
 
 ### Regular Expressions (regex) and Grammar
 
-[**Regular expressions**](https://en.wikipedia.org/wiki/Regular_expression), or **regex**, are a sequence of characters that we will use to match `messages` with search patterns, to extract key phrases, and even to transform the sentence from the third person to first person, for example. Thus, we will need a set of rules (patterns) for matching the `messages` by the user, and we will use these in conjunction with the [`re`](https://docs.python.org/3.5/library/re.html) module from Python to use the regular expressions.
+[**Regular expressions**](https://en.wikipedia.org/wiki/Regular_expression), or **regex**, are a sequence of characters that we will use to match `messages` with search patterns, to extract key phrases, and even to transform the sentence from the second to first person, for example. Thus, we will need a set of rules (patterns) for matching the `messages` by the user, and we will use these in conjunction with the [`re`](https://docs.python.org/3.5/library/re.html) module from Python to use the regular expressions.
 
 Covering the basics, this is how we will use the `re` module:
 
@@ -289,7 +289,7 @@ And then:
 "You walk your dog."
 ```
 
-The huge advantage we have is that we are using the English language, which can be thus reduced to simple rules of switching pronouns (albeit many). Let us then continue on building on `ELIZA`'s complexity.
+The huge advantage we have is that we are using the English language, which can be thus reduced to simple rules of switching pronouns (albeit many), which would not be a small task in other languages. Let us then continue on building on `ELIZA`'s complexity.
 
 ### Key phrases extraction and More Grammar
 
@@ -298,7 +298,7 @@ The true cleverness of the original ELIZA relied on the parrot-esque design of i
 Continuing where we left off in the last section, we define a dictionary of rules which we will use to match different patterns in the user's `message`:
 
 ```python
-rules = {"I want (*.)": ["What would it mean if you got {0}?",
+rules = {"I want (.*)": ["What would it mean if you got {0}?",
 			 "Why do you want {0}?",
 			 "What's stopping you from getting {0}"?],
 	 "do you remember (.*)": ["Did you think I would forget {0}?",
@@ -312,6 +312,69 @@ rules = {"I want (*.)": ["What would it mean if you got {0}?",
 		     "What do you think about {0}?"]}
 ```
 
-Now, we define the function `match_rule()` with which we will 
+Now, we define the function `match_rule()` with which we will match a rule in the `rules` dictionary to the user's `message`:
+
+```python
+def match_rule(rules, message):
+	# We have some default message and phrase to return
+	response, phrase = "default", None
+	# We iterate over the rules dictionary
+	for pattern, responses in rules.items():
+		# Create a match object with re.search()
+		match = re.search(pattern, message)
+		if match is not None:
+			# Choose a random response
+			response = random.choice(responses)
+			# If there is a placeholder in the response, we must fill it
+			if "{0}" in response:
+				# Our phrase will be the parenthesized subgroup
+				phrase = match.group(1)
+	# Return both the response and phrase
+	return response, phrase
+```
+
+For example:
+
+```python
+>>> print(match_rule(rules=rules, message="do you remember your last birthday?"))
+("Why haven't you been able to forget {0}", 'your last birthday')
+```
+
+We are almost done, we just need to change from second to first person, and we will be ready to integrate this into what we have so far of our algorithm. For this, we define yet again another function that will help us in changing the pronouns:
+
+```python
+def replace_pronouns(message):
+	# We lowercase our message in order to avoid any ambiguity
+	message = message.lower()
+	# We will replace "i" with "you", "you" with "me", etc.
+	if "am" in message:
+		return re.sub("am", "are", message)
+	if "are" in message:
+		return re.sub("are", "am", message)
+	if ("i " or "me") in message:
+		return re.sub("i|me", "you", message)
+	if ("i'd" or "i would") in message:
+		return re.sub("i'd|i would", "you would", message)
+	if ("i've" or "i have") in message:
+		return re.sub("i've|i have", "you have", message)
+	if ("i'll" or "i will" or "i shall") in message:
+		return re.sub("i'll|i will|i shall", "you will", message)
+	if "my" in message:
+		return re.sub("my", "your", message)
+	if "was" in message:
+		return re.sub("was", "were", message)
+	if "you" in message:
+		return re.sub("you", "I", message)
+	if "your" in message:
+		return re.sub("your", "my", message)
+	if "yours" in message:
+		return re.sub("yours", "mine", message)
+	if ("you'll" or "you will") in message:
+		return re.sub("you'll|you will", "you", message)
+	if ("you've" or "you have") in message:
+		return re.sub("you've|you have", "I have", message)
+```
+
+
 
 To be continued...
