@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Making a Chatbot in Python - Part 0"
-date:   2018-04-23 18:00:00
+title:  "On Conversation - Making a Chatbot in Python - Part 0"
+date:   2018-04-24 18:00:00
 categories: main
 ---
 
@@ -59,14 +59,14 @@ The chatbot we will build will be greatly influenced by the following examples f
 - Jezz Higgin's [recreation of ELIZA](https://github.com/jezhiggins/eliza.py)
 - DataCamp's course on [building chatbots in Python](https://www.datacamp.com/courses/building-chatbots-in-python) given by Alan Nichol, co-founder and CTO of [Rasa](http://rasa.com/). 
 
-The latter will set the tone and direction we will take, as it helped me realize how to scale this endeavor. So, in order for the user and chatbot to engage in a conversation, we have the following template (to be filled) by the algorithm we will develop later on:
+The latter will set the tone and direction we will take, as it helped me realize how to slowly grow and scale this endeavor. We will develop our code for Python 3.5, but it can be easily translated into any other version of Python. So, in order for the user and chatbot to engage in a conversation, we have the following template (to be filled) by the algorithm we will develop later on:
 
 ```python
-user_template = "USER : {}"
-bot_template = "ELIZA : {}"
+user_template = "USER : {0}"
+bot_template = "ELIZA : {0}"
 ```
 
-I prefer this template to the original by Weizenbaum, as this will make it easier to separate which line is done by the user and which by `ELIZA`. As a first step, `ELIZA` will simply repeat back the message the user inputs:
+I prefer this template to the original by Weizenbaum, as this will make it easier for the user to understand which line is done by the user and which by `ELIZA`. As a first step, `ELIZA` will simply repeat back the message the user inputs:
 
 ```python
 def respond(message):
@@ -166,9 +166,9 @@ For the former, it is sufficient to declare variables that can be updated regula
 ```python
 weather_today = "rainy"
 
-responses = {"what's the weather today?": ["it's {} today".format(weather_today),
-					   "the local weather is {}".format(weather_today),
-					   "it seems it will be {} today".format(weather_today)],
+responses = {"what's the weather today?": ["it's {0} today".format(weather_today),
+					   "the local weather is {0}".format(weather_today),
+					   "it seems it will be {0} today".format(weather_today)],
 	     "default": ["default message"]}
 ```
 
@@ -292,5 +292,26 @@ And then:
 The huge advantage we have is that we are using the English language, which can be thus reduced to simple rules of switching pronouns (albeit many). Let us then continue on building on `ELIZA`'s complexity.
 
 ### Key phrases extraction and More Grammar
+
+The true cleverness of the original ELIZA relied on the parrot-esque design of its algorithms. Indeed, repeating back parts of what has just been discussed helps in deceiving our user, making him or her think that the chatbot has true understanding of the conversation, without adding complexity in our code. 
+
+Continuing where we left off in the last section, we define a dictionary of rules which we will use to match different patterns in the user's `message`:
+
+```python
+rules = {"I want (*.)": ["What would it mean if you got {0}?",
+			 "Why do you want {0}?",
+			 "What's stopping you from getting {0}"?],
+	 "do you remember (.*)": ["Did you think I would forget {0}?",
+	 			  "Why haven't you been able to forget {0}?",
+				  "What about {0}?",
+				  "Yes ...and?"],
+	 "do you think (.*)": ["if {0}? Absollutely.",
+	 		       "No way Jose"],
+	 "if (.*)": ["Do you really think that it's likely that {0}?",
+	 	     "Do you wish that {0}?",
+		     "What do you think about {0}?"]}
+```
+
+Now, we define the function `match_rule()` with which we will 
 
 To be continued...
