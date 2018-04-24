@@ -5,7 +5,7 @@ date:   2018-04-24 18:00:00
 categories: main
 ---
 
-**tl;dr** We will start by building a chatbot in Python 3 in order to trick the user into thinking that the bot has actual understanding of the conversation. We want to imitate a [Rogerian psychotherapist](https://en.wikipedia.org/wiki/Person-centered_therapy), so we will answer whatever the user inputs with a question. Git clone the final version of my code [here](https://github.com/PDillis/PythonChatbots) or, if you are even lazier, copy it from [this gist](https://gist.github.com/PDillis/592b2c6a41c598e2ac260c7580473582).
+**tl;dr** We will start by building a chatbot in Python 3 in order to trick the user into thinking that the bot has actual understanding of the conversation. We want to imitate a [Rogerian psychotherapist](https://en.wikipedia.org/wiki/Person-centered_therapy), so we will answer whatever the user inputs with a question. Git clone the final version of my code [here](https://github.com/PDillis/PythonChatbots) or, if you are feeling even lazier, copy it from [this gist](https://gist.github.com/592b2c6a41c598e2ac260c7580473582.git).
 
 ---
 
