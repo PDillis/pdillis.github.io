@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "On Conversation - Making a Chatbot in Python - Part 1"
+title:  "On Conversation - Making a Simple Chatbot in Python"
 date:   2018-04-24 18:00:00
 categories: main
 ---
