@@ -14,7 +14,7 @@ Mario Vargas Llosa [writes](https://www.amazon.com/Notes-Death-Culture-Spectacle
 
 
 
-$$ v (\mathbf{\theta}^{(g)}, \mathbf{\theta}^{(d)}) = \mathbb{E} \log{d(\mathbf{x})} $$
+$$ v (\mathbf{\theta}^{(g)}, \mathbf{\theta}^{(d)}) = \mathbb{E}_{\mathbf{x}\sim p_{\text{data}}} \log{d(\mathbf{x})} $$
 
 ### GANs
 
