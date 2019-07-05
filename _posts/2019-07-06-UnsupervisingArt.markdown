@@ -12,7 +12,10 @@ Mario Vargas Llosa [writes](https://www.amazon.com/Notes-Death-Culture-Spectacle
 
 ## Unsupervised Learning in Art
 
-\[ G_{\mu\nu} \]
+
+
+$$ v (\mathbf{\theta}^{(g)}, \mathbf{\theta}^{(d)}) = \mathbb{E} \log{d(\mathbf{x})} $$
+
 ### GANs
 
 
