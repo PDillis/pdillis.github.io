@@ -126,5 +126,56 @@ plt.show()
 </div>
 
 
+```python
+kmeans = KMeans(n_clusters=7, random_state=42).fit(X)
+labels = kmeans.labels_
+```
+
+```python
+>>> labels
+array([2, 3, 0, 1, 0, 2, 1, 2, 4, 4, 3, 5, 2, 0, 1, 6, 0, 0, 3, 1, 6, 0,
+       4, 5, 6, 2, 0, 5, 6, 6, 0, 1, 6, 5, 0, 1, 4, 6, 5, 1, 3, 3, 2, 5,
+       5, 5, 2, 3, 5, 6, 0, 6, 0, 1, 6, 0, 5, 5, 6, 4, 5, 2, 6, 5, 4, 0,
+       5, 4, 4, 0, 4, 5, 6, 4, 6, 1, 4, 0, 6, 2, 2, 6, 4, 2, 2, 5, 6, 5,
+       6, 1, 5, 4, 3, 5, 5, 3, 4, 3, 3, 4, 3, 4, 0, 5, 4, 5, 3, 1, 5, 5,
+       4, 5, 6, 1, 2, 5, 0, 5, 6, 6, 4, 3, 3, 4, 5, 6, 6, 0, 1, 3, 4, 4,
+       0, 4, 5, 5, 2, 4, 6, 4, 3, 0, 6, 3, 4, 2, 3, 3, 6, 6, 1, 0, 1, 5,
+       6, 0, 6, 6, 0, 6, 6, 4, 2, 4, 3, 1, 2, 3, 1, 5, 5, 0, 6, 0, 1, 5,
+       0, 2, 5, 3, 5, 0, 4, 2, 1, 5, 4, 0, 6, 6, 4, 6, 3, 5, 4, 4, 3, 4,
+       6, 5, 4, 6, 5, 4, 1, 6, 2, 4, 5, 6, 6, 5, 4, 5, 6, 5, 2, 1, 0, 5,
+       5])
+```
 
 
+
+```python
+>>> from collections import Counter
+>>> Counter(labels)
+Counter({0: 29, 1: 21, 2: 21, 3: 24, 4: 38, 5: 46, 6: 42})
+```
+
+
+
+```python
+from sklearn.decomposition import PCA
+
+pca = PCA(n_components=2)
+projected = pca.fit_transform(X)
+```
+
+
+
+```python
+plt.figure(figsize=(12,9))
+plt.scatter(projected[:, 0], projected[:, 1], c=labels, edgecolor='none', alpha=0.9, cmap=plt.cm.get_cmap('Spectral', 7))
+plt.xlabel('Componente 1')
+plt.ylabel('Componente 2')
+plt.colorbar()
+plt.show()
+```
+
+
+<div class="imgcap">
+<img src="https://user-images.githubusercontent.com/24496178/61026876-ea5b6180-a371-11e9-8e54-6b1a4ed7f838.png" alt="PC plotting">
+<div class="container"><p><b>Plotting each generated huipil in a reduced dimension space using Principal Components. Note there are natural clusters appearing, but others are more intertwined.</b></p></div>
+</div>
