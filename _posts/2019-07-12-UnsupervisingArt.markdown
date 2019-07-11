@@ -179,3 +179,12 @@ plt.show()
 <img src="https://user-images.githubusercontent.com/24496178/61026876-ea5b6180-a371-11e9-8e54-6b1a4ed7f838.png" alt="PC plotting">
 <div class="container"><p><b>Plotting each generated huipil in a reduced dimension space using Principal Components. Note there are natural clusters appearing, but others are more intertwined.</b></p></div>
 </div>
+
+
+
+<div class="imgcap">
+<img src="https://user-images.githubusercontent.com/24496178/61085752-4368db00-a3ee-11e9-94a2-487abaa9dc89.png" alt="PC 3D plotting">
+<div class="container"><p><b>Same as before, but now we add a third dimension.</b></p></div>
+</div>
+
+
