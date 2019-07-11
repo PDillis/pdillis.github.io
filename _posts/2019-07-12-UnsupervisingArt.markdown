@@ -167,7 +167,8 @@ projected = pca.fit_transform(X)
 
 ```python
 plt.figure(figsize=(12,9))
-plt.scatter(projected[:, 0], projected[:, 1], c=labels, edgecolor='none', alpha=0.9, cmap=plt.cm.get_cmap('Spectral', 7))
+plt.scatter(projected[:, 0], projected[:, 1], c=labels, 
+            edgecolor='none', alpha=0.9, cmap=plt.cm.get_cmap('Spectral', 7))
 plt.xlabel('Componente 1')
 plt.ylabel('Componente 2')
 plt.colorbar()
@@ -188,3 +189,86 @@ plt.show()
 </div>
 
 
+
+<div class="imgcap">
+<img src="https://user-images.githubusercontent.com/24496178/61087744-c50f3780-a3f3-11e9-908f-6b78f546f744.png" alt="EVR plot">
+<div class="container"><p><b>The explained variance in function of the number of principal components. There is a steep increase at the beginning, so we know that the first components will hold most of the information.</b></p></div>
+</div>
+
+We see that, to explain $70\%$ of the variance, we need 20 principal components:
+
+```python
+>>> next(i for i, v in enumerate(np.cumsum(pca.explained_variance_ratio_)) if v>0.7)
+20
+```
+
+This might seem a lot, so
+
+#### Eigenhuipiles
+
+We now visualize 
+
+```python
+pca = PCA(21, svd_solver='randomized').fit(X)
+components = pca.transform(X)
+projected = pca.inverse_transform(components)
+```
+
+```python
+fig, axes = plt.subplots(3, 7, figsize=(9, 4),
+                         subplot_kw={'xticks':[], 'yticks':[]},
+                         gridspec_kw=dict(hspace=0.1, wspace=0.1))
+for i, ax in enumerate(axes.flat):
+    ax.imshow(scaler.inverse_transform(pca.components_[i]).reshape(256, 256, 3).astype(np.uint8))
+```
+
+<div class="imgcap">
+<img src="https://user-images.githubusercontent.com/24496178/61088863-99418100-a3f6-11e9-8652-2519c996b60c.png" alt="Eigenhuipiles">
+</div>
+
+```python
+plt.figure(figsize=(8,8))
+plt.xticks([])
+plt.yticks([])
+plt.grid(False)
+plt.imshow(scaler.inverse_transform(sum(pca.components_)).reshape(256, 256, 3).astype(np.uint8))
+plt.show()
+```
+
+<div class="imgcap">
+<img src="https://user-images.githubusercontent.com/24496178/61088939-c726c580-a3f6-11e9-8e17-47a1a1bf74bf.png" alt="Average eigenhuipil">
+</div>
+
+#### Separating the images
+
+Before moving them with `Python`, we first create the new directories. If you're using a `Jupyter` notebook, you can also run this code by adding a `!` at the beginning of the line of code:
+
+```
+>>> FOR /l %x in (0, 1, 6) DO mkdir .\\Jaime\\%x
+
+(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Jaime\\0 
+
+(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Jaime\\1 
+
+(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Jaime\\2 
+
+(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Jaime\\3 
+
+(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Jaime\\4 
+
+(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Jaime\\5 
+
+(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Jaime\\6 
+```
+
+We basically create 7 directoriess/folders with the names of the grupos we have created with the $k$-means algorithm. Now we just proceed to copy, into each folder, the corresponding huipil using the `labels` 
+
+```python
+import shutil
+
+for folders, subfolders, filename in os.walk(filepath):
+    i=0
+    while i<num_images:
+        shutil.copy(filepath+'\\'+filename[i], os.getcwd()+'\\Jaime\\'+str(labels[i]))
+        i+=1
+```
