@@ -39,12 +39,32 @@ Rain Noe asks the question of where, aesthetically meaning, does [generative des
 
 ## GANs
 
+Generative Adversarial Networks or [GANs](https://en.wikipedia.org/wiki/Generative_adversarial_network) are perhaps one of the most applied machine larning paradigms to the world of art. Their mathematical description is as follows: we have two networks, a **generator** and a **discriminator**, and they are playing a simple game. The generator must 
+
 $$ v (\mathbf{\theta}^{(g)}, \mathbf{\theta}^{(d)}) = \mathbb{E}_{\mathbf{x}\sim p_{\text{data}}} \log{(d(\mathbf{x}))} + \mathbb{E}_{\mathbf{x}\sim p_{\text{model}}} \log{(1-d(\mathbf{x}))} $$
 
 
 ### Latent Fabrics
 
-[Latent Fabrics](http://www.aiartonline.com/community/diego-porres/) 
+[Latent Fabrics](http://www.aiartonline.com/community/diego-porres/) began as a project to understand what constitutes a [huipil](https://en.wikipedia.org/wiki/Huipil): is there something more profound than the general shape and colors? Are the patterns indicative of something that links the cultures within Mexico and Central America, even if there is no shared history? As such, the first idea I had was to simply build a classifier, born from the [constant plagiarism](https://lawstreetmedia.com/blogs/ip-copyright/maya-women-fight-protect-indigenous-textiles-appropriation/) that indigenous textile design [suffers from](https://www.huffpost.com/entry/mexico-prevents-indigenous-designs-from-being-culturally-appropriated-again_n_56e87879e4b0b25c9183afc4) (even [outside of the textile world](https://mexiconewsdaily.com/news/mexico-accuses-louis-vuitton-of-copying-indigenous-designs/)).
+
+Indeed, it is a pressing issue where Machine Learning can (and should) be part of the solution. However, the difficulty in using a classifier is the sheer amount of data needed for it to train and converge, as well as to have each individual image correctly labeled. As such, this project shifted to try to generate new huipils without the need to label them, and what better candidate for the job than GANs?
+
+For the data, I used Karen Elwell's [Flickr collection](https://github.com/carpedm20/DCGAN-tensorflow) (with permission) and for the code implementation I used Taehoon Jim's [DCGAN-tensorflow](https://github.com/carpedm20/DCGAN-tensorflow). While I started with over 2000 photographs of huipils, many where duplicates, and some others could not be used. As such, I ended up with 641 pictures of huipils, specifically from Mexico and Guatemala. Nowadays, Karen's collection has far more pictures, and I hope to both use the new pictures of huipils, as well as to combine them with other sources such as the [Museo Ixchel's](https://museoixchel.org/) and the [Minneapolis Institute of Art (MIA)](https://collections.artsmia.org/search/huipil?size=130).
+
+The following are the end results: 221 generated huipils of size $256 \times 256$ pixels and 330 generated huipils of size $64 \times 64$ pixels. Of course, there are far more that could be generated, but these where the ones that, to my criteria, where most pleasing to the eye. Indeed, this is after all the job of the artist, otherwise we would let randomness govern us, and the human mind gets easily bored of the random world, [unless we get to participate in its creation process](http://www.random-art.org/online/). 
+
+<div class="imgcap">
+<img src="https://live.staticflickr.com/4858/32403944098_a649c62e5e_o.png" alt="256x256">
+<div class="container"><p><b>The 221 generated huipils of size $256 \times 256$ pixels arranged randomly. Pardon the sheer size of the file.</b></p></div>
+</div>
+
+<div class="imgcap">
+<img src="https://user-images.githubusercontent.com/24496178/61109804-0549d680-a443-11e9-9e0c-3a7685aee4e9.png" alt="64x64">
+<div class="container"><p><b>The 330 generated huipils of size $64\times 64$ pixels arranged randomly.</b></p></div>
+</div>
+
+Now that we have these generated huipils, what could be the next step? The random arrangement can only get us so far, so why not separate the huipils by likeness to each other? For this task, there is another algorithm that can come in handy...
 
 
 ### $k$-means
