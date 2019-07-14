@@ -3,7 +3,8 @@ layout: post
 title:  "On Unsupervising Art"
 date:   2019-07-14 18:00:00
 categories: main
-
+image_sliders:
+  - slider2
 ---
 
 [Gatekeeping](https://www.reddit.com/r/gatekeeping/) art is, perhaps, one of the things I dislike the most, and one thing I am certainly guilty of doing before (as I am sure most artist have done once in their lives). In a nutshell, this mindset is as follows: nothing is *art* but what I create and enjoy, and as a corollary, there aren't quality artists nowadays, except for me and the artists whose work I enjoy. Indeed, I believe this not only applies to artists, but to almost everyone, as art is an integral part of our lives: form criticizing nowadays music, to not enjoying superhero movies or even looking down at the No. 1 New York Times bestselling book.
