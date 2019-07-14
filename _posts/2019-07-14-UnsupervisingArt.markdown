@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "On Unsupervising Art"
-date:   2019-07-12 18:00:00
+date:   2019-07-14 18:00:00
 categories: main
 
 ---
@@ -24,7 +24,11 @@ But what exactly lies in the future of art? It is of course hard to tell with ce
 
 [Marcel Dzama](https://www.davidzwirner.com/artists/marcel-dzama) argues that [classical forms of art such as painting and drawing won't disappear](https://www.artsy.net/series/artsy-editors-future-art/artsy-editors-future-art-marcel-dzama), and I agree: while the newest technologies create exciting, perhaps refreshign works of art, they won't compete with the old ways, only complement them as many other forms of art have done in the past. [Elizabeth Diller](https://www.paglen.com/) brings forth the [impact of time in works of art](https://www.artsy.net/series/artsy-editors-future-art/artsy-editors-future-art-elizabeth-diller): while some ideas can make sense in the moment they are thought, when they are actually executed (such as architecture), those ideas might not even make sense at all anymore. Indeed, any work of art is fixed in time, but their meaning is constantly evolving, both for the artist as well as the spectator. Finally, [Trevor Paglen](https://www.paglen.com/) [agrees with all these points](https://www.artsy.net/series/artsy-editors-future-art/artsy-editors-future-art-trevor-paglen), in that the art of the future won't be radically different than the art in the present and past. I would add that the thing that would most likely change is the medium of how the artist communicates his or her idea to the public, and that medium is being disrupted by computers and computer software.
 
-Ashley Rose writes that the landscape of [music](https://www.entrepreneur.com/article/327781) has been transformed already by Machine Learning, and that music labels have noticed this.
+We do, however, have a potential bleak future in art if we rely too much in predictive models. Ashley Rose writes that [the landscape of music](https://www.entrepreneur.com/article/327781) has been transformed already by Machine Learning, and that music labels have noticed this. While the first two points mentioned by the author have some merit (one more than the other), it is the latter one that truly worries me. Indeed, it is possible to identify the next musical star, but we have to remmeber that music, perhaps moreso than any other art form, is an ever changing landscape, and this is most reflected by the [popular music genres each decade](http://www.thepeoplehistory.com/music.html). 
+
+What many executives fail to understand is that ML models can be used to predict next top hits, but they do so only by using past data. It is not an *AI*, it is merely a predictive model that mimics something that is intelligent, as [Prof. Michael Jordan](https://people.eecs.berkeley.edu/~jordan/) (not the basketball player) [eloquently puts it](https://youtu.be/4inIBmY8dQI); if you don't have the time, the first couple of minutes are always in the back of my mind whenever I read a news article about AI.
+
+As such, it is infeasible to predict, with the current data, what will be the
 
 # Generative Art
 
