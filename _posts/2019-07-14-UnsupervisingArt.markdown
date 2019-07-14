@@ -30,11 +30,15 @@ What many executives fail to understand is that ML models can be used to predict
 
 As such, it is infeasible to predict, with the current data, what will be the
 
+The world of cinema is no stranger to this. [](https://www.theverge.com/2019/5/28/18637135/hollywood-ai-film-decision-script-analysis-data-machine-learning)
+
+frivolous at best.
+
 # Generative Art
 
 
 
-Rain Noe asks the question of where, aesthetically meaning, does [generative design belongs to](https://www.core77.com/posts/89318/Where-Does-Generative-Design-Belong-Designers-Must-Decide). To him, generative design's strength lays not in the aesthetic presentation of it, but on the cost and material savings that should happen behind close courtain, where the courtain should be created by an actual human designer. Of course, this is from the point of view of 
+Generative design comes hand in hand with generative art, so it is worthwile to research th Rain Noe asks the question of where, aesthetically meaning, does [generative design belongs to](https://www.core77.com/posts/89318/Where-Does-Generative-Design-Belong-Designers-Must-Decide). To him, generative design's strength lays not in the aesthetic presentation of it, but on the cost and material savings that should happen behind close courtain, where the courtain should be created by an actual human designer. Of course, this is from the point of view of 
 
 [perhaps moreso how they are reported](https://hyperallergic.com/391059/humans-prefer-computer-generated-paintings-to-those-at-art-basel/)
 
@@ -300,3 +304,8 @@ for folders, subfolders, filename in os.walk(filepath):
         shutil.copy(filepath+'\\'+filename[i], os.getcwd()+'\\Jaime\\'+str(labels[i]))
         i+=1
 ```
+
+These are the final results:
+
+{% include slider.html selector="slider2" %}
+
