@@ -21,36 +21,44 @@ Thus, the advent of computers will only aid in further expanding this rift separ
 
 # The Future of Art 
 
-But what exactly lies in the future of art? It is of course hard to tell with certainty, but one can speculate. In the excellent series [The Future of Art](https://www.artsy.net/series/artsy-editors-future-art/) by [Artsy](https://www.artsy.net/), we are given the perspective of what the future entails for art from the point of view of different members of the art community. The latest video by [Simon Denny](http://simondenny.net/) delves into the [role of technology](https://www.artsy.net/series/artsy-editors-future-art/artsy-editorial-future-art-simon-denny) , and how the curating part of art will most likely be democratized, to much dismay to Mario Vargas Llosa. [Carrie Mae Weems](http://carriemaeweems.net/) sees the positive light of this, as [this democratization of art will give voice to those who haven't been able to participate](https://www.artsy.net/series/artsy-editors-future-art/artsy-editors-future-art-carrie-mae-weems) in something as elite (even elitist) as art. Specifically, marginalized societies as well as marginalized people such as women of color, and she wishes only to be able to be able to see this in the coming years.
+But what exactly lies in the future of art? It is of course hard to tell with certainty, but one can speculate and perhaps zone in . In the excellent series [The Future of Art](https://www.artsy.net/series/artsy-editors-future-art/) by [Artsy](https://www.artsy.net/), we are given the perspective of what the future entails for art from the point of view of different members of the art community. The latest video by [Simon Denny](http://simondenny.net/) delves into the [role of technology](https://www.artsy.net/series/artsy-editors-future-art/artsy-editorial-future-art-simon-denny) , and how the curating part of art will most likely be democratized, to much dismay to Mario Vargas Llosa. [Carrie Mae Weems](http://carriemaeweems.net/) sees the positive light of this, as [this democratization of art will give voice to those who haven't been able to participate](https://www.artsy.net/series/artsy-editors-future-art/artsy-editors-future-art-carrie-mae-weems) in something as elite (even elitist) as art. Specifically, marginalized societies as well as marginalized people such as women of color, and she wishes only to be able to be able to see this in the coming years.
 
 [Marcel Dzama](https://www.davidzwirner.com/artists/marcel-dzama) argues that [classical forms of art such as painting and drawing won't disappear](https://www.artsy.net/series/artsy-editors-future-art/artsy-editors-future-art-marcel-dzama), and I agree: while the newest technologies create exciting, perhaps refreshign works of art, they won't compete with the old ways, only complement them as many other forms of art have done in the past. [Elizabeth Diller](https://www.paglen.com/) brings forth the [impact of time in works of art](https://www.artsy.net/series/artsy-editors-future-art/artsy-editors-future-art-elizabeth-diller): while some ideas can make sense in the moment they are thought, when they are actually executed (such as architecture), those ideas might not even make sense at all anymore. Indeed, any work of art is fixed in time, but their meaning is constantly evolving, both for the artist as well as the spectator. Finally, [Trevor Paglen](https://www.paglen.com/) [agrees with all these points](https://www.artsy.net/series/artsy-editors-future-art/artsy-editors-future-art-trevor-paglen), in that the art of the future won't be radically different than the art in the present and past. I would add that the thing that would most likely change is the medium of how the artist communicates his or her idea to the public, and that medium is being disrupted by computers and computer software.
 
 We do, however, have a potential bleak future in art if we rely too much in predictive models. Ashley Rose writes that [the landscape of music](https://www.entrepreneur.com/article/327781) has been transformed already by Machine Learning, and that music labels have noticed this. While the first two points mentioned by the author have some merit (one more than the other), it is the latter one that truly worries me. Indeed, it is possible to identify the next musical star, but we have to remmeber that music, perhaps moreso than any other art form, is an ever changing landscape, and this is most reflected by the [popular music genres each decade](http://www.thepeoplehistory.com/music.html). 
 
-What many executives fail to understand is that ML models can be used to predict next top hits, but they do so only by using past data. It is not an *AI*, it is merely a predictive model that mimics something that is intelligent, as [Prof. Michael Jordan](https://people.eecs.berkeley.edu/~jordan/) (not the basketball player) [eloquently puts it](https://youtu.be/4inIBmY8dQI); if you don't have the time, the first couple of minutes are always in the back of my mind whenever I read a news article about AI.
+What many executives fail to understand is that ML models can be used to predict next top hits, but they do so only by using past data. It is not an *AI*, it is merely a predictive model that mimics something that is intelligent, as [Prof. Michael Jordan](https://people.eecs.berkeley.edu/~jordan/) (not the basketball player) [eloquently puts it](https://youtu.be/4inIBmY8dQI) (if you don't have the time, the first couple of minutes are worth it and always in the back of my mind whenever I read a news article about *AI*). As such, while some trends may be discovered, there will be a lot of bias introduced into the scenes of music production, as if more bias was warranted.
 
-As such, it is infeasible to predict, with the current data, what will be the
+The world of cinema is no stranger to this. The Verge reports that many startups are offering [*AI* producers](https://www.theverge.com/2019/5/28/18637135/hollywood-ai-film-decision-script-analysis-data-machine-learning), skimming through all the available data in order to obtain the highest grossing movie possible. Changing actors and seeing how this will affect the movie performance in different markets seem like the best playground for the moviemakers to invest their money in, but to me this technology is frivolous at best. Since there aren't many movies produced per year, there is not much historical data to truly create an unbiased predictive model, and so movie producers might end up greenlighting the wrong movies, or even simply remaking old classics (perhaps they have adopted these technologies after all).
 
-The world of cinema is no stranger to this. [](https://www.theverge.com/2019/5/28/18637135/hollywood-ai-film-decision-script-analysis-data-machine-learning)
-
-frivolous at best.
+Perhaps I should emphasize that, whilst the predictive models are not nigh imperfect, they are a very useful tool. From [recommending music](https://medium.com/s/story/spotifys-discover-weekly-how-machine-learning-finds-your-new-music-19a41ab76efe), to [recommending the next show to binge watch](https://uxplanet.org/netflix-binging-on-the-algorithm-a3a74a6c1f59), I am open for these tools to enhance the audience experience, not only on these scenarios but on other forms of art as well, such as the plastic arts. However, it must be understood and emphasized that they are a tool only, and it is up to us to both use them wisely and in a meaningful way.
 
 # Generative Art
 
+Generative Art warrants another blog post by itself (one I am sure I will make sometime in the future), but is a tool that I believe will open the doors to many marginalized communities. As mentioned earlier, [Processing](https://processing.org/) lets you generate works of art without the need to have a physical canvas, and that is a huge step in the right direction. However, it is only one step, and I hope there are many more to take in the future.
 
+Generative Design comes hand in hand with generative art, so it is worthwile to research what is being done and said in this field. Is Generative Design being used at all, and if so, is it worthwile or just a hype that is bound to die given the high bar that the human mind has for designed objects?
 
-Generative design comes hand in hand with generative art, so it is worthwile to research th Rain Noe asks the question of where, aesthetically meaning, does [generative design belongs to](https://www.core77.com/posts/89318/Where-Does-Generative-Design-Belong-Designers-Must-Decide). To him, generative design's strength lays not in the aesthetic presentation of it, but on the cost and material savings that should happen behind close courtain, where the courtain should be created by an actual human designer. Of course, this is from the point of view of 
+Rain Noe asks the question of where, aesthetically meaning, does [generative design belongs to](https://www.core77.com/posts/89318/Where-Does-Generative-Design-Belong-Designers-Must-Decide). To him, generative design's strength lays not in the aesthetic presentation of it, but on the cost and material savings that should happen behind close courtain, where the courtain should be created by an actual human designer. The teams of Autodesk and Aribus [seem to agree](https://www.autodesk.com/customer-stories/airbus), as they have designed lattice structures for the partition frames in the Airbus concept plane that is both lightweight and strong, basically saving valuable resources, but still tried to keep this design hidden from the passengers somewhat.
 
-[perhaps moreso how they are reported](https://hyperallergic.com/391059/humans-prefer-computer-generated-paintings-to-those-at-art-basel/)
+<div class="imgcap">
+<img src="https://user-images.githubusercontent.com/24496178/61199133-09236600-a69a-11e9-8bae-404eca3a2e95.png" alt="Silhouette score">
+<div class="container"><p><b>Two rims found in Rain Noe's article, one generated and the other desgined by a human. Which would you prefer?</b></p></div>
+</div>
+
+There is nothing wrong with this stance, but I believe that more can be done with Generative Design than simply limiting it to *small* objects. What if we let a generative algorithm design, with the appropriate constraints, the highways between cities or even a whole city layout? We don't actually need to hold the object being designed with our own hands in order to appreciate its beauty or usefullness, so perhaps we need to set this paradigm loose. 
+
+As a final note, I feel that there is frustration in Generative Art and Design on how this field is being reported, especially on the topic of who is the actual artist (the programmer or the machine), or even if it is [more appealing](https://hyperallergic.com/391059/humans-prefer-computer-generated-paintings-to-those-at-art-basel/) than human generated art. This is folly, but only if nothing is known about this specific area, or perhaps there is no interest in learning. Time will tell whether or not the effort was worth it, but my prediction will be that it was.
 
 ## Unsupervised Learning in Art
 
+This brings me to the main title of this blog post (a clever wordplay if you will): we need to democratize the techniques found in Unsupervised Learning amongst the art community, nay, amongst the general audience, and quit trying to form clubs where only the elites can reside. Otherwise, we are back in the Renaissance, where certainly excellent art was being produced, but only by those who had both the talent and access to the right tools. 
 
-
+Perhaps, in order to illustrate what can be achieved with these techniques, I will tell the tale of one of my latest endeavours, but for that I will need to delve a bit into a short summary of what techniques have been and are being used in the artworld.
 
 ## GANs
 
-Generative Adversarial Networks or [GANs](https://en.wikipedia.org/wiki/Generative_adversarial_network) are perhaps one of the most applied machine larning paradigms to the world of art. Their mathematical description is as follows: we have two networks, a **generator** and a **discriminator**, and they are playing a simple game. The generator must 
+We begin our mini summary with Generative Adversarial Networks or [GANs](https://en.wikipedia.org/wiki/Generative_adversarial_network), which are perhaps one of the most applied machine larning paradigms to the world of art. Their mathematical description is as follows: we have two networks, a **generator** and a **discriminator**, and they are playing a simple game. The generator must 
 
 $$ v (\mathbf{\theta}^{(g)}, \mathbf{\theta}^{(d)}) = \mathbb{E}_{\mathbf{x}\sim p_{\text{data}}} \log{(d(\mathbf{x}))} + \mathbb{E}_{\mathbf{x}\sim p_{\text{model}}} \log{(1-d(\mathbf{x}))} $$
 
@@ -277,21 +285,21 @@ plt.show()
 Before moving them with `Python`, we first create the new directories. If you're using a `Jupyter` notebook, you can also run this code by adding a `!` at the beginning of the line of code:
 
 ```
->>> FOR /l %x in (0, 1, 6) DO mkdir .\\Jaime\\%x
+>>> FOR /l %x in (0, 1, 6) DO mkdir .\\Project_name\\%x
 
-(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Jaime\\0 
+(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Project_name\\0 
 
-(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Jaime\\1 
+(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Project_name\\1 
 
-(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Jaime\\2 
+(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Project_name\\2 
 
-(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Jaime\\3 
+(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Project_name\\3 
 
-(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Jaime\\4 
+(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Project_name\\4 
 
-(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Jaime\\5 
+(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Project_name\\5 
 
-(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Jaime\\6 
+(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Project_name\\6 
 ```
 
 We basically create 7 directoriess/folders with the names of the grupos we have created with the $k$-means algorithm. Now we just proceed to copy, into each folder, the corresponding huipil using the `labels` 
@@ -302,7 +310,7 @@ import shutil
 for folders, subfolders, filename in os.walk(filepath):
     i=0
     while i<num_images:
-        shutil.copy(filepath+'\\'+filename[i], os.getcwd()+'\\Jaime\\'+str(labels[i]))
+        shutil.copy(filepath+'\\'+filename[i], os.getcwd()+'\\Project_name\\'+str(labels[i]))
         i+=1
 ```
 
