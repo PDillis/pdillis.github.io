@@ -310,3 +310,17 @@ These are the final results:
 
 {% include slider.html selector="slider2" %}
 
+#### Next Steps
+
+It is not so obvious what should be the next steps for this project, but I can at least enumerate some. These are, in no particular order:
+
+  * [Remove the checkerboard artefacts](https://distill.pub/2016/deconv-checkerboard/) due to the Deconvolution (this can be more easily seen in the $256\times 256$ generated huipils).
+  * Increase the size of the generated huipils, hopefully up to $1024 \times 1024$, should my hardware allow it.
+  * Train the models for more epochs and with a larger dataset, so basically continue obtaining more images and get better hardware and/or simply train for longer in my laptop.
+  * Traverse the latent space that weaves all the huipils together (the *Latent Fabrics* if you will).
+  * Finally, ponder how to present this work: should digital art remain digital, or should it be able to 
+  * Explore the possiblity of combining my work with Processing and add another type of generative art.
+  
+I hope you have enjoyed this blog post. Please leave any comment below!
+
+{% include disqus.html %}
