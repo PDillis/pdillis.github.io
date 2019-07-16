@@ -69,7 +69,7 @@ We begin our mini summary with Generative Adversarial Networks or [GANs](https:/
 
 Their mathematical description is as follows: since this is a zero-sum game, we define $v (\mathbf{\theta}^{(g)}, \mathbf{\theta}^{(d)})$ as the reward we give to the discriminator for correctly classifying the fake data from the real one, while we give $-v (\mathbf{\theta}^{(g)}, \mathbf{\theta}^{(d)})$ as a reward to the generator. Of course, both wish to maximize the reward they receieve, so they should arrive at the following:
 
-$$ g^{\star} = \argmin_{g} \max_{d} v(g,d) $$
+$$ g^{\star} = \arg\min_{g} \max_{d} v(g,d) $$
 
 Thus, in function of the parameters of the respective neural networks $\mathbf{\theta^{(g)}}$ and $\mathbf{\theta^{(d)}}$, $v$ should be:
 
