@@ -42,7 +42,7 @@ Generative Design comes hand in hand with generative art, so it is worthwile to 
 Rain Noe asks the question of where, aesthetically meaning, does [generative design belongs to](https://www.core77.com/posts/89318/Where-Does-Generative-Design-Belong-Designers-Must-Decide). To him, generative design's strength lays not in the aesthetic presentation of it, but on the cost and material savings that should happen behind close courtain, where the courtain should be created by an actual human designer. The teams of Autodesk and Aribus [seem to agree](https://www.autodesk.com/customer-stories/airbus), as they have designed lattice structures for the partition frames in the Airbus concept plane that is both lightweight and strong, basically saving valuable resources, but still tried to keep this design hidden from the passengers somewhat.
 
 <div class="imgcap">
-<img src="https://user-images.githubusercontent.com/24496178/61199133-09236600-a69a-11e9-8bae-404eca3a2e95.png" alt="Silhouette score">
+<img src="https://user-images.githubusercontent.com/24496178/61199133-09236600-a69a-11e9-8bae-404eca3a2e95.png" alt="Rims of a car">
 <div class="container"><p><b>Two rims found in Rain Noe's article, one generated and the other desgined by a human. Which would you prefer?</b></p></div>
 </div>
 
@@ -53,6 +53,11 @@ As a final note, I feel that there is frustration in Generative Art and Design o
 ## Unsupervised Learning in Art
 
 Machine Learning has certainly forever changed the panorama of every field it has been introduced to, and art is no exception. Perhaps the ones I enjoy the most, besides image generation, is text and character generation. Projects such as [textgenrnn](https://github.com/minimaxir/textgenrnn) and [kanji-rnn](http://otoro.net/kanji-rnn/) show me the power and potential that language has and how we can leverage Machine Learning to let more and more cultures to express themselves with these tools.
+
+<div class="imgcap">
+<img src="https://user-images.githubusercontent.com/24496178/61256685-d83f4180-a72a-11e9-8245-cc83d3f00dd4.png" alt="kanji-rnn">
+<div class="container"><p><b>Fake kanji created by kanji-rnn. The model predicts what the next stroke of the *pen* will be, and the results are different as the user advances with their drawing.</b></p></div>
+</div>
 
 This brings me to the main title of this blog post (a clever wordplay if you will): we need to democratize the techniques found in Unsupervised Learning amongst the art community, nay, amongst the general audience, and quit trying to form clubs where only the elites can reside. Otherwise, we are back in the Renaissance, where certainly excellent art was being produced, but only by those who had both the talent and access to the right tools. 
 
