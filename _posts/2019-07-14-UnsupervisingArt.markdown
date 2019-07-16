@@ -59,16 +59,23 @@ Machine Learning has certainly forever changed the panorama of every field it ha
 <div class="container"><p><b>Fake kanji created by kanji-rnn. The model predicts what the next stroke of the *pen* will be, and the results are different as the user advances with their drawing.</b></p></div>
 </div>
 
-This brings me to the main title of this blog post (a clever wordplay if you will): we need to democratize the techniques found in Unsupervised Learning amongst the art community, nay, amongst the general audience, and quit trying to form clubs where only the elites can reside. Otherwise, we are back in the Renaissance, where certainly excellent art was being produced, but only by those who had both the talent and access to the right tools. 
+This brings me to the main title of this blog post (a clever wordplay if you will): we need to democratize the techniques found in Unsupervised Learning amongst the art community, nay, amongst the general audience, and quit trying to form clubs where only the elites can reside. Otherwise, we are back in the Renaissance, where certainly excellent art was being produced, but only by those who had both the talent and access to the right tools. Hence, we must be open to start *Unsupervising Art*.
 
 Perhaps, in order to illustrate what can be achieved with these techniques, I will tell the tale of one of my latest endeavours, but for that I will need to delve a bit into a short summary of what techniques have been and are being used in the artworld.
 
 ## GANs
 
-We begin our mini summary with Generative Adversarial Networks or [GANs](https://en.wikipedia.org/wiki/Generative_adversarial_network), which are perhaps one of the most applied machine larning paradigms to the world of art. Their mathematical description is as follows: we have two networks, a **generator** and a **discriminator**, and they are playing a simple game. The generator must 
+We begin our mini summary with Generative Adversarial Networks or [GANs](https://en.wikipedia.org/wiki/Generative_adversarial_network), which are perhaps one of the most applied machine larning paradigms to the world of art. The setting is quite simiple: there are two competing neural networks, a **generator** $G$ and a **discriminator**, and they are playing a simple zero-sum game: the generator must produce samples $\mathbf{x} = g(\mathbf{z}; \mathbf{\theta}^{(g)})$ and the discriminator will emit a probability $d(\mathbf{x}; \mathbf{\theta}^{(d)})$ which will be high if $\mathbf{x}$ is a real datapoint from our training set or low if it believes it to be fake.
+
+Their mathematical description is as follows: since this is a zero-sum game, we define $v (\mathbf{\theta}^{(g)}, \mathbf{\theta}^{(d)})$ as the reward we give to the discriminator for correctly classifying the fake data from the real one, while we give $-v (\mathbf{\theta}^{(g)}, \mathbf{\theta}^{(d)})$ as a reward to the generator. Of course, both wish to maximize the reward they receieve, so they should arrive at the following:
+
+$$ g^{\star} = \argmin_{g} \max_{d} v(g,d) $$
+
+Thus, in function of the parameters of the respective neural networks $\mathbf{\theta^{(g)}}$ and $\mathbf{\theta^{(d)}}$, $v$ should be:
 
 $$ v (\mathbf{\theta}^{(g)}, \mathbf{\theta}^{(d)}) = \mathbb{E}_{\mathbf{x}\sim p_{\text{data}}} \log{(d(\mathbf{x}))} + \mathbb{E}_{\mathbf{x}\sim p_{\text{model}}} \log{(1-d(\mathbf{x}))} $$
 
+This equation can be read as follows: 
 
 ### Latent Fabrics
 
