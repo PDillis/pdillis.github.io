@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "On Unsupervising Art"
-date:   2019-07-14 18:00:00
+date:   2019-07-17 18:00:00
 categories: main
 image_sliders:
   - slider2
@@ -71,15 +71,21 @@ Perhaps, in order to illustrate what can be achieved with these techniques, I wi
 
 ## GANs
 
-We begin our mini summary with Generative Adversarial Networks or [GANs](https://en.wikipedia.org/wiki/Generative_adversarial_network), which are perhaps one of the most applied machine larning paradigms to the world of art. The setting is quite simiple: there are two competing neural networks, a **generator** $G$ and a **discriminator**, and they are playing a simple zero-sum game: the generator must produce samples $\mathbf{x} = g(\mathbf{z}; \mathbf{\theta}^{(g)})$ and the discriminator will emit a probability $d(\mathbf{x}; \mathbf{\theta}^{(d)})$ which will be high (close to $1$) if $\mathbf{x}$ is a real datapoint from our training set or low (close to $0$) if it believes it to be fake.
+We begin our mini summary with Generative Adversarial Networks or [GANs](https://en.wikipedia.org/wiki/Generative_adversarial_network), which are perhaps one of the most applied machine larning paradigms to the world of art. We will look at them from the point of view of images, but it can be applied wherever you have a distribution of data that you wish to mimic. The idea is as follows: 
 
-Their mathematical description is as follows: since this is a zero-sum game, we define $v (\mathbf{\theta}^{(g)}, \mathbf{\theta}^{(d)})$ as the reward we give to the discriminator for correctly classifying the fake data from the real one, while we give $-v (\mathbf{\theta}^{(g)}, \mathbf{\theta}^{(d)})$ as a reward to the generator. They should arrive at the following:
+  * There are two competing neural networks, a **generator** $G$ and a **discriminator** $D$, and they are playing a simple zero-sum game.
+  * The generator must produce images $\mathbf{x} = G(\mathbf{z}; \mathbf{\theta}_{(g)})$ and the discriminator will emit a probability $D(\mathbf{x}; \mathbf{\theta}_{(d)})$ which will be high (close to $1$) if it believes $\mathbf{x}$ is a real image from our training set or low (close to $0$) if it believes it to be fake. 
+  * We will represent both the generator and discriminator as neural networks, hence the parameters $\mathbf{\theta^{(g)}}$ and $\mathbf{\theta^{(d)}}$, but we will use either notation interchangeably. 
 
-$$ g^{\star} = \arg\min_{g} \max_{d} v(g,d) $$
+This game will be played until the fake images are indistinguishable from the real ones, or in other words, when $D(\mathbf{x}) = 1/2$ always. The fake images will be generated via $G(\mathbf{z})$, where $\mathbf{z}$ will be a random vector drawn from a **latent space** (a vector space) of representations where any point in said space can be mapped to a realistic-looking image $\mathbf{x}$.
+
+Since this is a zero-sum game, we define $v (\mathbf{\theta}_{(g)}, \mathbf{\theta}_{(d)})$ as the reward we give to the discriminator for correctly classifying the fake data from the real one, while we give $-v (\mathbf{\theta}_{(g)}, \mathbf{\theta}_{(d)})$ as a reward to the generator. At convergence, we will have:
+
+$$ G^{\star} = \arg \min_{G} \max_{D} v(G, D)$$
 
 Thus, in function of the parameters of the respective neural networks $\mathbf{\theta^{(g)}}$ and $\mathbf{\theta^{(d)}}$, $v$ should be:
 
-$$ v (\mathbf{\theta}^{(g)}, \mathbf{\theta}^{(d)}) = \mathbb{E}_{\mathbf{x}\sim p_{\text{data}}} \log{(d(\mathbf{x}))} + \mathbb{E}_{\mathbf{x}\sim p_{\text{model}}} \log{(1-d(\mathbf{x}))} $$
+$$ v (\mathbf{\theta}_{(g)}, \mathbf{\theta}_{(d)}) = \mathbb{E}_{\mathbf{x}\sim p_{\text{data}}(\mathbf{x})} \log{(D(\mathbf{x}))} + \mathbb{E}_{\mathbf{z}\sim p_{\mathbf{z}}(\mathbf{z})} \log{(1-D(G(\mathbf{z})))} $$
 
 This equation can be read as follows: 
 
@@ -215,7 +221,9 @@ array([2, 3, 0, 1, 0, 2, 1, 2, 4, 4, 3, 5, 2, 0, 1, 6, 0, 0, 3, 1, 6, 0,
 Counter({0: 29, 1: 21, 2: 21, 3: 24, 4: 38, 5: 46, 6: 42})
 ```
 
+### PCA
 
+Principal Component Analysis or [PCA)(https://en.wikipedia.org/wiki/Principal_component_analysis)
 
 ```python
 from sklearn.decomposition import PCA
@@ -263,7 +271,7 @@ We see that, to explain $70\%$ of the variance, we need 20 principal components:
 20
 ```
 
-This might seem a lot, so
+This might seem a lot
 
 
 
@@ -287,7 +295,7 @@ for folders, subfolders, filename in os.walk(filepath):
         i+=1
 ```
 
-We will then end up with 7 different folders, each containing all the different These are the final results:
+We will then end up with 7 different folders, each containing *similar* generated huipils (to the algorithm's criteria). Afterwards, I decided to arrange the images of each folder/label in canvases of $11\times11$ inches, particularly since they were commissioned by my brother. These are the final results, with the names indicating the label of the image (if there were too many images and they didn't fit, I separated into two):
 
 {% include slider.html selector="slider2" %}
 
@@ -296,11 +304,12 @@ We will then end up with 7 different folders, each containing all the different 
 It is not so obvious what should be the next steps for this project, but I can at least enumerate some. These are, in no particular order:
 
   * [Remove the checkerboard artefacts](https://distill.pub/2016/deconv-checkerboard/) due to the Deconvolution (this can be more easily seen in the $256\times 256$ generated huipils).
-  * Increase the size of the generated huipils, hopefully up to $1024 \times 1024$, should my hardware allow it.
-  * Train the models for more epochs and with a larger dataset, so basically continue obtaining more images and get better hardware and/or simply train for longer in my laptop.
+  * Increase the size of the generated huipils, hopefully up to $1024 \times 1024$, should my hardware allow it. This is because I wish to see more patterns emerge within the generated huipils.
+  * Train the models for more epochs and with a larger dataset, so basically continue obtaining more images and get better hardware and/or simply train for longer in my laptop. Likewise, clean the original dataset, as I have found both inconsistencies as well as downright bad pictures that slipped my original check.
   * Traverse the latent space that weaves all the huipils together (the *Latent Fabrics* if you will).
-  * Finally, ponder how to present this work: should digital art remain digital, or should it be able to 
   * Explore the possiblity of combining my work with Processing and add another type of generative art.
+  * Finally, ponder how to present this work: should digital art remain digital, or does it make sense to bring it to the physical world via another technique, such as actual weaving?
+  
   
 I hope you have enjoyed this blog post. Please leave any comment below!
 
