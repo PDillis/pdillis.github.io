@@ -85,7 +85,7 @@ $$ G^{\star} = \arg \min_{G} \max_{D} v(G, D)$$
 
 Thus, in function of the parameters of the respective neural networks $\theta^{(g)}$ and $\theta^{(d)}$, $v$ should be:
 
-$$ v \left(\theta^{(g)}, \theta^{(d)}\right) = \mathbb{E}_{\mathbf{x}\sim p_{\text{data}}(\mathbf{x})} \left\[ \log{(D(\mathbf{x}))} \right] + \mathbb{E}_{\mathbf{z}\sim p_{\mathbf{z}}(\mathbf{z})} \left\[\log{(1-D(G(\mathbf{z})))} \right]$$
+$$ v \left(\theta^{(g)}, \theta^{(d)}\right) = \mathbb{E}_{\mathbf{x}\sim p_{\text{data}}(\mathbf{x})} \left[ \log{(D(\mathbf{x}))} \right] + \mathbb{E}_{\mathbf{z}\sim p_{\mathbf{z}}(\mathbf{z})} \left[\log{(1-D(G(\mathbf{z})))} \right]$$
 
 This equation can be read as follows: 
 
