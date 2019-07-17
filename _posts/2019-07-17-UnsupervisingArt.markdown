@@ -7,7 +7,7 @@ image_sliders:
   - slider2
 ---
 
-**tl;dr** I will rant about art and will mos tlikely talk about things I do not fully understand about it, but hey, this is *my* blog. At the end, I present how I've applied Machine Learning algorithms, specifically Unsupervised Learning algorithms such as [GANs](https://en.wikipedia.org/wiki/Generative_adversarial_network), [$k-$means](https://en.wikipedia.org/wiki/K-means_clustering) and [PCA](https://en.wikipedia.org/wiki/Principal_component_analysis) to aid me in an ongoing art project.
+**tl;dr** I will rant about art and will most likely talk about things I do not fully understand about it, but hey, this is *my* blog. At the end, I present how I've applied Machine Learning algorithms, specifically Unsupervised Learning algorithms such as [GANs](https://en.wikipedia.org/wiki/Generative_adversarial_network), [$k-$means](https://en.wikipedia.org/wiki/K-means_clustering) and [PCA](https://en.wikipedia.org/wiki/Principal_component_analysis) to aid me in an ongoing art project.
 
 ---
 
@@ -196,7 +196,7 @@ plt.show()
 
 <div class="imgcap">
 <img src="https://user-images.githubusercontent.com/24496178/61026073-b2531f00-a36f-11e9-8101-d42fa27da507.png" alt="Silhouette score">
-<div class="container"><p><b>Silhouette score for different values of k.</b></p></div>
+<div class="container"><p><b>Silhouette score for different values of k. While all of them are quite low tbh, $k=7$ does seems promising.</b></p></div>
 </div>
 
 The higher the value, the better, so this seems to confirm that we should use $k=7$. This is what we continue to do and save the `labels` generated for each huipil (which will be used later on to separate them into distinct files):
@@ -311,6 +311,8 @@ for folders, subfolders, filename in os.walk(filepath):
 We will then end up with 7 different folders, each containing *similar* generated huipils (to the algorithm's criteria). Afterwards, I decided to arrange the images of each folder/label in canvases of $11\times11$ inches, particularly since they were commissioned by my brother. These are the final results, with the names indicating the label of the image (if there were too many images and they didn't fit, I separated into two):
 
 {% include slider.html selector="slider2" %}
+
+If you use them in any way, please credit me.
 
 #### Next Steps
 
