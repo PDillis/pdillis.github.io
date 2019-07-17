@@ -74,18 +74,18 @@ Perhaps, in order to illustrate what can be achieved with these techniques, I wi
 We begin our mini summary with Generative Adversarial Networks or [GANs](https://en.wikipedia.org/wiki/Generative_adversarial_network), which are perhaps one of the most applied machine larning paradigms to the world of art. We will look at them from the point of view of images, but it can be applied wherever you have a distribution of data that you wish to mimic. The idea is as follows: 
 
   * There are two competing neural networks, a **generator** $G$ and a **discriminator** $D$, and they are playing a simple zero-sum game.
-  * The generator must produce images $\mathbf{x} = G(\mathbf{z}; \mathbf{\theta}_{(g)})$ and the discriminator will emit a probability $D(\mathbf{x}; \mathbf{\theta}_{(d)})$ which will be high (close to $1$) if it believes $\mathbf{x}$ is a real image from our training set or low (close to $0$) if it believes it to be fake. 
-  * We will represent both the generator and discriminator as neural networks, hence the parameters $\mathbf{\theta^{(g)}}$ and $\mathbf{\theta^{(d)}}$, but we will use either notation interchangeably. 
+  * The generator must produce images $\mathbf{x} = G(\mathbf{z}; \theta_{(g)})$ and the discriminator will emit a probability $D(\mathbf{x}; \theta_{(d)})$ which will be high (close to $1$) if it believes $\mathbf{x}$ is a real image from our training set or low (close to $0$) if it believes it to be fake. 
+  * We will represent both the generator and discriminator as neural networks, hence the parameters $\theta_{(g)}$ and $\theta_{(d)}$, but we will use either notation interchangeably. 
 
 This game will be played until the fake images are indistinguishable from the real ones, or in other words, when $D(\mathbf{x}) = 1/2$ always. The fake images will be generated via $G(\mathbf{z})$, where $\mathbf{z}$ will be a random vector drawn from a **latent space** (a vector space) of representations where any point in said space can be mapped to a realistic-looking image $\mathbf{x}$.
 
-Since this is a zero-sum game, we define $v (\mathbf{\theta}_{(g)}, \mathbf{\theta}_{(d)})$ as the reward we give to the discriminator for correctly classifying the fake data from the real one, while we give $-v (\mathbf{\theta}_{(g)}, \mathbf{\theta}_{(d)})$ as a reward to the generator. At convergence, we will have:
+Since this is a zero-sum game, we define $v (\theta_{(g)}, \theta_{(d)})$ as the reward we give to the discriminator for correctly classifying the fake data from the real one, while we give $-v (\theta_{(g)}, \theta_{(d)})$ as a reward to the generator. At convergence, we will have:
 
 $$ G^{\star} = \arg \min_{G} \max_{D} v(G, D)$$
 
 Thus, in function of the parameters of the respective neural networks $\mathbf{\theta^{(g)}}$ and $\mathbf{\theta^{(d)}}$, $v$ should be:
 
-$$ v (\mathbf{\theta}_{(g)}, \mathbf{\theta}_{(d)}) = \mathbb{E}_{\mathbf{x}\sim p_{\text{data}}(\mathbf{x})} \log{(D(\mathbf{x}))} + \mathbb{E}_{\mathbf{z}\sim p_{\mathbf{z}}(\mathbf{z})} \log{(1-D(G(\mathbf{z})))} $$
+$$ v (\theta_{(g)}, \theta_{(d)}) = \mathbb{E}_{\mathbf{x}\sim p_{\text{data}}(\mathbf{x})} \log{(D(\mathbf{x}))} + \mathbb{E}_{\mathbf{z}\sim p_{\mathbf{z}}(\mathbf{z})} \log{(1-D(G(\mathbf{z})))} $$
 
 This equation can be read as follows: 
 
