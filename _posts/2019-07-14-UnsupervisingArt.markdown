@@ -259,40 +259,7 @@ We see that, to explain $70\%$ of the variance, we need 20 principal components:
 
 This might seem a lot, so
 
-#### Eigenhuipiles
 
-We now visualize 
-
-```python
-pca = PCA(21, svd_solver='randomized').fit(X)
-components = pca.transform(X)
-projected = pca.inverse_transform(components)
-```
-
-```python
-fig, axes = plt.subplots(3, 7, figsize=(9, 4),
-                         subplot_kw={'xticks':[], 'yticks':[]},
-                         gridspec_kw=dict(hspace=0.1, wspace=0.1))
-for i, ax in enumerate(axes.flat):
-    ax.imshow(scaler.inverse_transform(pca.components_[i]).reshape(256, 256, 3).astype(np.uint8))
-```
-
-<div class="imgcap">
-<img src="https://user-images.githubusercontent.com/24496178/61088863-99418100-a3f6-11e9-8652-2519c996b60c.png" alt="Eigenhuipiles">
-</div>
-
-```python
-plt.figure(figsize=(8,8))
-plt.xticks([])
-plt.yticks([])
-plt.grid(False)
-plt.imshow(scaler.inverse_transform(sum(pca.components_)).reshape(256, 256, 3).astype(np.uint8))
-plt.show()
-```
-
-<div class="imgcap">
-<img src="https://user-images.githubusercontent.com/24496178/61088939-c726c580-a3f6-11e9-8e17-47a1a1bf74bf.png" alt="Average eigenhuipil">
-</div>
 
 #### Separating the images
 
@@ -300,23 +267,9 @@ Before moving them with `Python`, we first create the new directories. If you're
 
 ```
 >>> FOR /l %x in (0, 1, 6) DO mkdir .\\Project_name\\%x
-
-(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Project_name\\0 
-
-(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Project_name\\1 
-
-(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Project_name\\2 
-
-(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Project_name\\3 
-
-(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Project_name\\4 
-
-(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Project_name\\5 
-
-(deepl) C:\Users\Diego\Desktop\Deep Learning\Huipiles\DCGAN-tensorflow>mkdir .\\Project_name\\6 
 ```
 
-We basically create 7 directoriess/folders with the names of the grupos we have created with the $k$-means algorithm. Now we just proceed to copy, into each folder, the corresponding huipil using the `labels` 
+We basically create 7 directoriess/folders with the names of the grupos we have created with the $k$-means algorithm. Now we just proceed to copy, into each folder, the corresponding huipil using the `labels` array:
 
 ```python
 import shutil
@@ -328,7 +281,7 @@ for folders, subfolders, filename in os.walk(filepath):
         i+=1
 ```
 
-These are the final results:
+We will then end up with 7 different folders, each containing all the different These are the final results:
 
 {% include slider.html selector="slider2" %}
 
