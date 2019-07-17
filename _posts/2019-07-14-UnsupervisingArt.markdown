@@ -7,6 +7,12 @@ image_sliders:
   - slider2
 ---
 
+**tl;dr** I will rant about art and will mos tlikely talk about things I do not fully understand about it, but hey, this is *my* blog. At the end, I present how I've applied Machine Learning algorithms, specifically Unsupervised Learning algorithms such as [GANs](https://en.wikipedia.org/wiki/Generative_adversarial_network), [$k-$means](https://en.wikipedia.org/wiki/K-means_clustering) and [PCA](https://en.wikipedia.org/wiki/Principal_component_analysis) to aid me in an ongoing art project.
+
+---
+
+# Intro
+
 [Gatekeeping](https://www.reddit.com/r/gatekeeping/) art is, perhaps, one of the things I dislike the most, and one thing I am certainly guilty of doing before (as I am sure most artist have done once in their lives). In a nutshell, this mindset is as follows: nothing is *art* but what I create and enjoy, and as a corollary, there aren't quality artists nowadays, except for me and the artists whose work I enjoy. Indeed, I believe this not only applies to artists, but to almost everyone, as art is an integral part of our lives: form criticizing nowadays music, to not enjoying superhero movies or even looking down at the No. 1 New York Times bestselling book.
 
 Of course, there is a counterpoint to this. [Mario Vargas Llosa](https://www.nobelprize.org/prizes/literature/2010/vargas_llosa/biographical/) writes in his book [Notes on the Death of Culture](https://www.amazon.com/Notes-Death-Culture-Spectacle-Society/dp/1250094747 "I encourage you to buy it"):
@@ -50,7 +56,7 @@ There is nothing wrong with this stance, but I believe that more can be done wit
 
 As a final note, I feel that there is frustration in Generative Art and Design on how this field is being reported, especially on the topic of who is the actual artist (the programmer or the machine), or even if it is [more appealing](https://hyperallergic.com/391059/humans-prefer-computer-generated-paintings-to-those-at-art-basel/) than human generated art. This is folly, but only if nothing is known about this specific area, or perhaps there is no interest in learning. Time will tell whether or not the effort was worth it, but my prediction will be that it was.
 
-## Unsupervised Learning in Art
+## Machine Learning in Art
 
 Machine Learning has certainly forever changed the panorama of every field it has been introduced to, and art is no exception. Perhaps the ones I enjoy the most, besides image generation, is text and character generation. Projects such as [textgenrnn](https://github.com/minimaxir/textgenrnn) and [kanji-rnn](http://otoro.net/kanji-rnn/) show me the power and potential that language has and how we can leverage Machine Learning to let more and more cultures to express themselves with these tools.
 
@@ -59,15 +65,15 @@ Machine Learning has certainly forever changed the panorama of every field it ha
 <div class="container"><p><b>Fake kanji created by kanji-rnn. The model predicts what the next stroke of the *pen* will be, and the results are different as the user advances with their drawing.</b></p></div>
 </div>
 
-This brings me to the main title of this blog post (a clever wordplay if you will): we need to democratize the techniques found in Unsupervised Learning amongst the art community, nay, amongst the general audience, and quit trying to form clubs where only the elites can reside. Otherwise, we are back in the Renaissance, where certainly excellent art was being produced, but only by those who had both the talent and access to the right tools. Hence, we must be open to start *Unsupervising Art*.
+While these tools are classical Supervised Learning techniques, I believe a greater potential resides in Unsupervised Learning algorithms. This brings me to the main title of this blog post (a clever wordplay if you will): we need to democratize the techniques found in Unsupervised Learning amongst the art community, nay, amongst the general audience, and quit trying to form clubs where only the elites can reside. Otherwise, we are back in the Renaissance, where certainly excellent art was being produced, but only by those who had both the talent and access to the right tools. Hence, we must be open to start *Unsupervising Art*.
 
 Perhaps, in order to illustrate what can be achieved with these techniques, I will tell the tale of one of my latest endeavours, but for that I will need to delve a bit into a short summary of what techniques have been and are being used in the artworld.
 
 ## GANs
 
-We begin our mini summary with Generative Adversarial Networks or [GANs](https://en.wikipedia.org/wiki/Generative_adversarial_network), which are perhaps one of the most applied machine larning paradigms to the world of art. The setting is quite simiple: there are two competing neural networks, a **generator** $G$ and a **discriminator**, and they are playing a simple zero-sum game: the generator must produce samples $\mathbf{x} = g(\mathbf{z}; \mathbf{\theta}^{(g)})$ and the discriminator will emit a probability $d(\mathbf{x}; \mathbf{\theta}^{(d)})$ which will be high if $\mathbf{x}$ is a real datapoint from our training set or low if it believes it to be fake.
+We begin our mini summary with Generative Adversarial Networks or [GANs](https://en.wikipedia.org/wiki/Generative_adversarial_network), which are perhaps one of the most applied machine larning paradigms to the world of art. The setting is quite simiple: there are two competing neural networks, a **generator** $G$ and a **discriminator**, and they are playing a simple zero-sum game: the generator must produce samples $\mathbf{x} = g(\mathbf{z}; \mathbf{\theta}^{(g)})$ and the discriminator will emit a probability $d(\mathbf{x}; \mathbf{\theta}^{(d)})$ which will be high (close to $1$) if $\mathbf{x}$ is a real datapoint from our training set or low (close to $0$) if it believes it to be fake.
 
-Their mathematical description is as follows: since this is a zero-sum game, we define $v (\mathbf{\theta}^{(g)}, \mathbf{\theta}^{(d)})$ as the reward we give to the discriminator for correctly classifying the fake data from the real one, while we give $-v (\mathbf{\theta}^{(g)}, \mathbf{\theta}^{(d)})$ as a reward to the generator. Of course, both wish to maximize the reward they receieve, so they should arrive at the following:
+Their mathematical description is as follows: since this is a zero-sum game, we define $v (\mathbf{\theta}^{(g)}, \mathbf{\theta}^{(d)})$ as the reward we give to the discriminator for correctly classifying the fake data from the real one, while we give $-v (\mathbf{\theta}^{(g)}, \mathbf{\theta}^{(d)})$ as a reward to the generator. They should arrive at the following:
 
 $$ g^{\star} = \arg\min_{g} \max_{d} v(g,d) $$
 
