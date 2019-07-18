@@ -7,7 +7,7 @@ image_sliders:
   - slider2
 ---
 
-**tl;dr** Is the democratization of art necessarily a bad thing? I don't believe it is, and in this blog post, I will rant a bit about art and will most likely talk about things I do not fully understand about it, but hey, this is just a blog after all. At the end, I present how I've applied Machine Learning algorithms, specifically Unsupervised Learning algorithms such as [GANs](https://en.wikipedia.org/wiki/Generative_adversarial_network), [$k-$means](https://en.wikipedia.org/wiki/K-means_clustering) and [PCA](https://en.wikipedia.org/wiki/Principal_component_analysis) to aid me in an ongoing art project, [*Latent Fabrics*](http://www.aiartonline.com/community/diego-porres/).
+**tl;dr** Is the democratization of art necessarily a bad thing? I don't believe it is, and in this blog post, I will rant a bit about art and will most likely talk about things I do not fully understand about it, but hey, this is just a blog after all. In the end, I present how I've applied Machine Learning algorithms, specifically Unsupervised Learning algorithms such as [GANs](https://en.wikipedia.org/wiki/Generative_adversarial_network), [$k-$means](https://en.wikipedia.org/wiki/K-means_clustering), and [PCA](https://en.wikipedia.org/wiki/Principal_component_analysis) to aid me in an ongoing art project, [*Latent Fabrics*](http://www.aiartonline.com/community/diego-porres/).
 
 ---
 
