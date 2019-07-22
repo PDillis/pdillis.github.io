@@ -7,7 +7,7 @@ image_sliders:
   - slider2
 ---
 
-**tl;dr** Is the democratization of art necessarily a bad thing? I don't believe it is, and in this blog post, I will rant a bit about art and will most likely talk about things I do not fully understand about it, but hey, this is just a blog after all. In the end, I present how I've applied Machine Learning algorithms, specifically Unsupervised Learning algorithms such as [GANs](https://en.wikipedia.org/wiki/Generative_adversarial_network), [$k-$means](https://en.wikipedia.org/wiki/K-means_clustering), and [PCA](https://en.wikipedia.org/wiki/Principal_component_analysis) to aid me in an ongoing art project, [*Latent Fabrics*](http://www.aiartonline.com/community/diego-porres/).
+**tl;dr** Is the democratization of art necessarily a bad thing? I don't believe it is, and in this blog post, I will rant a bit about art and will most likely talk about things I do not fully understand about it, but hey, this is just a blog after all. In the end, I present how I've applied Machine Learning algorithms, specifically Unsupervised Learning algorithms such as [GANs](https://en.wikipedia.org/wiki/Generative_adversarial_network), [$k-$means](https://en.wikipedia.org/wiki/K-means_clustering), and [PCA](https://en.wikipedia.org/wiki/Principal_component_analysis) to aid me in an ongoing art project, [*Latent Fabrics*](http://www.aiartonline.com/community/diego-porres/), where I generate [huipils](https://en.wikipedia.org/wiki/Huipil).
 
 ---
 
@@ -118,6 +118,8 @@ Of course, the first results I obtained where generating huipils of size $64\tim
 </div>
 
 All in all, this was the work of weeks, as some hyperparameters were tuned, some pictures were modified to better work for the dataset, and also there were lots of failures. Of course, there are far more huipils that could be generated, but these where the ones that, to my criteria, where most pleasing to the eye. Indeed, this is after all the job of the artist, otherwise we would let randomness govern us, and the human mind gets easily bored of the random world, [unless we get to participate in its creation process and curate it](http://www.random-art.org/online/). 
+
+I was fortunate enough that this piece was accepted at the [NeurIPS](https://nips.cc/) [Workshop on Machine Learning and Creativity from 2018](https://nips2018creativity.github.io/) and shown on its [online AI art gallery](http://www.aiartonline.com/). For this, I must thank [Luba Elliott](http://elluba.com/) for her great work in curating the online gallery, as well as for the help provided to me (and all the other artists) during the collection of all the pieces.
 
 Now that we have these generated huipils, what could be the next step? The random arrangement can only get us so far, so why not separate the huipils by likeness to each other? This could be done manually, but, being as lazy as I am, there is another algorithm that can come in handy...
 
@@ -306,7 +308,7 @@ import shutil
 for folders, subfolders, filename in os.walk(filepath):
     i=0
     while i<num_images:
-        shutil.copy(filepath+'\\'+filename[i], os.getcwd()+'\\Project_name\\'+str(labels[i]))
+        shutil.copy(filepath+filename[i], os.getcwd()+'\\Project_name\\'+str(labels[i]))
         i+=1
 ```
 
