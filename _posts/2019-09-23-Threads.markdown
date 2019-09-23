@@ -6,7 +6,7 @@ categories: main
 
 ---
 
-**tl;dr** I'm starting a Ph.D. at the [Computer Vision Center](http://www.cvc.uab.es/) in Barcelona, Spain, and in the meantime I've continued my [work on generating huipils](https://blog.diegoporres.com/main/2019/07/17/UnsupervisingArt/). 
+**tl;dr** I've starting a Ph.D. at the [Computer Vision Center](http://www.cvc.uab.es/) in Barcelona, Spain, and in the meantime,  continued my [work on generating huipils](https://blog.diegoporres.com/main/2019/07/17/UnsupervisingArt/). 
 
 ---
 
@@ -14,8 +14,16 @@ categories: main
 
 
 
+# Ph.D.
+
+Started a Ph.D. at the Autonomous University of Barcelona ([UAB](https://www.uab.cat/)), specifically at the [Computer Vision Center](http://www.cvc.uab.es/), in the research group of Advanced Driver Assistance Systems or [ADAS](http://adas.cvc.uab.es/), under the guidance of [Dr. Antonio López Peña](http://www.cvc.uab.es/?page_id=71&user=377). 
+
 # Threads
 
-[![Threads Interpolation Video](https://media.giphy.com/media/PlylJuV7bgm1RrKxFF/giphy.gif)](https://www.youtube.com/watch?v=iWV1kpBunSM)
+Threads (2019) is a continuation of [Latent Fabrics (2018)](http://www.aiartonline.com/community/diego-porres/) and as such, wishes to explore, on a bigger and unwarped dataset, the 
 
-<img src="https://media.giphy.com/media/PlylJuV7bgm1RrKxFF/giphy.gif" width="512" height="384" />
+<img src="https://media.giphy.com/media/PlylJuV7bgm1RrKxFF/giphy.gif" width="640" height="512" />
+
+<img src="https://media.giphy.com/media/PlylJuV7bgm1RrKxFF/giphy.gif" width="320" height="256" />
+
+[//]: % "[![Threads Interpolation Video](https://media.giphy.com/media/PlylJuV7bgm1RrKxFF/giphy.gif)](https://www.youtube.com/watch?v=iWV1kpBunSM)"
