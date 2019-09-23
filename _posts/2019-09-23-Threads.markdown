@@ -1,0 +1,17 @@
+---
+layout: post
+title:  "Threads"
+date:   2019-09-23 18:00:00
+categories: main
+---
+
+**tl;dr** I'm starting a Ph.D. at the [Computer Vision Center](http://www.cvc.uab.es/) in Barcelona, Spain, and in the meantime I've continued my [work on generating huipils](https://blog.diegoporres.com/main/2019/07/17/UnsupervisingArt/). 
+---
+
+# Intro
+
+
+
+# Threads
+
+[![Threads Interpolation Video](https://media.giphy.com/media/PlylJuV7bgm1RrKxFF/giphy.gif)](https://www.youtube.com/watch?v=iWV1kpBunSM)
