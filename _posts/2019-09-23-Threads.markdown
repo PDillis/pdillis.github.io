@@ -6,26 +6,34 @@ categories: main
 
 ---
 
-**tl;dr** I've starting a Ph.D. at the [Computer Vision Center](http://www.cvc.uab.es/) in Barcelona, Spain, and in the meantime,  continued my [work on generating huipils](https://blog.diegoporres.com/main/2019/07/17/UnsupervisingArt/). 
-
----
-
-# Intro
-
-
+This blog post will be short, I have a few announcements:
 
 # Ph.D.
 
-Started a Ph.D. at the Autonomous University of Barcelona ([UAB](https://www.uab.cat/)), specifically at the [Computer Vision Center](http://www.cvc.uab.es/), in the research group of Advanced Driver Assistance Systems or [ADAS](http://adas.cvc.uab.es/), under the guidance of [Dr. Antonio López Peña](http://www.cvc.uab.es/~antonio/). 
+I've started a Ph.D. at the Autonomous University of Barcelona ([UAB](https://www.uab.cat/))! Specifically at the [Computer Vision Center](http://www.cvc.uab.es/), in the research group of Advanced Driver Assistance Systems or [ADAS](http://adas.cvc.uab.es/), under the guidance of [Dr. Antonio López Peña](http://www.cvc.uab.es/~antonio/). I am excited to be a part of both this research group and the CVC, and know that I will learn a lot from them!
 
 # Threads
 
-Threads (2019) is a continuation of [Latent Fabrics (2018)](http://www.aiartonline.com/community/diego-porres/) and as such, wishes to explore, on a bigger and unwarped dataset, the 
+Threads (2019) is a continuation of [Latent Fabrics (2018)](http://www.aiartonline.com/community/diego-porres/) and as such, wishes to explore the similarities in the latent space of the threads of different cultures in Guatemala and Mexico. I focused now on the details of the different threads used in different regions, and over 3000 images where obtained from online and private collections.
 
-<img src="https://media.giphy.com/media/PlylJuV7bgm1RrKxFF/giphy.gif" width="640" height="512" />
+However, I didn't wish to simply resize each image, so I cut different square regions of each image, resulting in exactly 11852 square images which I then fed to a [ProGAN](https://arxiv.org/abs/1710.10196). The image sizes varied, but some had to be resized and I decided to start with images of size $128\times128$.
 
-<img src="https://media.giphy.com/media/PlylJuV7bgm1RrKxFF/giphy.gif" width="320" height="256" />
+A small interpolation video has been generated after ~10 days of training on a burrowed [GTX 1080](https://www.nvidia.com/en-us/geforce/products/10series/geforce-gtx-1080/). In total, the Discriminator saw around $1.2\times 10^6$ images, which would not have been possible, in the same timeframe, with e.g. [DCGAN](https://arxiv.org/abs/1511.06434). 
 
-<img src="https://media.giphy.com/media/PlylJuV7bgm1RrKxFF/giphy.gif" width="160" height="128" />
+[![Threads Interpolation Video](https://media.giphy.com/media/PlylJuV7bgm1RrKxFF/giphy.gif)](https://www.youtube.com/watch?v=iWV1kpBunSM)
 
-[//]: % "[![Threads Interpolation Video](https://media.giphy.com/media/PlylJuV7bgm1RrKxFF/giphy.gif)](https://www.youtube.com/watch?v=iWV1kpBunSM)"
+This work couldn't have been possible without me burrowing images/getting help from:
+
+  * Karen Elwell's [Flickr collection](https://www.flickr.com/photos/citlali/) 
+  * [Huipils.com](http://www.huipils.com/) by David and Sally Hamilton
+  * The [Minneapolis Institute of Art](https://new.artsmia.org/)
+  * The [Museum of World Culture](http://www.varldskulturmuseerna.se/en/varldskulturmuseet/) (to be used further on)
+  * The [Burke Museum of Natural History and Culture](https://www.burkemuseum.org/)
+  * The [British Museum](https://www.britishmuseum.org)
+  * The [National Museum of Ethnology](https://www.volkenkunde.nl/en/about-volkenkunde) (to be used further on)
+
+As always, leave a like/comment and hopefully I'll be able to continue writing more blog posts.
+
+Cheers!
+
+{% include disqus.html %}
