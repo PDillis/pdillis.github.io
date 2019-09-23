@@ -16,7 +16,7 @@ categories: main
 
 # Ph.D.
 
-Started a Ph.D. at the Autonomous University of Barcelona ([UAB](https://www.uab.cat/)), specifically at the [Computer Vision Center](http://www.cvc.uab.es/), in the research group of Advanced Driver Assistance Systems or [ADAS](http://adas.cvc.uab.es/), under the guidance of [Dr. Antonio López Peña](http://www.cvc.uab.es/?page_id=71&user=377). 
+Started a Ph.D. at the Autonomous University of Barcelona ([UAB](https://www.uab.cat/)), specifically at the [Computer Vision Center](http://www.cvc.uab.es/), in the research group of Advanced Driver Assistance Systems or [ADAS](http://adas.cvc.uab.es/), under the guidance of [Dr. Antonio López Peña](http://www.cvc.uab.es/~antonio/). 
 
 # Threads
 
