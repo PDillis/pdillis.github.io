@@ -17,3 +17,5 @@ categories: main
 # Threads
 
 [![Threads Interpolation Video](https://media.giphy.com/media/PlylJuV7bgm1RrKxFF/giphy.gif)](https://www.youtube.com/watch?v=iWV1kpBunSM)
+
+<img src="https://media.giphy.com/media/PlylJuV7bgm1RrKxFF/giphy.gif" width="512" height="384" />
