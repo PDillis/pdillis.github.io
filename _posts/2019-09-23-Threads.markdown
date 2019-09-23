@@ -26,4 +26,6 @@ Threads (2019) is a continuation of [Latent Fabrics (2018)](http://www.aiartonli
 
 <img src="https://media.giphy.com/media/PlylJuV7bgm1RrKxFF/giphy.gif" width="320" height="256" />
 
+<img src="https://media.giphy.com/media/PlylJuV7bgm1RrKxFF/giphy.gif" width="160" height="128" />
+
 [//]: % "[![Threads Interpolation Video](https://media.giphy.com/media/PlylJuV7bgm1RrKxFF/giphy.gif)](https://www.youtube.com/watch?v=iWV1kpBunSM)"
