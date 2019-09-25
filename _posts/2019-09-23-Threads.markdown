@@ -10,7 +10,7 @@ This blog post will be short, I have a few announcements:
 
 # Ph.D.
 
-I've started a Ph.D. at the Autonomous University of Barcelona ([UAB](https://www.uab.cat/))! Specifically at the [Computer Vision Center](http://www.cvc.uab.es/), in the research group of Advanced Driver Assistance Systems or [ADAS](http://adas.cvc.uab.es/), under the guidance of [Dr. Antonio López Peña](http://www.cvc.uab.es/~antonio/). I am excited to be a part of both this research group and the CVC, and know that I will learn a lot from them!
+I've started a [Ph.D. in Computer Science](https://www.uab.cat/web/postgrado/doctorados/todos-los-doctorados/informacion-general/informatica-1345467765424.html?param2=1345657891663) at the Autonomous University of Barcelona ([UAB](https://www.uab.cat/))! Specifically I will be doing my research at the [Computer Vision Center](http://www.cvc.uab.es/), in the research group of Advanced Driver Assistance Systems or [ADAS](http://adas.cvc.uab.es/), under the guidance of [Dr. Antonio López Peña](http://www.cvc.uab.es/~antonio/). I am excited to be a part of both this research group and the CVC, and know that I will learn a lot from them!
 
 # Threads
 
@@ -18,7 +18,7 @@ Threads (2019) is a continuation of [Latent Fabrics (2018)](http://www.aiartonli
 
 However, I didn't wish to simply resize each image, so I cut different square regions of each image, resulting in exactly 11852 square images which I then fed to a [ProGAN](https://arxiv.org/abs/1710.10196). The image sizes varied, but some had to be resized and I decided to start with images of size $128\times128$.
 
-A small interpolation video has been generated after ~10 days of training on a burrowed [GTX 1080](https://www.nvidia.com/en-us/geforce/products/10series/geforce-gtx-1080/). In total, the Discriminator saw around $1.2\times 10^6$ images, which would not have been possible, in the same timeframe, with e.g. [DCGAN](https://arxiv.org/abs/1511.06434). 
+A small interpolation video has been generated after ~10 days of training on a burrowed [GTX 1080](https://www.nvidia.com/en-us/geforce/products/10series/geforce-gtx-1080/). In total, the Discriminator saw around 12 million images, which would not have been possible, in the same timeframe, with e.g. [DCGAN](https://arxiv.org/abs/1511.06434). 
 
 [![Threads Interpolation Video](https://media.giphy.com/media/PlylJuV7bgm1RrKxFF/giphy.gif)](https://www.youtube.com/watch?v=iWV1kpBunSM)
 
