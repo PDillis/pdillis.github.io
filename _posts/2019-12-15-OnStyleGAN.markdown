@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title:  "On the StyleGAN"
 date:   2019-12-15 18:00:00
 categories: main
@@ -18,7 +18,7 @@ Should only technical users be able to have fun with new emerging technologies? 
 
 ## The Generator
 
-### $Z$ and $W$
+### $\mathcal{Z}$ and $\mathcal{W}$
 
 ###
 
