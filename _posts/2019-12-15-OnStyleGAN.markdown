@@ -34,6 +34,6 @@ As [Helena Sarin notes](https://twitter.com/glagolista/status/120081967920962764
 
 At the end, while the work I present here is certainly beautiful, I still am far more enamored with what I've [previously generated](https://blog.diegoporres.com/main/2019/07/17/UnsupervisingArt/) with *lower class* GANs ([DCGAN](https://arxiv.org/abs/1511.06434)). [Bigger GANs](https://www.artnome.com/news/2018/11/14/helena-sarin-why-bigger-isnt-always-better-with-gans-and-ai-art) or better algorithms won't necessarily bring forth what we wish to express, but they should be explored in order to determine firsthand if what they capture in their latent space is close to what we wish to convey.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/4nktYGjSVHg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4nktYGjSVHg?&autoplay=1&loop=1&playlist=4nktYGjSVHg" align="middle" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 {% include disqus.html %}
