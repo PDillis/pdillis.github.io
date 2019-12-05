@@ -10,17 +10,93 @@ categories: main
 
 It is no surprise that a lot of computing power will be needed to generate large generated images.
 
-Should only technical users be able to have fun with new emerging technologies? Most likely this will be the case in the beginning, but this will for sure change as we slowly mature both the algorithms and necessary technologies in order to access to these.
+Should only technical users be able to have fun with new emerging technologies? Most likely this will be the case in the beginning, but this will for sure change as we slowly mature both the algorithms and necessary technologies in order to access to these. Likewise, the necessary resources required not only for research but for [reproducing some of the results](https://github.com/ajbrock/BigGAN-PyTorch) are, quite frankly, impossible for many.
 
 # StyleGAN
 
 ## Progressive Growing
 
+First, we must start with the base architecture of the StyleGAN: the [ProGAN](https://arxiv.org/abs/1710.10196). This architecture led to astounding results
+
+### WGAN
+
+
+
 ## The Generator
 
-### $\mathcal{Z}$ and $\mathcal{W}$
 
-###
+
+### Architecture
+
+#### Mapping
+
+```python
+def G_mapping(
+    latents_in,
+    labels_in,
+    latent_size             = 512,
+    label_size              = 0,
+    dlatent_size            = 512,
+    dlatent_broadcast       = None,
+    mapping_layers          = 8,
+    mapping_fmaps           = 512,
+    mapping_lrmul           = 0.01,
+    mapping_nonlinearity    = 'lrelu',
+    use_wscale              = True,
+    normalize_latents       = True,
+    dtype                   = 'float32',
+    **_kwargs):
+
+    act, gain = {'relu': (tf.nn.relu, np.sqrt(2)),
+                 'lrelu': (leaky_relu, np.sqrt(2))}[mapping_nonlinearity]
+
+    # Inputs.
+    latents_in.set_shape([None, latent_size])
+    labels_in.set_shape([None, label_size])
+    latents_in = tf.cast(latents_in, dtype)
+    labels_in = tf.cast(labels_in, dtype)
+    x = latents_in
+
+    # Embed labels and concatenate them with latents.
+    if label_size:
+        with tf.compat.v1.variable_scope('LabelConcat'):
+            w = tf.get_variable('weight',
+                                shape=[label_size, latent_size],
+                                initializer=tf.initializers.random_normal())
+            y = tf.matmul(labels_in, tf.cast(w, dtype))
+            x = tf.concat([x, y], axis=1)
+
+    # Normalize latents.
+    if normalize_latents:
+        x = pixel_norm(x)
+
+    # Mapping layers.
+    for layer_idx in range(mapping_layers):
+        with tf.compat.v1.variable_scope('Dense%d' % layer_idx):
+            fmaps = dlatent_size if layer_idx == mapping_layers - 1 else mapping_fmaps
+            x = dense(x,
+                      fmaps=fmaps,
+                      gain=gain,
+                      use_wscale=use_wscale,
+                      lrmul=mapping_lrmul)
+            x = apply_bias(x, lrmul=mapping_lrmul)
+            x = act(x)
+
+    # Broadcast.
+    if dlatent_broadcast is not None:
+        with tf.compat.v1.variable_scope('Broadcast'):
+            x = tf.tile(x[:, np.newaxis], [1, dlatent_broadcast, 1])
+
+    # Output.
+    assert x.dtype == tf.as_dtype(dtype)
+    return tf.identity(x, name='dlatents_out')
+```
+
+#### Synthesis
+
+### The latent spaces: $\mathcal{Z}$ and $\mathcal{W}$
+
+
 
 ## The Discriminator
 
