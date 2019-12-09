@@ -19,6 +19,12 @@ Should only technical users be able to have fun with new emerging technologies? 
 <a name="stylegan"></a>
 # StyleGAN
 
+While there is always need for more understanding of what the StyleGAN is truly doing[^faceediting] [^image2stylegan],
+
+[^faceediting]: Interpreting the Latent Space of GANs for Semantic Face Editing
+
+[^image2stylegan]: Image2StyleGAN: How to Embed Images into the StyleGAN Latent Space?
+
 <a name="progan"></a>
 ## Progressive Growing
 
