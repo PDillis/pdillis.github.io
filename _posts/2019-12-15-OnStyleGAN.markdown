@@ -6,14 +6,20 @@ categories: main
 
 ---
 
+* [StyleGAN](#stylegan)
+    - [Progressive Growing](#progan)
+
+
 # Getting Started
 
 It is no surprise that a lot of computing power will be needed to generate large generated images.
 
 Should only technical users be able to have fun with new emerging technologies? Most likely this will be the case in the beginning, but this will for sure change as we slowly mature both the algorithms and necessary technologies in order to access to these. Likewise, the necessary resources required not only for research but for [reproducing some of the results](https://github.com/ajbrock/BigGAN-PyTorch) are, quite frankly, impossible for many.
 
+<a name="stylegan"></a>
 # StyleGAN
 
+<a name="progan"></a>
 ## Progressive Growing
 
 First, we must start with the base architecture of the StyleGAN: the [ProGAN](https://arxiv.org/abs/1710.10196). This architecture led to astounding results
@@ -29,6 +35,7 @@ First, we must start with the base architecture of the StyleGAN: the [ProGAN](ht
 ### Architecture
 
 #### Mapping
+
 
 ```python
 def G_mapping(
