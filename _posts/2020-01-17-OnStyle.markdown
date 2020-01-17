@@ -120,7 +120,7 @@ Another key requirement, GPUs with at least 16 GB of RAM, is also unobtainable. 
 
 ## Training
 
-I particularly don't care about the usual metrics, such as [Frechet Inception Distance (FID)](https://nealjean.com/ml/frechet-inception-distance/), so we will turn this off, especially since they usually take a long time to compute.
+I particularly don't care about the usual metrics, such as the [Fréchet Inception Distance (FID)](https://nealjean.com/ml/frechet-inception-distance/), so we will turn this off, especially since they usually take a long time to compute.
 
 Before starting training, you must change the following lines:
 
@@ -166,6 +166,11 @@ python run_training.py --num-gpus=1 --data-dir=/path/to/datasets/root/ \
 so the only thing to change is your `--data-dir` (which in my case was simply `./datasets/`) and your `--dataset`. In other words, if your
 
 {% include disqus.html %}
+
+
+[^limitstech]: A. Estorick, [*From Wetware to Tilt Brush, How Artists Tested the Limits of Technology in the 2010s*](https://frieze.com/article/wetware-tilt-brush-how-artists-tested-limits-technology-2010s), Frieze, 2019
+[^aieraart]: J. Openshaw, [*AI Generates New Era for Art*](https://a-d-o.com/journal/artifical-intelligence-ai-art), A/D/O, 2019
+[^aiart]: I. Stephen, [*What can we learn from AI art?*](https://medium.com/@isobel.stephen/what-can-we-learn-from-ai-art-4b0a52476dd9), 2019
 
 
 [^faceediting]: Y. Shen, J. Gu, X. Tang & B. Zhou, [*Interpreting the Latent Space of GANs for Semantic Face Editing*](https://arxiv.org/abs/1907.10786),  2019.
