@@ -1,7 +1,7 @@
 ---
 layout: page
 title:  "On Style"
-date:   2020-01-17 18:00:00
+date:   2020-01-31 18:00:00
 categories: main
 
 ---
@@ -100,7 +100,7 @@ When the code was first released, I was getting the error:
 error: #error "C++ versions less than C++11 are not supported."
 ```
 
-even after passing the test of whether or not NVCC was correctly installed (a true nightmare, since this isn't just an error on incompatible Python libraries, it was an error due to the [custom `TensorFlow` ops developed by the authors](https://github.com/NVlabs/stylegan2#requirements)). Thankfully, after the end of year break, some issues were resolved and I could run the code in my PC. The problem was running it in larger GPU cards that thankfully I have access to in the [CVC](http://www.cvc.uab.es/)'s servers. There, I ran into the same issue, even with the latest push to the GitHub repo.
+even after passing the test of whether or not [NVCC](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html) was correctly installed (a true nightmare, since this isn't just an error on incompatible Python libraries, it was an error due to the [custom `TensorFlow` ops developed by the authors](https://github.com/NVlabs/stylegan2#requirements)). Thankfully, after the end of year break, some issues were resolved and I could run the code in my PC. The problem was running it in larger GPU cards that thankfully I have access to in the [CVC](http://www.cvc.uab.es/)'s servers. There, I ran into the same issue, even with the latest push to the GitHub repo.
 
 Luckily, there is a [quick fix](https://stackoverflow.com/a/59368180) by modifying the `nvcc` call in [line 64](https://github.com/NVlabs/stylegan2/blob/7d3145d23013607b987db30736f89fb1d3e10fad/dnnlib/tflib/custom_ops.py#L64) in `dnnlib/tflib/custom_ops.py`. Albeit not pretty, it will let us run the code, so there's no complaints from me:
 
@@ -119,8 +119,6 @@ Another key requirement, GPUs with at least 16 GB of RAM, is also unobtainable. 
 
 
 ## Training
-
-I particularly don't care about the usual metrics, such as the [Fréchet Inception Distance (FID)](https://nealjean.com/ml/frechet-inception-distance/), so we will turn this off, especially since they usually take a long time to compute.
 
 Before starting training, you must change the following lines:
 
@@ -155,7 +153,7 @@ Before starting training, you must change the following lines:
 
 ```
 
-After this, the general command to use is as follows:
+I particularly don't care about the usual metrics, such as the [Fréchet Inception Distance (FID)](https://nealjean.com/ml/frechet-inception-distance/), so we will turn this off, especially since they usually take a long time to compute. The general command to use is as follows:
 
 ```
 python run_training.py --num-gpus=1 --data-dir=/path/to/datasets/root/ \
