@@ -1,0 +1,223 @@
+---
+layout: page
+title:  "On Style"
+date:   2020-02-29 18:00:00
+categories: main
+
+---
+
+# **Work in progress, bear with me**
+
+# Getting Started
+
+It is no surprise that a lot of computing power will be needed to generate large generated images.
+
+Should only technical users be able to have fun with new emerging technologies? Most likely this will be the case in the beginning, but this will for sure change as we slowly mature both the algorithms and necessary technologies in order to access to these. Likewise, the necessary resources required not only for research but for [reproducing some of the results](https://github.com/ajbrock/BigGAN-PyTorch) are, quite frankly, impossible for many.
+
+
+
+What can we learn from AI art?
+Izzy Stephen
+https://medium.com/@isobel.stephen/what-can-we-learn-from-ai-art-4b0a52476dd9
+
+AI genreates new era for art
+Jonathan Openshaw
+https://a-d-o.com/journal/artifical-intelligence-ai-art
+
+From Wetware to Tilt Brush, How Artists tested the limits of Technology in the 2010s
+Alex Estorick
+https://frieze.com/article/wetware-tilt-brush-how-artists-tested-limits-technology-2010s
+
+
+<a name="stylegan"></a>
+# StyleGAN
+
+While there is always need for more understanding of what the StyleGAN is truly doing[^faceediting] [^image2stylegan],
+
+
+
+<a name="progan"></a>
+## Progressive Growing
+
+First, we must start with the base architecture of the StyleGAN: the [ProGAN](https://arxiv.org/abs/1710.10196). This architecture led to astounding results
+
+<a name="wgan"></a>
+### WGAN
+
+
+<a name="generator"></a>
+## The Generator
+
+
+<a name="architecture"></a>
+### Architecture
+
+<a name="mapping"></a>
+#### Mapping
+
+
+<a name="synthesis"></a>
+#### Synthesis
+
+<a name="latentspaces"></a>
+### The latent spaces: $\mathcal{Z}$ and $\mathcal{W}$
+
+
+<a name="discriminator"></a>
+## The Discriminator
+
+
+<a name="threads"></a>
+# On Threads
+
+On [The Source of Creativity](https://choice.npr.org/index.html?origin=https://www.npr.org/programs/ted-radio-hour/351538855/the-source-of-creativity), Sting defines
+
+> ...the ability to take a risk: put yourself on the line and risk ridicule, be pilloried, criticized.
+> You have an idea that you wish to put out there, and you want to take the risk.
+
+But how to apply all of this to a concrete project? While we can of course download the pretrained models done by the official authors, it is also fun to try our own experiments and monumentally fail at every step of the way, until we achieve something that captivates our eyes.
+
+As [Helena Sarin notes](https://twitter.com/glagolista/status/1200819679209627648?s=20), a gut feeling is still needed whenever deciding if a generated image, video or work is truly worth sharing, and Threads is no
+
+
+At the end, while the work I present here is certainly beautiful, I still am far more enamored with what I've [previously generated](https://blog.diegoporres.com/main/2019/07/17/UnsupervisingArt/) with ~~*lower class*~~ not state-of-the-art GANs[^dcgan]. [Bigger GANs](https://www.artnome.com/news/2018/11/14/helena-sarin-why-bigger-isnt-always-better-with-gans-and-ai-art) or better algorithms won't necessarily bring forth what we wish to express, but they should be explored in order to determine firsthand if what they capture in their latent space is close to what we wish to convey.
+<iframe width="800" height="533" src="https://www.youtube.com/embed/4nktYGjSVHg?&autoplay=1&loop=1&playlist=4nktYGjSVHg" align="middle" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+<a name="stylegan2"></a>
+# StyleGAN2
+
+Not surprisingly, [NVIDIA has released StyleGAN2[^sgan2]](https://github.com/NVlabs/stylegan2)
+
+When the code was first released, I was getting the error:
+
+```
+error: #error "C++ versions less than C++11 are not supported."
+```
+
+even after passing the test of whether or not [NVCC](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html) was correctly installed (a true nightmare, since this isn't just an error on incompatible Python libraries, it was an error due to the [custom `TensorFlow` ops developed by the authors](https://github.com/NVlabs/stylegan2#requirements)). Thankfully, after the end of year break, some issues were resolved and I could run the code in my PC. The problem was running it in larger GPU cards that thankfully I have access to in the [CVC](http://www.cvc.uab.es/)'s servers. There, I ran into the same issue, even with the latest push to the GitHub repo.
+
+Luckily, there is a [quick fix](https://stackoverflow.com/a/59368180) by modifying the `nvcc` call in [line 64](https://github.com/NVlabs/stylegan2/blob/7d3145d23013607b987db30736f89fb1d3e10fad/dnnlib/tflib/custom_ops.py#L64) in `dnnlib/tflib/custom_ops.py`. Albeit not pretty, it will let us run the code, so there's no complaints from me:
+
+```python
+cmd = 'nvcc --std=c++11 -DNDEBUG ' + opts.strip()
+```
+
+## On Transfer Learning
+
+Perhaps the most exciting news is that [transfer learning](https://www.gwern.net/Faces#transfer-learning) is still possible in StyleGAN2. This will greatly reduce your training time, but most importantly, deliver you with quality images in the desired resolution in a matter of days (less than 1 day even as was my case).
+
+Another key requirement, GPUs with at least 16 GB of RAM, is also unobtainable. This can be avoided by modifying the minibatch size in [`run_training.py`](https://github.com/NVlabs/stylegan2/blob/master/run_training.py), specifically, lines [54](https://github.com/NVlabs/stylegan2/blob/4874628c7dfffaae01f89558c476842b475f54d5/run_training.py#L54) and[90](https://github.com/NVlabs/stylegan2/blob/4874628c7dfffaae01f89558c476842b475f54d5/run_training.py#L90). Depending on the available GPU you have, you might wish to test different numbers, but know that for me to use the [$512^2$ LSUN Car](https://drive.google.com/drive/folders/1yanUI9m4b4PWzR0eurKNq6JR1Bbfbh6L) on a [GeForce GTX 1080](https://www.nvidia.com/en-us/geforce/products/10series/geforce-gtx-1080/), I had to modify said lines accordingly:
+
+
+
+
+
+## Training
+
+Before starting training, you must change the following lines:
+
+```diff
+--- a/stylegan2/run_training.py
++++ b/stylegan2modified/run_training.py
+@@ -51,8 +51,8 @@ def run(dataset, data_dir, result_dir, config_id, num_gpus, total_kimg, gamma, m
+     train.mirror_augment = mirror_augment
+     train.image_snapshot_ticks = train.network_snapshot_ticks = 10
+     sched.G_lrate_base = sched.D_lrate_base = 0.002
+-    sched.minibatch_size_base = 32
+-    sched.minibatch_gpu_base = 4
++    sched.minibatch_size_base = 8
++    sched.minibatch_gpu_base = 2
+     D_loss.gamma = 10
+     metrics = [metric_defaults[x] for x in metrics]
+     desc = 'stylegan2'
+@@ -86,10 +86,10 @@ def run(dataset, data_dir, result_dir, config_id, num_gpus, total_kimg, gamma, m
+         sched.lod_initial_resolution = 8
+         sched.G_lrate_base = sched.D_lrate_base = 0.001
+         sched.G_lrate_dict = sched.D_lrate_dict = {128: 0.0015, 256: 0.002, 512: 0.003, 1024: 0.003}
+-        sched.minibatch_size_base = 32 # (default)
+-        sched.minibatch_size_dict = {8: 256, 16: 128, 32: 64, 64: 32}
+-        sched.minibatch_gpu_base = 4 # (default)
+-        sched.minibatch_gpu_dict = {8: 32, 16: 16, 32: 8, 64: 4}
++        sched.minibatch_size_base = 8 # (default)
++        sched.minibatch_size_dict = {8: 64, 16: 32, 32: 16, 64: 8}
++        sched.minibatch_gpu_base = 2 # (default)
++        sched.minibatch_gpu_dict = {8: 16, 16: 8, 32: 4, 64: 2}
+         G.synthesis_func = 'G_synthesis_stylegan_revised'
+         D.func_name = 'training.networks_stylegan2.D_stylegan'
+
+```
+
+I particularly don't care about the usual metrics, such as the [Fréchet Inception Distance (FID)](https://nealjean.com/ml/frechet-inception-distance/), so we will turn this off, especially since they usually take a long time to compute. The general command to use is as follows:
+
+```
+python run_training.py --num-gpus=1 --data-dir=/path/to/datasets/root/ \
+        --dataset=nameofyourdataset --config=config-f --mirror-augment=true \
+        --metrics=none
+```
+
+so the only thing to change is your `--data-dir` (which in my case was simply `./datasets/`) and your `--dataset`. In other words, if your
+
+## Results
+
+### Random Interpolation
+
+If you wish to do a simple random interpolation (that plays in a loop), you can feed it a source seed from which it will calculate all the latent vectors, as well as the generated video `height` and `width`, that is, how many images
+
+```
+python interpolation_videos.py lerp-video --pkl-path=./path/to/model.pkl \
+        --seeds=1 --grid-w=3 --grid-w=2
+```
+
+<video src="/videos/sgan2/3x2-lerp-shape.mp4" style="width:100%" controls preload></video>
+
+Note that, by default, `truncation-psi=1.0`, so keep in mind that you can modify this if you wish.
+
+Alternatively, you can feed the specific seeds you wish to generate from (assuming you have found some that generate exactly what you wish to show) and simply feed these like so:
+
+```
+python interpolation_videos.py lerp-video --pkl-path=./path/to/model.pkl \
+        --seeds=1,3,42-43,70
+```
+
+The code will find the best shape of the final generated video and have the background as black, in case you have a missing space, like so:
+
+<video src="/videos/sgan2/3x2-lerp-seeds.mp4" style="width:100%" controls preload></video>
+
+
+However, I feel that it is far better to visualize just one, as too many interpolations can simply distract from the emerging beauty; so, we run:
+
+```
+python interpolation_videos.py lerp-video --pkl-path=./path/to/model.pkl \
+        --seeds=1 --grid-w=1 --grid-h=1 --truncation-psi=1.0
+```
+
+and we get:
+
+<video src="/videos/sgan2/1x1-lerp.mp4" width="512" height="512" controls preload></video>
+
+### Style Mixing
+
+We can do style mixing, as in the original StyleGAN; by default, `truncation-psi=0.7`
+
+<video src="/videos/sgan2/5x1-style-mixing-coarse.mp4" style="width:100%" controls preload></video>
+
+<video src="/videos/sgan2/5x1-style-mixing-middle.mp4" style="width:100%" controls preload></video>
+
+<video src="/videos/sgan2/5x1-style-mixing-fine.mp4" style="width:100%" controls preload></video>
+
+{% include disqus.html %}
+
+
+[^limitstech]: A. Estorick, [*From Wetware to Tilt Brush, How Artists Tested the Limits of Technology in the 2010s*](https://frieze.com/article/wetware-tilt-brush-how-artists-tested-limits-technology-2010s), Frieze, 2019
+[^aieraart]: J. Openshaw, [*AI Generates New Era for Art*](https://a-d-o.com/journal/artifical-intelligence-ai-art), A/D/O, 2019
+[^aiart]: I. Stephen, [*What can we learn from AI art?*](https://medium.com/@isobel.stephen/what-can-we-learn-from-ai-art-4b0a52476dd9), 2019
+
+
+[^faceediting]: Y. Shen, J. Gu, X. Tang & B. Zhou, [*Interpreting the Latent Space of GANs for Semantic Face Editing*](https://arxiv.org/abs/1907.10786),  2019.
+[^image2stylegan]: R. Abdal, Y. Qin & P. Wonka, [*Image2StyleGAN: How to Embed Images into the StyleGAN Latent Space?*](https://arxiv.org/abs/1904.03189), 2019.
+[^dcgan]: A. Radford, L. Metz & Soumith Chintala, [*Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks*](https://arxiv.org/abs/1511.06434), 2016.
+[^wgan]: M. Arjovsky, S. Chintala & L. Bottou, [*Wasserstein GAN*](https://arxiv.org/abs/1701.07875), 2017.
+[^progan]: T. Karras, T. Aila, S. Laine & J. Lehtinen, [*Progressive Growing of GANs for Improved Quality, Stability, and Variation*](https://arxiv.org/abs/1710.10196), ICLR 2018.
+[^sgan]: T. Karras, S. Laine & T. Aila, [*A Style-Based Generator Architecture for Generative Adversarial Networks*](https://arxiv.org/abs/1812.04948), CVPR 2019.
+[^sgan2]: T. Karras, S. Laine, M. Aittala, J. Hellsten, J. Lehtinen & T. Aila, [*Analyzing and Improving the Image Quality of StyleGAN*](http://arxiv.org/abs/1912.04958), 2020.
