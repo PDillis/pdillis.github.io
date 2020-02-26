@@ -81,8 +81,12 @@ As [Helena Sarin notes](https://twitter.com/glagolista/status/120081967920962764
 
 
 At the end, while the work I present here is certainly beautiful, I still am far more enamored with what I've [previously generated](https://blog.diegoporres.com/main/2019/07/17/UnsupervisingArt/) with ~~*lower class*~~ not state-of-the-art GANs[^dcgan]. [Bigger GANs](https://www.artnome.com/news/2018/11/14/helena-sarin-why-bigger-isnt-always-better-with-gans-and-ai-art) or better algorithms won't necessarily bring forth what we wish to express, but they should be explored in order to determine firsthand if what they capture in their latent space is close to what we wish to convey.
+
 <iframe width="800" height="533" src="https://www.youtube.com/embed/4nktYGjSVHg?&autoplay=1&loop=1&playlist=4nktYGjSVHg" align="middle" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+While the generated images are now far superior to any previous model, they look extremely *cartoony* for some reason, not to mention the blob artifact that is always present. Nevertheless, I am extremely satisfied with the results: now we are able to generate images of size $512^2$, something I never thought possible.
+
+There is a clear sign of overfitting in our final model, however: the transitions between huipils are extremely rapid sometimes, even with having a very slow interpolation.
 
 <a name="stylegan2"></a>
 # StyleGAN2
@@ -177,7 +181,7 @@ Alternatively, you can feed the specific seeds you wish to generate from (assumi
 
 ```
 python interpolation_videos.py lerp-video --pkl-path=./path/to/model.pkl \
-        --seeds=1,3,42-43,70
+        --seeds=2,3,42-43,70
 ```
 
 The code will find the best shape of the final generated video and have the background as black, in case you have a missing space, like so:
