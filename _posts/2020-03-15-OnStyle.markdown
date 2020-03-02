@@ -1,7 +1,7 @@
 ---
 layout: page
 title:  "On Style"
-date:   2020-02-29 18:00:00
+date:   2020-03-15 18:00:00
 categories: main
 
 ---
@@ -14,7 +14,8 @@ It is no surprise that a lot of computing power will be needed to generate large
 
 Should only technical users be able to have fun with new emerging technologies? Most likely this will be the case in the beginning, but this will for sure change as we slowly mature both the algorithms and necessary technologies in order to access to these. Likewise, the necessary resources required not only for research but for [reproducing some of the results](https://github.com/ajbrock/BigGAN-PyTorch) are, quite frankly, impossible for many.
 
-
+AI hits runway Paris
+https://xrgoespop.com/home/acne-studios-x-robbie-barrat
 
 What can we learn from AI art?
 Izzy Stephen
