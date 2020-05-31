@@ -1,7 +1,7 @@
 ---
 layout: page
 title:  "On Style"
-date:   2020-03-15 18:00:00
+date:   2020-06-15 18:00:00
 categories: main
 
 ---
@@ -29,6 +29,60 @@ From Wetware to Tilt Brush, How Artists tested the limits of Technology in the 2
 Alex Estorick
 https://frieze.com/article/wetware-tilt-brush-how-artists-tested-limits-technology-2010s
 
+Original Art or Digital Copy? Can your brain tell the difference?
+Jason Bailey
+https://www.artnome.com/news/2020/5/19/original-art-or-digital-copy-can-your-brain-tell-the-difference
+
+
+The Internet Furry Drama Raising Big Questions About Artificial Intelligence
+Whitney Kimball
+https://www.gizmodo.co.uk/2020/05/the-internet-furry-drama-raising-big-questions-about-artificial-intelligence/
+
+
+Zombies on the Walls: Why Does So Much New Abstraction Look the Same?
+Jerry Saltz
+https://www.vulture.com/2014/06/why-new-abstract-paintings-look-the-same.html
+
+
+The Bitter lesson
+Rich Sutton
+http://www.incompleteideas.net/IncIdeas/BitterLesson.html
+
+
+Do Androids Dream of Balenciaga SS29?
+Arabelle Sicardi & Robbie Barrat
+https://www.ssense.com/en-us/editorial/fashion/do-androids-dream-of-balenciaga-ss29
+
+
+Awe enhances creative thinking: an experimental study
+Alice Chirico et-al
+https://www.researchgate.net/profile/Pietro_Cipresso/publication/324666044_Awe_Enhances_Creative_Thinking_An_Experimental_Study/links/5be8340fa6fdcc3a8dcec9d8/Awe-Enhances-Creative-Thinking-An-Experimental-Study.pdf
+
+
+Designing awe in virtual reality: an experimental study
+Alice Chirico et-al
+https://www.frontiersin.org/articles/10.3389/fpsyg.2017.02351/full
+
+
+Effectiveness of immersive videos in inducing awe: an experimental study
+Alice Chirico et-al
+https://www.nature.com/articles/s41598-017-01242-0.pdf
+
+> 
+
+
+The Robot Artists Aren't Coming
+Ahmed Elgammal
+https://www.nytimes.com/2020/05/27/opinion/artificial-intelligence-art.html
+
+> AI === camera invention in the 19th century. In the end, it will provide another technique and form for artistic endeavors. All humans have the ability to be creative; machines function not only as tools for artists, but as their partners. Can an AI machine be an artist in its own right? **No.** Art is a form of communication among humans, AI can do little more than play with form (manipulate pixels, for example). They lack *meaning*, as there is no planned interaction between the artist and an audience. The future of art looks promising, with AI offering a means for artists and non-artist alike to express themselves. 
+
+
+Eva Hesse on How to Be an Artist
+Alexxa Gotthardt
+https://www.artsy.net/article/artsy-editorial-eva-hesse-artist?utm_medium=email&utm_source=20429916-newsletter-editorial-weekly-05-26-20&utm_campaign=editorial&utm_content=st-V
+
+>  
 
 <a name="stylegan"></a>
 # StyleGAN
