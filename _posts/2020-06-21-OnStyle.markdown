@@ -1,12 +1,18 @@
 ---
 layout: page
 title:  "On Style"
-date:   2020-06-15 18:00:00
+date:   2020-06-21 18:00:00
 categories: main
 
 ---
 
 # **Work in progress, bear with me**
+
+# How to find your own style as an artist?
+
+I will be clear: this blog post will in now way try to answer such a difficult question, as I have yet to find my own style. What I can tell you, however, is that from experience, not producing artowrk in a consistent matter is surely not the correct way to find your own artstyle. While reading the literature, researching other's work, even making plans on paper all sound compelling, but as Jason Bailey candidly points out in his piece [*How to Become a Successful Artist*](https://www.artnome.com/news/2020/5/25/how-to-become-a-successful-artist), every artist (even aspiring ones) should make as much work as possible. The thought that one's work will be devalued
+
+> Make as much work as possible. A crime to rob humanity of more art simply to try and artificially inflate the market value of an artist's work. We don't even know how many artworks successful artists create in a lifetime. This applies for both renowned artists as well as the new breed of digital artists that are starting to arise nowadays. Lastly, remember that sales=/=success. Art is, sadly, a popularity contest in some ways: the more people who see the works and the more often they see them, the more iconic and valued they become. 
 
 # Getting Started
 
@@ -154,7 +160,7 @@ When the code was first released, I was getting the error:
 error: #error "C++ versions less than C++11 are not supported."
 ```
 
-even after passing the test of whether or not [NVCC](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html) was correctly installed (a true nightmare, since this isn't just an error on incompatible Python libraries, it was an error due to the [custom `TensorFlow` ops developed by the authors](https://github.com/NVlabs/stylegan2#requirements)). Thankfully, after the end of year break, some issues were resolved and I could run the code in my PC. The problem was running it in larger GPU cards that thankfully I have access to in the [CVC](http://www.cvc.uab.es/)'s servers. There, I ran into the same issue, even with the latest push to the GitHub repo.
+even after passing the test of whether or not [NVCC](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html) was correctly installed. THis was a true nightmare, since this isn't just an error on incompatible Python libraries, it was an error due to the [custom `TensorFlow` ops developed by the authors](https://github.com/NVlabs/stylegan2#requirements). Thankfully, after the end of year break, some issues were resolved and I could run the code in my PC (by pure luck, since I didn't change anything and the code simply ran once I came back). The problem now was running it in larger GPU cards that thankfully I have access to in the [CVC](http://www.cvc.uab.es/)'s servers. There, I ran into the same issue, even with the latest push to the GitHub repo.
 
 Luckily, there is a [quick fix](https://stackoverflow.com/a/59368180) by modifying the `nvcc` call in [line 64](https://github.com/NVlabs/stylegan2/blob/7d3145d23013607b987db30736f89fb1d3e10fad/dnnlib/tflib/custom_ops.py#L64) in `dnnlib/tflib/custom_ops.py`. Albeit not pretty, it will let us run the code, so there's no complaints from me:
 
@@ -265,8 +271,6 @@ We can do style mixing, as in the original StyleGAN; by default, `truncation-psi
 
 <video src="/videos/sgan2/5x1-style-mixing-fine.mp4" style="width:100%" controls preload></video>
 
-{% include disqus.html %}
-
 
 [^limitstech]: A. Estorick, [*From Wetware to Tilt Brush, How Artists Tested the Limits of Technology in the 2010s*](https://frieze.com/article/wetware-tilt-brush-how-artists-tested-limits-technology-2010s), Frieze, 2019
 [^aieraart]: J. Openshaw, [*AI Generates New Era for Art*](https://a-d-o.com/journal/artifical-intelligence-ai-art), A/D/O, 2019
@@ -280,3 +284,6 @@ We can do style mixing, as in the original StyleGAN; by default, `truncation-psi
 [^progan]: T. Karras, T. Aila, S. Laine & J. Lehtinen, [*Progressive Growing of GANs for Improved Quality, Stability, and Variation*](https://arxiv.org/abs/1710.10196), ICLR 2018.
 [^sgan]: T. Karras, S. Laine & T. Aila, [*A Style-Based Generator Architecture for Generative Adversarial Networks*](https://arxiv.org/abs/1812.04948), CVPR 2019.
 [^sgan2]: T. Karras, S. Laine, M. Aittala, J. Hellsten, J. Lehtinen & T. Aila, [*Analyzing and Improving the Image Quality of StyleGAN*](http://arxiv.org/abs/1912.04958), 2020.
+
+
+{% include disqus.html %}
