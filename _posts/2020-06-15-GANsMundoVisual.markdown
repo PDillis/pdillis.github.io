@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title:  "GANs - En el Mundo Visual"
 date:   2020-06-15 18:00:00
 categories: main
@@ -22,7 +22,7 @@ Sobre el último punto, mi respuesta sería 'No', que es justamente lo que he qu
 
 Pueden encontrar la grabación de la charla [aquí](https://www.youtube.com/watch?v=DdD39y8rJQ8) y las slides utilizadas (editadas para no incluir todo mi arte generado al final) a continuación:
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTGilWQpywgIhU1kCfir3zZwusptKPkvVYPdH1Qdga4hF_6Sz38gZerCVchykZHZqD9MzplXZWWNm5H/embed?start=false&loop=false&delayms=5000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTGilWQpywgIhU1kCfir3zZwusptKPkvVYPdH1Qdga4hF_6Sz38gZerCVchykZHZqD9MzplXZWWNm5H/embed?start=false&loop=false&delayms=5000" frameborder="0" width="800" height="466" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 Hasta la próxima vez ~~que termine el último blog post~~.
 
