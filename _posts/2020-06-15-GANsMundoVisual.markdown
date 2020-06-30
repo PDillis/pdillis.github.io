@@ -6,7 +6,7 @@ categories: main
 
 ---
 
-# GANS - En el Mundo Visual
+# Tech Community Day
 
 Hace unas semanas me pidieron si podría dar una charla acerca de un tema de Inteligencia Artificial en el [Tech Community Day](https://techcommunityday.com/). Es la primera vez que he dado una charla de este tipo, por lo que claramente estaba totalmente nervioso de aceptar, pero emocionado al mismo tiempo de poder compartir un poco de lo que he estado realizando durante mi doctorado. 
 
@@ -23,6 +23,23 @@ Sobre el último punto, mi respuesta sería 'No', que es justamente lo que he qu
 Pueden encontrar la grabación de la charla [aquí](https://www.youtube.com/watch?v=DdD39y8rJQ8) y las slides utilizadas (editadas para no incluir todo mi arte generado al final) a continuación:
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTGilWQpywgIhU1kCfir3zZwusptKPkvVYPdH1Qdga4hF_6Sz38gZerCVchykZHZqD9MzplXZWWNm5H/embed?start=false&loop=false&delayms=5000" frameborder="0" width="800" height="466" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+# Transferencia de Estilo
+
+Respecto al ultimo proyecto mencionado usando [StyleGAN2](https://github.com/NVlabs/stylegan2), [*Threads*](https://www.youtube.com/watch?v=t9fv4AAt6lw), quiero probar un paquete de comparación de imágenes llamado [twentytwenty]
+
+<script src="assets/js/twentytwenty/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="assets/js/twentytwenty/jquery.event.move.js" type="text/javascript"></script>
+<script src="assets/js/twentytwenty/jquery.twentytwenty.js" type="text/javascript"></script>
+<link rel="stylesheet" href="assets/css/twentytwenty/twentytwenty.css" type="text/css" media="screen" />
+
+<div id="container1" class="twentytwenty-container">
+ <!-- The before image is first -->
+ <img src="/img/sgan2/style-transfer/32-32.png" />
+ <!-- The after image is last -->
+ <img src="/img/sgan2/style-transfer/32-64.png" />
+</div>
+
 
 Hasta la próxima vez ~~que termine el último blog post~~.
 
