@@ -1,0 +1,135 @@
+---
+layout: post
+title:  "GANs - En el Mundo Visual"
+date:   2020-07-03 12:00:00
+categories: main
+
+---
+
+<link rel="stylesheet" href="/assets/css/BeerSlider.css">
+
+# Tech Community Day
+
+Hace unas semanas me pidieron si podría dar una charla acerca de un tema de Inteligencia Artificial en el [Tech Community Day](https://techcommunityday.com/). Es la primera vez que he dado una charla de este tipo, por lo que claramente estaba totalmente nervioso de aceptar, pero emocionado al mismo tiempo de poder compartir un poco de lo que he estado realizando durante mi doctorado. 
+
+El tema que he escogido fue de [GANs](https://blog.diegoporres.com/main/2019/07/17/UnsupervisingArt/) y decidí realizarla en español, ya que la información que se puede conseguir del tema en inglés abunda, mas tristemente no es tan fácil en español. Asimismo, el título de la charla fue **GANs - En el Mundo Visual** y pueden encontrar la grabación de la misma en [YouTube](https://youtu.be/DdD39y8rJQ8).
+
+Si bien condensar tanta información en una charla de 1 hora es difícil, tuve que dejar fuera ciertos puntos y aplicaciones interesantes de las GANs. Al mismo tiempo, esto me permitió ver lo que el público le interesa saber más (para la próxima vez):
+
+* ¿Qué aplicaciones concretas se ha realizado de las GANs en medicina, arquitectura o diseño? ¿Qué tal en otras áreas que no se han explorado mucho?
+* ¿Cómo podemos saber que se tiene que detener el entrenamiento de una GAN?
+    * Por aparte, esto lleva a explicar los problemas típicos que se enfrenta uno al entrenar una GAN (colapso, colapso total o inclusive no converger, por ejemplo).
+* ¿Puede una GAN llegar a [sobreajustar](https://developers.google.com/machine-learning/glossary#sobreajuste-overfitting) (overfit) los datos de un dataset? ¿Cuál de las dos redes hace esto? 
+* ¿Debemos de hacer públicos todos los modelos generativos, incluidos los hechos con una GAN?
+
+Sobre el último punto, mi respuesta sería **No**, que es justamente lo que he querido comunicar con los modelos que he entrenado para la [generación de huipiles](https://blog.diegoporres.com/main/2019/09/23/Threads/): compartir dichos modelos puede llevar fácilmente al abuso de la recreación o apropiación de los diseños y patrones de los huipiles, por lo que no los he hecho públicos, aunque me lo han pedido en [varias ocasiones](https://twitter.com/PDillis/status/1270365318599278593?s=20).
+
+Pueden encontrar la grabación de la charla [aquí](https://www.youtube.com/watch?v=DdD39y8rJQ8) y las slides utilizadas (editadas para no incluir todo mi arte generado al final) a continuación:
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTGilWQpywgIhU1kCfir3zZwusptKPkvVYPdH1Qdga4hF_6Sz38gZerCVchykZHZqD9MzplXZWWNm5H/embed?start=false&loop=false&delayms=5000" frameborder="0" width="800" height="466" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+# Transferencia de Estilo
+
+Respecto al ultimo proyecto mencionado usando [StyleGAN2](https://github.com/NVlabs/stylegan2), [*Threads*](https://www.youtube.com/watch?v=t9fv4AAt6lw), podemos ver el resultado de mezclar a los vectores latentes generados con un listado de semillas específicas. Más concretamente, las semillas que han generado las imágenes de la primera columna son las semillas **fuente**, mientras que las semillas de que han generado la primera fila son las semillas **destino**. En el [código de StyleGAN2 que uso](https://github.com/PDillis/stylegan2-fun), especificamos a estos como: `--row-seeds=17,32,78,300` y `--col-seeds=23,50,200,512`, respectivamente. Asimismo, el estilo que más me ha gustado traducir de una imagen a otra es el estilo **fino**, es decir, solamente copiamos los detalles finos (colores) de las semillas destino a las semillas fuente, ya que esto da combinaciones de huipiles conocidos que no hayamos visto antes. En el código, hacemos esto mediante `--col-styles=8-15` (i.e., de $64^2$ a $512^2$). 
+
+El comando utilizado fue el siguiente:
+
+```
+python run_generator.py style-mixing-example \
+       --network=/path/to/network.pkl --row-seeds=17,32,78,300 \
+       --col-seeds=23,50,200,512 --col-styles=8-15 --truncation-psi=1.0
+```
+
+Obtenemos entonces al siguiente grid:
+
+<img src="/img/sgan2/style-transfer/grid.png" alt="Grid con todas las semillas">
+
+Si queremos apreciar los detalles, podemos entonces comparar a dos imágenes mediante un paquete de comparación de imágenes llamado [BeerSlider](https://pepsized.com/wp-content/uploads/2018/09/beerslider/demo/index.html). Por ejemplo, para ver el resultado de mezclar las semillas `17` con `23`, en el primer slider podemos ver a la derecha, la imagen generada con la semilla `17` y a la izquierda el resultado de la mezcla con la semilla `23`. 
+
+<div class="container">
+<div class="beer-slider beer-ready" id="beer-slider1" data-beer-label="Semilla 17">
+ <img src="/img/sgan2/style-transfer/17-17.png" style="width: 256px;" alt="Seed 17">
+<div class="beer-reveal" data-beer-label="23">
+  <img src="/img/sgan2/style-transfer/17-23.png" style="width: 256px;" alt="Mezcla con Semilla 23">
+ </div>
+</div>
+
+<div class="beer-slider beer-ready" id="beer-slider2" data-beer-label="Semilla 78">
+ <img src="/img/sgan2/style-transfer/78-78.png" style="width: 256px;" alt="Seed 78">
+<div class="beer-reveal" data-beer-label="50">
+  <img src="/img/sgan2/style-transfer/78-50.png" style="width: 256px;" alt="Mezcla con Semilla 50">
+ </div>
+</div>
+
+<!-- <div class="beer-slider beer-ready" id="beer-slider3" data-beer-label="Semilla 300">
+ <img src="/img/sgan2/style-transfer/300-300.png" style="width: 256px;" alt="Seed 300">
+<div class="beer-reveal" data-beer-label="512">
+  <img src="/img/sgan2/style-transfer/300-512.png" style="width: 256px;" alt="Mezcla con Semilla 512">
+ </div>
+</div> -->
+
+</div>
+
+<!-- <div class="container">
+<div class="beer-slider beer-ready" id="beer-slider1" data-beer-label="Semilla 17">
+ <img src="/img/sgan2/style-transfer/17-17.png" style="width: 512px;" alt="Seed 17">
+<div class="beer-reveal" data-beer-label="23">
+  <img src="/img/sgan2/style-transfer/17-23.png" style="width: 512px;" alt="Mezcla con Semilla 23">
+ </div>
+</div>
+</div>
+
+<div class="container">
+<div class="beer-slider beer-ready" id="beer-slider2" data-beer-label="Semilla 78">
+ <img src="/img/sgan2/style-transfer/78-78.png" style="width: 512px;" alt="Seed 78">
+<div class="beer-reveal" data-beer-label="50">
+  <img src="/img/sgan2/style-transfer/78-50.png" style="width: 512px;" alt="Mezcla con Semilla 50">
+ </div>
+</div>
+</div> -->
+
+<div class="container">
+<div class="beer-slider beer-ready" id="beer-slider3" data-beer-label="Semilla 300">
+ <img src="/img/sgan2/style-transfer/300-300.png" style="width: 512px;" alt="Seed 300">
+<div class="beer-reveal" data-beer-label="512">
+  <img src="/img/sgan2/style-transfer/300-512.png" style="width: 512px;" alt="Mezcla con Semilla 512">
+ </div>
+</div>
+</div>
+
+He seleccionado tres que me han gustado bastante, pero por supuesto, existen muchos mas que aún no he explorado. Espero que en el próximo blog post (cuando suceda) pueda explorar más a fondo los modelos que he usado: [StyleGAN](https://github.com/NVlabs/stylegan) y el ya mencionado StyleGAN2.
+
+## Gemfiles
+
+Para (mi) futura referencia sobre cómo correr [GitHub pages](https://pages.github.com/) [localmente](https://help.github.com/en/github/working-with-github-pages/testing-your-github-pages-site-locally-with-jekyll), primero se debe de [instalar a Jekyll](https://jekyllrb.com/docs/installation/). Luego, lo mas sencillo es hacer un `git clone` al repositorio original de Cayman o bien bajar el archivo `.zip` que se menciona en [mi repositorio](https://github.com/PDillis/pdillis.github.io#how-to-use-it), descomprimirlo y luego correr `cd jekyll-cayman-theme-master`.
+
+Debido a que se [requiere usar Bundler 1.12](https://github.com/PDillis/pdillis.github.io/blob/ac44808e7d7bef62281d9646c573e96eebce20e3/jekyll-cayman-theme.gemspec#L16) en el Cayman Theme que he seleccionado, debemos de primero instalarlo mediante:
+
+```
+gem install bundler -v 1.12
+```
+
+y luego usarlo:
+
+```
+bundle _1.12_ install
+```
+
+de lo contrario, lo normal en las instrucciones es de simplemente usar `bundle install`. Es normal que hayan errores de con los paquetes necesarios/instalados/activados, así que de envés de simplemente usar `jekyll serve`, [lo correcto](https://stackoverflow.com/a/6393129) será usar:
+
+```
+bundle exec jekyll serve
+```
+
+Así, podemos dirigirnos a `http://127.0.0.1:4000` y ver la pagina en 'vivo', previo a subirlo al repositorio de GitHub, evitando así realizar commits innecesarios.
+
+Hasta la próxima vez ~~que termine el último blog post~~.
+
+<script src="/assets/js/BeerSlider.js"></script>
+<script>
+  new BeerSlider( document.getElementById( "beer-slider1" ), { start: 33 } );
+  new BeerSlider( document.getElementById( "beer-slider2" ), { start: 50 } );
+  new BeerSlider( document.getElementById( "beer-slider3" ), { start: 66 } );
+</script>
+
+{% include disqus.html %}
