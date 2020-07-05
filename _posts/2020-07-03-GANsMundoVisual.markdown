@@ -22,7 +22,7 @@ Si bien condensar tanta información en una charla de 1 hora es difícil, tuve q
 * ¿Puede una GAN llegar a [sobreajustar](https://developers.google.com/machine-learning/glossary#sobreajuste-overfitting) (overfit) los datos de un dataset? ¿Cuál de las dos redes hace esto? 
 * ¿Debemos de hacer públicos todos los modelos generativos, incluidos los hechos con una GAN?
 
-Sobre el último punto, mi respuesta al momento sería ***No***, que es justamente lo que he querido comunicar con los modelos que he entrenado para la [generación de huipiles](https://blog.diegoporres.com/main/2019/09/23/Threads/): compartir dichos modelos puede llevar fácilmente al abuso de la recreación o apropiación de los diseños y patrones de los huipiles, por lo que no los he hecho públicos, aunque me lo han pedido en [varias ocasiones](https://twitter.com/PDillis/status/1270365318599278593?s=20). Sin embargo, si compartir los modelos reinicia un interés en el tema de los tejidos, quizá valga la pena entonces compartirlos, siempre y cuando se tengan unas medidas precautivas (las cuales aún no sé).
+Sobre el último punto, mi respuesta al momento sería ***No***, que es justamente lo que he querido comunicar con los modelos que he entrenado para la [generación de huipiles](https://blog.diegoporres.com/main/2019/09/23/Threads/): compartir dichos modelos puede llevar fácilmente al abuso de la recreación o apropiación de los diseños y patrones de los huipiles, por lo que no los he hecho públicos, aunque me lo han pedido en [varias ocasiones](https://twitter.com/PDillis/status/1270365318599278593?s=20). Sin embargo, si compartir los modelos reinicia un interés en el tema de los tejidos (más allá de la apropiación de los mismos), quizá valga la pena compartirlos. Claramente, siempre y cuando se tengan algunas medidas precautivas para no afectar a las comunidades de donde son originarios los tejidos, pero aún no lo tengo del todo claro.
 
 En concreto, las diapositivas que he utilizado se encuentran a continuación (editadas para no incluir los archivos originales de algunas piezas de arte):
 
@@ -32,7 +32,7 @@ En concreto, las diapositivas que he utilizado se encuentran a continuación (ed
 
 # Transferencia de Estilo
 
-Respecto al ultimo proyecto mencionado en la presentación y diapositivas donde he usando [StyleGAN2](https://github.com/NVlabs/stylegan2)[^sgan2], [*Threads*](https://www.youtube.com/watch?v=t9fv4AAt6lw), podemos ver el resultado de mezclar a los vectores latentes generados con un listado de semillas específicas. Más concretamente, las semillas que han generado las imágenes de la primera columna son las semillas **fuente**, mientras que las semillas de que han generado la primera fila son las semillas **destino**. 
+Respecto al ultimo proyecto mencionado en la presentación y diapositivas donde he usando [StyleGAN2](https://github.com/NVlabs/stylegan2), [*Threads*](https://www.youtube.com/watch?v=t9fv4AAt6lw), podemos ver el resultado de mezclar a los vectores latentes generados con un listado de semillas específicas. Más concretamente, las semillas que han generado las imágenes de la primera columna son las semillas **fuente**, mientras que las semillas de que han generado la primera fila son las semillas **destino**. 
 
 En el [código de StyleGAN2 que uso](https://github.com/PDillis/stylegan2-fun), especificamos a estos como: `--row-seeds=17,32,78,300` y `--col-seeds=23,50,200,512`, respectivamente. Asimismo, el estilo que más me ha gustado traducir de una imagen a otra es el estilo **fino**, es decir, solamente copiamos los detalles finos (colores) de las semillas destino a las semillas fuente, ya que esto da combinaciones de huipiles conocidos que no hayamos visto antes. En el código, hacemos esto mediante `--col-styles=8-15` (i.e., de $64^2$ a $512^2$). 
 
@@ -56,58 +56,36 @@ Obtenemos entonces al siguiente grid:
 
 Si queremos apreciar los detalles, podemos entonces comparar a dos imágenes mediante un paquete de comparación de imágenes llamado [BeerSlider](https://pepsized.com/wp-content/uploads/2018/09/beerslider/demo/index.html). Por ejemplo, para ver el resultado de mezclar las semillas `17` con `23`, en el primer slider podemos ver a la derecha, la imagen generada con la semilla `17` y a la izquierda el resultado de la mezcla con la semilla `23`. 
 
-<div class="container">
-<div class="beer-slider beer-ready" id="beer-slider1" data-beer-label="Semilla 17">
- <img src="/img/sgan2/style-transfer/17-17.png" style="width: 256px;" alt="Seed 17">
-<div class="beer-reveal" data-beer-label="23">
-  <img src="/img/sgan2/style-transfer/17-23.png" style="width: 256px;" alt="Mezcla con Semilla 23">
- </div>
+<div class="beer-slider-row">
+  <div class="beer-slider-column">
+    <div class="beer-slider beer-ready" id="beer-slider1" data-beer-label="Semilla 17">
+      <img src="/img/sgan2/style-transfer/17-17.png" alt="Seed 17">
+      <div class="beer-reveal" data-beer-label="23">
+        <img src="/img/sgan2/style-transfer/17-23.png" alt="Mezcla con Semilla 23">
+      </div>
+    </div>
+  </div>
+
+  <div class="beer-slider-column">
+    <div class="beer-slider beer-ready" id="beer-slider2" data-beer-label="Semilla 78">
+      <img src="/img/sgan2/style-transfer/78-78.png" alt="Seed 78">
+      <div class="beer-reveal" data-beer-label="50">
+        <img src="/img/sgan2/style-transfer/78-50.png" alt="Mezcla con Semilla 50">
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="beer-slider beer-ready" id="beer-slider2" data-beer-label="Semilla 78">
- <img src="/img/sgan2/style-transfer/78-78.png" style="width: 256px;" alt="Seed 78">
-<div class="beer-reveal" data-beer-label="50">
-  <img src="/img/sgan2/style-transfer/78-50.png" style="width: 256px;" alt="Mezcla con Semilla 50">
- </div>
+<div class="beer-slider-container">
+  <div class="beer-slider beer-ready" id="beer-slider3" data-beer-label="Semilla 300">
+    <img src="/img/sgan2/style-transfer/300-300.png" alt="Seed 300">
+    <div class="beer-reveal" data-beer-label="512">
+      <img src="/img/sgan2/style-transfer/300-512.png" alt="Mezcla con Semilla 512">
+    </div>
+  </div>
 </div>
 
-<div class="beer-slider beer-ready" id="beer-slider3" data-beer-label="Semilla 300">
- <img src="/img/sgan2/style-transfer/300-300.png" style="width: 256px;" alt="Seed 300">
-<div class="beer-reveal" data-beer-label="512">
-  <img src="/img/sgan2/style-transfer/300-512.png" style="width: 256px;" alt="Mezcla con Semilla 512">
- </div>
-</div>
-
-</div>
-
-<!-- <div class="container">
-<div class="beer-slider beer-ready" id="beer-slider1" data-beer-label="Semilla 17">
- <img src="/img/sgan2/style-transfer/17-17.png" style="width: 512px;" alt="Seed 17">
-<div class="beer-reveal" data-beer-label="23">
-  <img src="/img/sgan2/style-transfer/17-23.png" style="width: 512px;" alt="Mezcla con Semilla 23">
- </div>
-</div>
-</div>
-
-<div class="container">
-<div class="beer-slider beer-ready" id="beer-slider2" data-beer-label="Semilla 78">
- <img src="/img/sgan2/style-transfer/78-78.png" style="width: 512px;" alt="Seed 78">
-<div class="beer-reveal" data-beer-label="50">
-  <img src="/img/sgan2/style-transfer/78-50.png" style="width: 512px;" alt="Mezcla con Semilla 50">
- </div>
-</div>
-</div> -->
-
-<!-- <div class="container">
-<div class="beer-slider beer-ready" id="beer-slider3" data-beer-label="Semilla 300">
- <img src="/img/sgan2/style-transfer/300-300.png" style="width: 512px;" alt="Seed 300">
-<div class="beer-reveal" data-beer-label="512">
-  <img src="/img/sgan2/style-transfer/300-512.png" style="width: 512px;" alt="Mezcla con Semilla 512">
- </div>
-</div>
-</div> -->
-
-He seleccionado tres que me han gustado bastante, pero por supuesto, existen muchos mas que aún no he explorado. Espero que en el próximo blog post (cuando suceda) pueda explorar más a fondo los modelos que he usado para este proyecto: [ProGAN](https://github.com/tkarras/progressive_growing_of_gans)[^progan] [StyleGAN](https://github.com/NVlabs/stylegan)[^sgan] y el ya mencionado StyleGAN2.
+He seleccionado tres que me han gustado bastante, pero por supuesto, existen muchos mas que aún no he explorado. Espero que en el próximo blog post (cuando suceda) pueda explorar más a fondo los modelos que he usado para este proyecto: [ProGAN](https://github.com/tkarras/progressive_growing_of_gans)[^progan], [StyleGAN](https://github.com/NVlabs/stylegan)[^sgan] y el ya mencionado StyleGAN2[^sgan2].
 
 ## Gemfiles
 

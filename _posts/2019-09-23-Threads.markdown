@@ -5,8 +5,11 @@ date:   2019-09-23 18:00:00
 categories: main
 
 ---
+**Update 07/05/2020:** Made the interpolation GIF responsive, as well as added the YouTube video link.
 
-This blog post will be short, I have a few announcements:
+---
+
+This blog post will be short, as I have a few announcements:
 
 # Ph.D.
 
@@ -18,11 +21,20 @@ Threads (2019) is a continuation of [Latent Fabrics (2018)](http://www.aiartonli
 
 However, I didn't wish to simply resize each image, so I cut different square regions of each image, resulting in exactly 11852 square images which I then fed to a [ProGAN](https://arxiv.org/abs/1710.10196). The image sizes varied, but some had to be resized and I decided to start with images of size $128\times128$.
 
-A small interpolation video has been generated after ~10 days of training on a burrowed [GTX 1080](https://www.nvidia.com/en-us/geforce/products/10series/geforce-gtx-1080/). In total, the Discriminator saw around 12 million images, which would not have been possible, in the same timeframe, with e.g. [DCGAN](https://arxiv.org/abs/1511.06434). 
+A small interpolation video has been generated after ~10 days of training on a burrowed [GTX 1080](https://www.nvidia.com/en-us/geforce/products/10series/geforce-gtx-1080/). In total, the Discriminator saw around 12 million images, which would not have been possible in the same timeframe with, e.g. [DCGAN](https://arxiv.org/abs/1511.06434). 
 
-[![Threads Interpolation Video](https://media.giphy.com/media/PlylJuV7bgm1RrKxFF/giphy.gif)](https://www.youtube.com/watch?v=iWV1kpBunSM)
+<div class="imgcap">
+<img src="https://media.giphy.com/media/PlylJuV7bgm1RrKxFF/giphy.gif" alt="Interpolation GIF">
+<div class="container"><p><b>Interpolation video between random latent vectors.</b></p></div>
+</div>
 
-This work couldn't have been possible without me burrowing images/getting help from:
+You can find a longer version of this GIF in the following YouTube video:
+
+<div class="google-slides-container">
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/iWV1kpBunSM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+This work couldn't have been possible without me getting permission to use the collected images from the following:
 
   * Karen Elwell's [Flickr collection](https://www.flickr.com/photos/citlali/) 
   * [Huipils.com](http://www.huipils.com/) by David and Sally Hamilton

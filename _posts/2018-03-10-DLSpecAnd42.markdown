@@ -4,15 +4,28 @@ title:  "Deep Learning Specialization and 42 Silicon Valley"
 date:   2018-03-10 18:00:00
 categories: main
 ---
+
+<link rel="stylesheet" href="/assets/css/BeerSlider.css">
+
+---
+**Update 0705/2020:** Updated the comparison of style transfer using  [BeerSlider](https://pepsized.com/wp-content/uploads/2018/09/beerslider/demo/index.html).
+
+---
+
 Welcome again!
 
 I am (slowly) growing accustomed to the idea of having a blog now, but for now I can share my latest accomplishment: I have finally obtained the [Deep Learning Specialization](https://www.coursera.org/account/accomplishments/specialization/certificate/M94FBCS34JG5) from deeplearning.ai and Coursera! I do not regret one bit obtaining this specialization, as many of the algorithms in Deep Learning that are used in the [A3C](https://arxiv.org/pdf/1602.01783.pdf) algorithm used in my internship at the Computer Vision Center were eluding me, specifically CNNs and LSTMs. I will expand more what I accomplished in this internship (and henceforth) in a future blog post.
 
-The DL Specialization also made my mind wander off into applications of new and unexplored algorithms I hadn't yet tried before, especially as some programming exercised involved us toying with generating new Jazz music with LSTMs, recognizing objects with CNNs, and neural style transfer again with CNNs. With the latter, I chose to generate the following 'classical' example of using a known landmark or real-world image, and applying the artistic style of a renowned piece of art. For this, I chose the Louvre as the real-world photograph (*Content*) and a sample of a [huipil](https://en.wikipedia.org/wiki/Huipil) from the area of Chichicastenango in Guatemala as art (*Style*). The result (*Generated Image*) is shown here:
+The DL Specialization also made my mind wander off into applications of new and unexplored algorithms I hadn't yet tried before, especially as some programming exercised involved us toying with generating new Jazz music with LSTMs, recognizing objects with CNNs, and neural style transfer again with CNNs. With the latter, I chose to generate the following 'classical' example of using a known landmark or real-world image, and applying the artistic style of a renowned piece of art. For this, I chose the Louvre as the real-world photograph (*Content*) and a sample of a [huipil](https://en.wikipedia.org/wiki/Huipil) from the area of [Chichicastenango](https://user-images.githubusercontent.com/24496178/37248152-b655d9a6-247e-11e8-93de-b2e2d1f96527.jpg) in Guatemala as art (*Style*). The result (*Generated Image*) is shown here:
 
-Louvre (*Content*)             |  Huipil from Chichicastenango (*Style*)          | Generated Image
-:-------------------------:|:-------------------------:|:---------------:
-![louvre_small](https://user-images.githubusercontent.com/24496178/37248155-c060be48-247e-11e8-9986-ea8e79f106b8.jpg "Louvre")  |  ![chichi1](https://user-images.githubusercontent.com/24496178/37248152-b655d9a6-247e-11e8-93de-b2e2d1f96527.jpg "Huipil") |![generated_image](https://user-images.githubusercontent.com/24496178/37248158-cca7f1bc-247e-11e8-881e-1dbbc0592e24.jpg "Generated Image")
+<div class="container">
+<div class="beer-slider beer-ready" id="beer-slider" data-beer-label="Louvre">
+ <img src="https://user-images.githubusercontent.com/24496178/37248155-c060be48-247e-11e8-9986-ea8e79f106b8.jpg" style="width: 400px;" alt="Louvre">
+<div class="beer-reveal" data-beer-label="+Huipil">
+  <img src="https://user-images.githubusercontent.com/24496178/37248158-cca7f1bc-247e-11e8-881e-1dbbc0592e24.jpg" style="width: 400px;" alt="Louvre wth the style of huipil">
+ </div>
+</div>
+</div>
 
 This opens up another area of applications for CNNs, as not only recognizing from which area in Guatemala (or even Mesoamerica) does a huipil come from is an interesting problem to solve (as hidden patterns may emerge), but also one of deep importance to the Mayan community. This is due to the movement for intellectual property of the designs is [gaining momentum](https://indiancountrymedianetwork.com/news/indigenous-peoples/mayan-weavers-seek-legal-protection-designs/) and rightly so, as checking whether or not some products being sold online have paid a fair price, or even paid at all for the design is a problem worth solving. 
 
@@ -27,3 +40,8 @@ I won't be updating this as much as I would like as I have briefly mentioned it 
 I hope to come back with more news, but I will be focusing more on the Piscine, and will of course write in another blog post my experiences there.
 
 See you soon!
+
+<script src="/assets/js/BeerSlider.js"></script>
+<script>
+  new BeerSlider( document.getElementById( "beer-slider" ), { start: 50 } );
+</script>
