@@ -19,7 +19,7 @@ Si bien condensar tanta información en una charla de 1 hora es difícil, tuve q
 * ¿Qué aplicaciones concretas se ha realizado de las GANs en medicina, arquitectura o diseño? ¿Qué tal en otras áreas que no se han explorado mucho?
 * ¿Cómo podemos saber que se tiene que detener el entrenamiento de una GAN?
     * Por aparte, esto lleva a explicar los problemas típicos que se enfrenta uno al entrenar una GAN (colapso, colapso total o inclusive no converger, por ejemplo).
-* ¿Puede una GAN llegar a [sobreajustar](https://developers.google.com/machine-learning/glossary#sobreajuste-overfitting) (overfit) los datos de un dataset? ¿Cuál de las dos redes hace esto? 
+* ¿Puede una GAN llegar a [sobreajustar](https://developers.google.com/machine-learning/glossary#sobreajuste-overfitting) (overfit) los datos de un dataset? ¿Cuál de las dos redes hace esto?
 * ¿Debemos de hacer públicos todos los modelos generativos, incluidos los hechos con una GAN?
 
 Sobre el último punto, mi respuesta al momento sería ***No***, que es justamente lo que he querido comunicar con los modelos que he entrenado para la [generación de huipiles](https://blog.diegoporres.com/main/2019/09/23/Threads/): compartir dichos modelos puede llevar fácilmente al abuso de la recreación o apropiación de los diseños y patrones de los huipiles, por lo que no los he hecho públicos, aunque me lo han pedido en [varias ocasiones](https://twitter.com/PDillis/status/1270365318599278593?s=20). Sin embargo, si compartir los modelos reinicia un interés en el tema de los tejidos (más allá de la apropiación de los mismos), quizá valga la pena compartirlos. Claramente, siempre y cuando se tengan algunas medidas precautivas para no afectar a las comunidades de donde son originarios los tejidos, pero aún no lo tengo del todo claro.
@@ -32,9 +32,11 @@ En concreto, las diapositivas que he utilizado se encuentran a continuación (ed
 
 # Transferencia de Estilo
 
-Respecto al ultimo proyecto mencionado en la presentación y diapositivas donde he usando [StyleGAN2](https://github.com/NVlabs/stylegan2), [*Threads*](https://www.youtube.com/watch?v=t9fv4AAt6lw), podemos ver el resultado de mezclar a los vectores latentes generados con un listado de semillas específicas. Más concretamente, las semillas que han generado las imágenes de la primera columna son las semillas **fuente**, mientras que las semillas de que han generado la primera fila son las semillas **destino**. 
+Respecto al ultimo proyecto mencionado en la presentación y diapositivas donde he usando [StyleGAN2](https://github.com/NVlabs/stylegan2), [*Threads*](https://www.youtube.com/watch?v=t9fv4AAt6lw), podemos ver el resultado de mezclar a los vectores latentes generados con un listado de semillas específicas. Más concretamente, las semillas que han generado las imágenes de la primera columna son las **semillas fuente**, mientras que las semillas de que han generado la primera fila son las **semillas destino**.
 
-En el [código de StyleGAN2 que uso](https://github.com/PDillis/stylegan2-fun), especificamos a estos como: `--row-seeds=17,32,78,300` y `--col-seeds=23,50,200,512`, respectivamente. Asimismo, el estilo que más me ha gustado traducir de una imagen a otra es el estilo **fino**, es decir, solamente copiamos los detalles finos (colores) de las semillas destino a las semillas fuente, ya que esto da combinaciones de huipiles conocidos que no hayamos visto antes. En el código, hacemos esto mediante `--col-styles=8-15` (i.e., de $64^2$ a $512^2$). 
+En el [código de StyleGAN2 que uso](https://github.com/PDillis/stylegan2-fun), especificamos a estos como: `--row-seeds=17,32,78,300` y `--col-seeds=23,50,200,512`, respectivamente. Asimismo, el estilo que más me ha gustado traducir de una imagen a otra es el estilo **fino**, es decir, solamente copiamos los detalles finos (colores) de las semillas destino a las semillas fuente, ya que esto da combinaciones de huipiles conocidos que no hayamos visto antes. En el código, hacemos esto mediante `--col-styles=8-15` (i.e., de $64^2$ a $512^2$).
+
+En el [código de StyleGAN2 que uso](https://github.com/PDillis/stylegan2-fun), especificamos a estos como: `--row-seeds=17,32,78,300` y `--col-seeds=23,50,200,512`, respectivamente. Asimismo, el estilo que más me ha gustado traducir de una imagen a otra es el estilo **fino**, es decir, solamente copiamos los detalles finos (colores) de las semillas destino a las semillas fuente, ya que esto da combinaciones de huipiles conocidos que no hayamos visto antes. En el código, hacemos esto mediante `--col-styles=8-15` (i.e., de $64^2$ a $512^2$).
 
 El comando utilizado fue el siguiente:
 
@@ -54,7 +56,7 @@ Obtenemos entonces al siguiente grid:
 <img src="/img/sgan2/style-transfer/grid.png" style="width: 100%;" alt="Grid con todas las semillas">
 </div>
 
-Si queremos apreciar los detalles, podemos entonces comparar a dos imágenes mediante un paquete de comparación de imágenes llamado [BeerSlider](https://pepsized.com/wp-content/uploads/2018/09/beerslider/demo/index.html). Por ejemplo, para ver el resultado de mezclar las semillas `17` con `23`, en el primer slider podemos ver a la derecha, la imagen generada con la semilla `17` y a la izquierda el resultado de la mezcla con la semilla `23`. 
+Si queremos apreciar los detalles, podemos entonces comparar a dos imágenes mediante un paquete de comparación de imágenes llamado [BeerSlider](https://pepsized.com/wp-content/uploads/2018/09/beerslider/demo/index.html). Por ejemplo, para ver el resultado de mezclar las semillas `17` con `23`, en el primer slider podemos ver a la derecha, la imagen generada con la semilla `17` y a la izquierda el resultado de la mezcla con la semilla `23`.
 
 <div class="beer-slider-row">
   <div class="beer-slider-column">
