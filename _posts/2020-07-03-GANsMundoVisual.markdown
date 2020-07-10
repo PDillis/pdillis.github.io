@@ -8,6 +8,7 @@ categories: main
 
 <link rel="stylesheet" href="/assets/css/BeerSlider.css">
 
+<a name="TechCommunityDay"></a>
 # Tech Community Day
 
 Hace unas semanas me pidieron si podría dar una charla acerca de un tema de Inteligencia Artificial en el [Tech Community Day](https://techcommunityday.com/). Es la primera vez que he dado una charla de este tipo, tanto en línea como a un público en general, por lo que claramente estaba nervioso. Sin embargo, estaba aún más emocionado de poder compartir un poco de lo que he estado realizando durante mi doctorado en el [CVC](http://www.cvc.uab.es/) desde finales del año pasado, por lo que acepté darla. Asimismo, estaba honrado de que los organizadores me hayan considerado para dar una charla en este evento, por lo que les estaré eternamente agradecido.
@@ -30,6 +31,7 @@ En concreto, las diapositivas que he utilizado se encuentran a continuación (ed
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTGilWQpywgIhU1kCfir3zZwusptKPkvVYPdH1Qdga4hF_6Sz38gZerCVchykZHZqD9MzplXZWWNm5H/embed?start=false&loop=false&delayms=5000" frameborder="0" width="800" height="466" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 </div>
 
+<a name="TransferenciaEstilo"></a>
 # Transferencia de Estilo
 
 Respecto al ultimo proyecto mencionado en la presentación y diapositivas donde he usando [StyleGAN2](https://github.com/NVlabs/stylegan2), [*Threads*](https://www.youtube.com/watch?v=t9fv4AAt6lw), podemos ver el resultado de mezclar a los vectores latentes generados con un listado de semillas específicas. Más concretamente, las semillas que han generado las imágenes de la primera columna son las **semillas fuente**, mientras que las semillas de que han generado la primera fila son las **semillas destino**.
@@ -88,30 +90,6 @@ Si queremos apreciar los detalles, podemos entonces comparar a dos imágenes med
 </div>
 
 He seleccionado tres que me han gustado bastante, pero por supuesto, existen muchos mas que aún no he explorado. Espero que en el próximo blog post (cuando suceda) pueda explorar más a fondo los modelos que he usado para este proyecto: [ProGAN](https://github.com/tkarras/progressive_growing_of_gans)[^progan], [StyleGAN](https://github.com/NVlabs/stylegan)[^sgan] y el ya mencionado StyleGAN2[^sgan2].
-
-## Gemfiles
-
-Para (mi) futura referencia sobre cómo correr [GitHub pages](https://pages.github.com/) [localmente](https://help.github.com/en/github/working-with-github-pages/testing-your-github-pages-site-locally-with-jekyll), primero se debe de [instalar a Jekyll](https://jekyllrb.com/docs/installation/). Luego, lo mas sencillo es hacer un `git clone` al repositorio original de Cayman o bien bajar el archivo `.zip` que se menciona en [mi repositorio](https://github.com/PDillis/pdillis.github.io#how-to-use-it), descomprimirlo y luego correr `cd jekyll-cayman-theme-master`.
-
-Debido a que se [requiere usar Bundler 1.12](https://github.com/PDillis/pdillis.github.io/blob/ac44808e7d7bef62281d9646c573e96eebce20e3/jekyll-cayman-theme.gemspec#L16) en el Cayman Theme que he seleccionado, debemos de primero instalarlo mediante:
-
-```
-gem install bundler -v 1.12
-```
-
-y luego usarlo:
-
-```
-bundle _1.12_ install
-```
-
-de lo contrario, lo normal en las instrucciones es de simplemente usar `bundle install`. Es normal que hayan errores de con los paquetes necesarios/instalados/activados, así que de envés de simplemente usar `jekyll serve`, [lo correcto](https://stackoverflow.com/a/6393129) será usar:
-
-```
-bundle exec jekyll serve
-```
-
-Así, podemos dirigirnos a `http://127.0.0.1:4000` y ver la pagina en 'vivo', previo a subirlo al repositorio de GitHub, evitando así realizar commits innecesarios.
 
 Hasta la próxima vez ~~que termine el último blog post~~.
 

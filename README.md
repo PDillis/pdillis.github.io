@@ -28,6 +28,26 @@ Use it!
 $ jekyll serve
 ```
 
+However, due to recent updates and the requirements to [using Bundler 1.12](https://github.com/PDillis/pdillis.github.io/blob/ac44808e7d7bef62281d9646c573e96eebce20e3/jekyll-cayman-theme.gemspec#L16) in the selected Cayman Theme, we must then install this version of Bundler via:
+
+```
+gem install bundler -v 1.12
+```
+
+Then we can install the required gems:
+
+```
+bundle _1.12_ install
+```
+
+It's normal to have errors in the required/installed/activated packages, so instead of the `jekyll serve` instruction as before, [the correct way](https://stackoverflow.com/a/6393129) would be to use:
+
+```
+bundle exec jekyll serve
+```
+
+Now, we can just go to `http://127.0.0.1:4000` and see our website *live*, instead of doing unnecessary commits, or waiting for GitHub pages to do their thing.
+
 For more details read about [Jekyll][1] on its web page.
 
 ## Setup
