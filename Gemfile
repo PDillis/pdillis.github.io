@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 gemspec
 
-gem 'jekyll'
+gem 'jekyll', '~> 4.2.0'
 gem 'jekyll-paginate'
 gem 'kramdown'
 gem 'pygments.rb'
+gem 'rouge'

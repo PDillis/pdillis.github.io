@@ -23,6 +23,7 @@ highlighter:        rouge
 kramdown:
   input:            GFM
   auto_ids:         true
-syntax_highlighter: rouge
+  syntax_highlighter: rouge
+  math_engine:      mathjax
 
 exclude:          [vendor]
