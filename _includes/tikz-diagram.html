@@ -1,0 +1,8 @@
+  <!-- Usage: {% include tikz-diagram.html id="diagram1" code="\draw (0,0) circle (1cm);" %} -->
+  <div class="tikz-container">
+    <script type="text/tikz" id="{{ include.id }}">
+      \begin{tikzpicture}
+        {{ include.code }}
+      \end{tikzpicture}
+    </script>
+  </div>

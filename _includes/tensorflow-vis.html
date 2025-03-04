@@ -1,0 +1,13 @@
+  <!-- Usage: {% include tensorflow-vis.html id="tf-vis1" height="400" %} -->
+  <div class="tf-container">
+    <canvas id="{{ include.id }}" height="{{ include.height | default: '300' }}px" width="100%"></canvas>
+    <div id="{{ include.id }}-controls" class="tf-controls">
+      <!-- Controls will be inserted by the script -->
+    </div>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        initTensorFlowVis("{{ include.id }}");
+      });
+    </script>
+  </div>

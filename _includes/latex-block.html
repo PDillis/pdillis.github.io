@@ -1,0 +1,8 @@
+<!-- Usage: {% include latex-block.html id="eq1" code="E = mc^2" %} -->
+<div class="math-container" id="{{ include.id }}">
+  <div class="math-block">
+    <button class="copy-btn math-copy-btn" onclick="copyLaTeX('{{ include.id }}-source')">Copy LaTeX</button>
+    <div>$${{ include.code }}$$</div>
+    <div id="{{ include.id }}-source" class="math-source" style="display: none;">{{ include.code }}</div>
+  </div>
+</div>
