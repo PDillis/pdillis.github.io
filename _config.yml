@@ -7,7 +7,7 @@ google_analytics:   UA-117842398-1
 # About/contact
 author:
   name:             Diego Porres
-  url:              https://www.linkedin.com/in/diego-porres/
+  url:              https://blog.diegoporres.com
 
 # Gems
 gems:
@@ -26,4 +26,16 @@ kramdown:
   syntax_highlighter: rouge
   math_engine:      mathjax
 
-exclude:          [vendor]
+# Plugins
+plugins:
+  - jekyll-paginate
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
