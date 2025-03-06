@@ -43,32 +43,6 @@
   }
 </style>
 
-<!-- Initialize KaTeX rendering -->
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    renderMathInElement(document.body, {
-      delimiters: [
-        {left: '$$', right: '$$', display: true},
-        {left: '$', right: '$', display: false}
-      ],
-      throwOnError: false
-    });
-    
-    // Initialize copy buttons for math
-    document.querySelectorAll('.math-copy-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const container = this.closest('.math-container');
-        const code = container.querySelector('.math-source').textContent;
-        navigator.clipboard.writeText(code).then(() => {
-          this.textContent = 'Copied!';
-          setTimeout(() => {
-            this.textContent = 'Copy LaTeX';
-          }, 2000);
-        });
-      });
-    });
-  });
-</script>
 
 <script>
 function toggleDarkMode() {
