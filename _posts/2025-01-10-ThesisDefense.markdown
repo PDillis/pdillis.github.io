@@ -135,14 +135,14 @@ ones became the cover of each chapter, namely:
   Art Gallery](https://www.aiartonline.com/art-2020/diego-porres-2/)
 
 <div class="google-slides-container">
-<iframe width="560" height="315" src="https://youtu.be/GzHKtcPTKR4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/GzHKtcPTKR4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 * **_Regal Space_** (2021), exhibited in the [NeurIPS 2021 Workshop on Machine Learning for Creativity and Design
   Art Gallery](https://neuripscreativityworkshop.github.io/2021/)
 
 <div class="google-slides-container">
-<iframe width="560" height="315" src="https://youtu.be/DNfocO1IOUE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/DNfocO1IOUE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 * **_Hidden Clergy_** (2022), exhibited in the [NeurIPS 2022 Workshop on Machine Learning for Creativity and Design
@@ -156,7 +156,7 @@ ones became the cover of each chapter, namely:
   Art Gallery](https://neuripscreativityworkshop.github.io/2023/) and the [CVPR 2024 AI Art Gallery](https://thecvf-art.com/project/diego-porres/)
 
 <div class="google-slides-container">
-<iframe width="560" height="315" src="https://youtu.be/vn-Ih1tDex0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/vn-Ih1tDex0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 <a name="NextSteps"></a>
