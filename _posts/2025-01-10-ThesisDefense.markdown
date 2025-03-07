@@ -88,7 +88,7 @@ Conclusions/Future Work, respectively. Note that each chapter is meant to be sel
   CAT Loss here:
 
 <div class="google-slides-container">
-<iframe width="560" height="315" src="https://youtu.be/BMt9r8Kj8Pk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/BMt9r8Kj8Pk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 <a name="FutureWork"></a>
