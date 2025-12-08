@@ -3,12 +3,218 @@
 
 @import "{{ site.theme }}";
 
-body.dark-mode {
-  background-color: #1a1a1a;
-  color: #e0e0e0;
+/* ============================================
+   Modern Color System with CSS Custom Properties
+   ============================================ */
+
+:root {
+  /* Light Mode Colors - Autonomous Driving Inspired */
+  --color-primary: #2563eb;        /* Electric blue - technology, trust */
+  --color-secondary: #0891b2;      /* Cyan - innovation, precision */
+  --color-accent: #7c3aed;         /* Purple - AI, creativity */
+  --color-bg: #ffffff;             /* Pure white background */
+  --color-surface: #f8fafc;        /* Light gray surfaces */
+  --color-text-primary: #0f172a;   /* Nearly black text */
+  --color-text-secondary: #475569; /* Medium gray text */
+  --color-text-tertiary: #64748b;  /* Light gray text */
+  --color-border: #e2e8f0;         /* Subtle borders */
+  --color-code-bg: #f1f5f9;        /* Code background */
+  --color-code-text: #475569;      /* Code text */
+
+  /* Header Gradient */
+  --gradient-start: #1e40af;       /* Deep blue */
+  --gradient-end: #06b6d4;         /* Bright cyan */
+
+  /* Semantic Colors */
+  --color-link: #2563eb;
+  --color-link-hover: #1d4ed8;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
 }
 
-body.dark-mode .math-block {
-  background-color: #2d2d2d;
-  color: #e0e0e0;
+body.dark-mode {
+  /* Dark Mode Colors - Sophisticated Navy/Slate Theme */
+  --color-primary: #3b82f6;        /* Lighter blue for contrast */
+  --color-secondary: #06b6d4;      /* Brighter cyan */
+  --color-accent: #a78bfa;         /* Lighter purple */
+  --color-bg: #0f172a;             /* Deep navy - sophisticated */
+  --color-surface: #1e293b;        /* Dark slate gray */
+  --color-text-primary: #f1f5f9;   /* Off-white, easy on eyes */
+  --color-text-secondary: #cbd5e1; /* Light gray */
+  --color-text-tertiary: #94a3b8;  /* Medium gray */
+  --color-border: #334155;         /* Dark borders */
+  --color-code-bg: #1e293b;        /* Code background */
+  --color-code-text: #e2e8f0;      /* Code text */
+
+  /* Header Gradient for Dark Mode */
+  --gradient-start: #1e3a8a;       /* Darker blue */
+  --gradient-end: #0e7490;         /* Darker cyan */
+
+  /* Semantic Colors (adjusted for dark mode) */
+  --color-link: #60a5fa;
+  --color-link-hover: #93c5fd;
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-error: #f87171;
+
+  /* Shadows (more subtle in dark mode) */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================
+   Apply Color System
+   ============================================ */
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+/* Math blocks */
+.math-block {
+  background-color: var(--color-code-bg);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  transition: background-color var(--transition-normal), border-color var(--transition-normal);
+}
+
+/* TensorFlow container */
+.tf-container {
+  border-color: var(--color-border);
+  background-color: var(--color-surface);
+  transition: background-color var(--transition-normal), border-color var(--transition-normal);
+}
+
+/* Copy button */
+.copy-btn {
+  background-color: var(--color-surface);
+  color: var(--color-text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.copy-btn:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* ============================================
+   Dark Mode Enhancements
+   ============================================ */
+
+/* Smooth transitions for all themeable elements */
+* {
+  transition-property: background-color, border-color, color;
+  transition-duration: var(--transition-normal, 250ms);
+  transition-timing-function: ease-in-out;
+}
+
+/* Preserve fast transitions for hover effects */
+a, button, .btn, .copy-btn {
+  transition: all var(--transition-fast, 150ms) ease-in-out;
+}
+
+/* Main content area */
+.main-content {
+  color: var(--color-text-primary);
+}
+
+/* Blockquotes */
+.main-content blockquote {
+  color: var(--color-text-secondary);
+  border-left-color: var(--color-border);
+}
+
+/* Tables */
+.main-content table th,
+.main-content table td {
+  border-color: var(--color-border);
+}
+
+body.dark-mode .main-content table {
+  background-color: var(--color-surface);
+}
+
+body.dark-mode .main-content table th {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Horizontal rules */
+.main-content hr {
+  background-color: var(--color-border);
+}
+
+/* Site footer */
+.site-footer {
+  border-top-color: var(--color-border);
+  color: var(--color-text-secondary);
+}
+
+.site-footer-credits {
+  color: var(--color-text-tertiary);
+}
+
+/* Syntax highlighting for dark mode */
+body.dark-mode .highlight {
+  background-color: var(--color-code-bg);
+}
+
+body.dark-mode .main-content pre > code {
+  color: var(--color-code-text);
+}
+
+/* Images - add subtle border in dark mode */
+body.dark-mode .main-content img {
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-md);
+}
+
+/* Prevent transition on page load */
+body.preload * {
+  transition: none !important;
+}
+
+/* ============================================
+   Dark Mode Toggle Button
+   ============================================ */
+
+#dark-mode-toggle {
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all var(--transition-fast, 150ms) ease-in-out;
+}
+
+#dark-mode-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.05);
+}
+
+#dark-mode-toggle:active {
+  transform: scale(0.95);
+}
+
+#theme-icon {
+  display: inline-block;
+  transition: transform var(--transition-fast, 150ms) ease-in-out;
+}
+
+#dark-mode-toggle:hover #theme-icon {
+  transform: rotate(20deg);
 }
