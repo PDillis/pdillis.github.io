@@ -1,0 +1,111 @@
+{% comment %}
+  Responsive Video Embed
+
+  Usage:
+  {% include video-embed.html
+     url="https://www.youtube.com/watch?v=VIDEO_ID"
+     caption="Video caption"
+     autoplay=false
+  %}
+
+  Or for local videos:
+  {% include video-embed.html
+     local="/videos/my-video.mp4"
+     poster="/videos/my-video-thumbnail.jpg"
+     caption="Local video"
+  %}
+{% endcomment %}
+
+<div class="video-container">
+  {% if include.local %}
+    <!-- Local video -->
+    <video
+      controls
+      {% if include.autoplay %}autoplay{% endif %}
+      {% if include.poster %}poster="{{ include.poster }}"{% endif %}
+      {% if include.loop %}loop{% endif %}
+      preload="metadata"
+      class="responsive-video">
+      <source src="{{ include.local }}" type="video/mp4">
+      Your browser doesn't support video playback.
+    </video>
+  {% elsif include.url contains 'youtube.com' or include.url contains 'youtu.be' %}
+    <!-- YouTube video -->
+    {% if include.url contains 'youtu.be' %}
+      {% assign video_id = include.url | split: 'youtu.be/' | last | split: '?' | first %}
+    {% elsif include.url contains 'watch?v=' %}
+      {% assign video_id = include.url | split: 'watch?v=' | last | split: '&' | first %}
+    {% elsif include.url contains 'embed/' %}
+      {% assign video_id = include.url | split: 'embed/' | last | split: '?' | first %}
+    {% endif %}
+    <div class="video-wrapper">
+      <iframe
+        src="https://www.youtube.com/embed/{{ video_id }}{% if include.autoplay %}?autoplay=1{% endif %}"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+  {% elsif include.url contains 'vimeo.com' %}
+    <!-- Vimeo video -->
+    {% assign video_id = include.url | split: 'vimeo.com/' | last | split: '/' | first %}
+    <div class="video-wrapper">
+      <iframe
+        src="https://player.vimeo.com/video/{{ video_id }}{% if include.autoplay %}?autoplay=1{% endif %}"
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+  {% endif %}
+
+  {% if include.caption %}
+  <div class="video-caption">{{ include.caption }}</div>
+  {% endif %}
+</div>
+
+<style>
+  .video-container {
+    margin: 2rem 0;
+  }
+
+  /* Responsive wrapper for YouTube/Vimeo */
+  .video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-md);
+  }
+
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+  }
+
+  /* Local video styling */
+  .responsive-video {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+  }
+
+  .video-caption {
+    margin-top: 0.75rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    font-style: italic;
+  }
+</style>

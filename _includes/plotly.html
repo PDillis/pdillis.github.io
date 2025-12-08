@@ -1,0 +1,99 @@
+{% comment %}
+  Plotly Chart Include
+
+  Usage:
+  {% include plotly.html
+     id="my-plot"
+     data='[{"x": [1,2,3], "y": [2,4,6], "type": "scatter", "name": "Data"}]'
+     layout='{"title": "My Plot", "xaxis": {"title": "X"}, "yaxis": {"title": "Y"}}'
+     caption="This is my plot caption"
+  %}
+{% endcomment %}
+
+<div class="plotly-container">
+  <div id="{{ include.id | default: 'plotly-chart' }}" class="plot"></div>
+  {% if include.caption %}
+  <div class="plotly-caption">{{ include.caption }}</div>
+  {% endif %}
+</div>
+
+<script>
+(function() {
+  var data = {{ include.data | default: '[]' }};
+  var layout = {{ include.layout | default: '{}' }};
+
+  // Dark mode support - automatically adjusts based on current theme
+  if (document.body.classList.contains('dark-mode')) {
+    layout = Object.assign({
+      paper_bgcolor: 'rgba(30, 41, 59, 0.5)',  // --color-surface
+      plot_bgcolor: 'rgba(15, 23, 42, 0.3)',    // --color-bg with transparency
+      font: { color: '#f1f5f9' },               // --color-text-primary
+      xaxis: Object.assign(layout.xaxis || {}, {
+        gridcolor: '#334155',                   // --color-border
+        zerolinecolor: '#475569'
+      }),
+      yaxis: Object.assign(layout.yaxis || {}, {
+        gridcolor: '#334155',
+        zerolinecolor: '#475569'
+      })
+    }, layout);
+  } else {
+    layout = Object.assign({
+      paper_bgcolor: '#f8fafc',                 // --color-surface
+      plot_bgcolor: 'white',
+      font: { color: '#0f172a' },               // --color-text-primary
+      xaxis: Object.assign(layout.xaxis || {}, {
+        gridcolor: '#e2e8f0',                   // --color-border
+        zerolinecolor: '#cbd5e1'
+      }),
+      yaxis: Object.assign(layout.yaxis || {}, {
+        gridcolor: '#e2e8f0',
+        zerolinecolor: '#cbd5e1'
+      })
+    }, layout);
+  }
+
+  // Default config
+  var config = {
+    responsive: true,
+    displayModeBar: true,
+    displaylogo: false,
+    modeBarButtonsToRemove: ['lasso2d', 'select2d']
+  };
+
+  Plotly.newPlot('{{ include.id | default: "plotly-chart" }}', data, layout, config);
+
+  // Re-render on dark mode toggle
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.attributeName === 'class') {
+        var isDark = document.body.classList.contains('dark-mode');
+        var update = {};
+        if (isDark) {
+          update = {
+            'paper_bgcolor': 'rgba(30, 41, 59, 0.5)',
+            'plot_bgcolor': 'rgba(15, 23, 42, 0.3)',
+            'font.color': '#f1f5f9',
+            'xaxis.gridcolor': '#334155',
+            'xaxis.zerolinecolor': '#475569',
+            'yaxis.gridcolor': '#334155',
+            'yaxis.zerolinecolor': '#475569'
+          };
+        } else {
+          update = {
+            'paper_bgcolor': '#f8fafc',
+            'plot_bgcolor': 'white',
+            'font.color': '#0f172a',
+            'xaxis.gridcolor': '#e2e8f0',
+            'xaxis.zerolinecolor': '#cbd5e1',
+            'yaxis.gridcolor': '#e2e8f0',
+            'yaxis.zerolinecolor': '#cbd5e1'
+          };
+        }
+        Plotly.relayout('{{ include.id | default: "plotly-chart" }}', update);
+      }
+    });
+  });
+  observer.observe(document.body, { attributes: true });
+})();
+</script>
