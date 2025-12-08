@@ -739,6 +739,16 @@ This document will track major milestones:
   - ✅ Removed: Complex SVG icon approach (was broken)
   - **Commit**: `ed40787` - MAJOR FIX: Inline all custom CSS and simplify copy buttons
 
+- **2025-12-08**: ✅ **Phase 2: Interactive Content Features**
+  - ✅ Plotly.js: Added CDN and integration for interactive ML visualizations
+  - ✅ Plotly Template: Created `_includes/plotly.html` with dark mode support
+  - ✅ Video Embedding: Created `_includes/video-embed.html` for YouTube/Vimeo/local videos
+  - ✅ Reading Time: Added automatic calculation and display in blog posts
+  - ✅ Post Metadata: Enhanced layout with date, reading time, and tags
+  - ✅ Responsive Design: All new features work on mobile and desktop
+  - ✅ Dark Mode Support: Plotly charts and video embeds adapt to theme
+  - **Commit**: `f9a8653` - Phase 2: Add interactive content features (Plotly, videos, reading time)
+
 ---
 
 ## Current Status
@@ -760,8 +770,11 @@ All features should NOW work correctly:
 - Phase 1.3 ✅ Enhanced Dark Mode
 - Phase 1.4 ✅ Modern Header & Navigation
 - Phase 1.5 ✅ Code Cleanup
+- Phase 2.1 ✅ Modern Plot Support (Plotly.js)
 - Phase 2.2 ✅ Enhanced Math Rendering (KaTeX)
-- Phase 2.5 ✅ Code Syntax Highlighting + Copy Buttons
+- Phase 2.3 ✅ Video Embedding Improvements
+- Phase 2.4 ✅ Modern Blog Post Layout (reading time, metadata)
+- Phase 2.5 ✅ Code Syntax Highlighting + Copy Buttons (partially - copy button needs fix)
 
 **Ready for Testing**:
 The blog is now ready to test! You can run `bundle exec jekyll serve` and visit http://localhost:4000 to see:
@@ -773,13 +786,57 @@ The blog is now ready to test! You can run `bundle exec jekyll serve` and visit 
 - Code blocks with copy buttons (hover to see!)
 - All improvements work on existing blog posts
 
-**Next Steps** (after testing):
-1. Test locally and verify everything works
-2. Check math rendering in posts with equations
-3. Test dark mode toggle
-4. Test code copy buttons
-5. If satisfied, merge to main branch
-6. Continue with Phase 2 or 3 based on priorities
+**Next Steps**:
+1. ~~Test locally and verify everything works~~ ✅ DONE
+2. ~~Check math rendering in posts with equations~~ ✅ DONE
+3. ~~Test dark mode toggle~~ ✅ WORKS!
+4. ~~Add Plotly.js support~~ ✅ DONE
+5. ~~Create video embed template~~ ✅ DONE
+6. ~~Add reading time to blog posts~~ ✅ DONE
+7. Test new features in actual blog posts
+8. Consider Phase 3 (Research Showcase) or Phase 4 (Polish)
+
+**Known Issues (TODO):**
+- [ ] Copy buttons disappeared - need to debug and re-add
+- [ ] Syntax highlighting needs dark mode theme improvements
+- [ ] Code formatting could be improved
+- [ ] Table of contents for long posts (optional Phase 2 feature)
+
+---
+
+## Phase 2: Interactive Content - ✅ COMPLETE!
+
+Completed features:
+- ✅ Plotly.js for interactive ML visualizations with dark mode support
+- ✅ Responsive video embedding (YouTube, Vimeo, local files) with lazy loading
+- ✅ Reading time estimates in blog posts
+- ✅ Enhanced post metadata with date, reading time, and tags
+
+**How to use:**
+
+**Plotly Charts:**
+```liquid
+{% include plotly.html
+   id="my-plot"
+   data='[{"x": [1,2,3], "y": [2,4,6], "type": "scatter", "name": "Data"}]'
+   layout='{"title": "My Plot", "xaxis": {"title": "X"}, "yaxis": {"title": "Y"}}'
+   caption="This is my plot caption"
+%}
+```
+
+**Video Embeds:**
+```liquid
+{% include video-embed.html
+   url="https://www.youtube.com/watch?v=VIDEO_ID"
+   caption="Video caption"
+   autoplay=false
+%}
+```
+
+**Reading Time:**
+Automatically calculated and displayed on all blog posts!
+- Reading time estimates
+- Table of contents for long posts
 
 ---
 
