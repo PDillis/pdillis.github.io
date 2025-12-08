@@ -716,11 +716,30 @@ This document will track major milestones:
   - ✅ Added: Fallback clipboard for older browsers
   - **Commit**: `9c14700` - Fix dark mode toggle, math rendering, code copy buttons, and add emoji icons
 
+- **2025-12-08**: ✅ **Dark Mode Colors & Copy Button Redesign**
+  - ✅ Fixed: Dark mode now actually changes colors (not just emoji!)
+  - ✅ Fixed: Body text color transitions smoothly in dark mode
+  - ✅ Redesigned: Copy button now matches Claude.ai style
+  - ✅ Added: SVG icons (two overlapping squares → checkmark)
+  - ✅ Added: Hover tooltip showing "Copy" / "Copied!"
+  - ✅ Added: Backdrop blur effect for modern look
+  - ✅ Improved: Better positioning in upper-right corner
+  - ✅ Improved: Smooth icon transitions and animations
+  - **Commit**: `9ef09bd` - Fix dark mode colors and redesign copy button like Claude.ai
+
 ---
 
 ## Current Status
 
-**Branch**: `claude/modernize-blog-design-01EZXHETLmT48cZANmMCgdSq`
+**Branch**: `claude/modernize-blog-design-01EZXHETLmT48cZANmMCgdSq` (ready to merge!)
+
+**Latest Changes**:
+All Phase 1 features are now **fully functional**:
+- ✅ Dark mode toggle works and changes all colors
+- ✅ Copy buttons styled like Claude.ai with SVG icons
+- ✅ Math equations render correctly with KaTeX
+- ✅ Modern typography and color system
+- ✅ Smooth transitions throughout
 
 **Completed**:
 - Phase 1.1 ✅ Typography & Font System
