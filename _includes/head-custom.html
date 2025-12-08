@@ -15,32 +15,172 @@
 <!-- TensorFlow.js -->
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.21.0/dist/tf.min.js"></script>
 
-<!-- Custom styles for math and interactive components -->
+<!-- Custom styles -->
 <style>
+  /* ============================================
+     CSS Variables for Light/Dark Mode
+     ============================================ */
+  :root {
+    /* Light Mode */
+    --color-primary: #2563eb;
+    --color-secondary: #0891b2;
+    --color-accent: #7c3aed;
+    --color-bg: #ffffff;
+    --color-surface: #f8fafc;
+    --color-text-primary: #0f172a;
+    --color-text-secondary: #475569;
+    --color-text-tertiary: #64748b;
+    --color-border: #e2e8f0;
+    --color-code-bg: #f1f5f9;
+    --color-code-text: #475569;
+    --gradient-start: #1e40af;
+    --gradient-end: #06b6d4;
+    --color-link: #2563eb;
+    --color-link-hover: #1d4ed8;
+    --color-success: #10b981;
+  }
+
+  body.dark-mode {
+    /* Dark Mode */
+    --color-primary: #3b82f6;
+    --color-secondary: #06b6d4;
+    --color-accent: #a78bfa;
+    --color-bg: #0f172a;
+    --color-surface: #1e293b;
+    --color-text-primary: #f1f5f9;
+    --color-text-secondary: #cbd5e1;
+    --color-text-tertiary: #94a3b8;
+    --color-border: #334155;
+    --color-code-bg: #1e293b;
+    --color-code-text: #e2e8f0;
+    --gradient-start: #1e3a8a;
+    --gradient-end: #0e7490;
+    --color-link: #60a5fa;
+    --color-link-hover: #93c5fd;
+    --color-success: #34d399;
+  }
+
+  /* Force fonts */
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    background-color: var(--color-bg) !important;
+    color: var(--color-text-primary) !important;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  code, pre, .highlight {
+    font-family: 'JetBrains Mono', Consolas, 'Liberation Mono', monospace !important;
+  }
+
+  /* Force gradient */
+  .page-header {
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%) !important;
+  }
+
+  /* Main content colors */
+  .main-content {
+    color: var(--color-text-primary) !important;
+  }
+
+  .main-content p,
+  .main-content li,
+  .main-content td,
+  .main-content th,
+  .main-content h1,
+  .main-content h2,
+  .main-content h3,
+  .main-content h4,
+  .main-content h5,
+  .main-content h6 {
+    color: var(--color-text-primary) !important;
+  }
+
+  .main-content h1,
+  .main-content h2 {
+    color: var(--color-primary) !important;
+  }
+
+  /* Code blocks */
+  .main-content code {
+    background-color: var(--color-code-bg) !important;
+    color: var(--color-code-text) !important;
+  }
+
+  .main-content pre {
+    background-color: var(--color-code-bg) !important;
+    color: var(--color-code-text) !important;
+    border: 1px solid var(--color-border) !important;
+    position: relative;
+  }
+
+  .main-content .highlight {
+    background-color: var(--color-code-bg) !important;
+  }
+
+  /* Links */
+  a {
+    color: var(--color-link) !important;
+  }
+
+  a:hover {
+    color: var(--color-link-hover) !important;
+  }
+
+  /* Copy button - TOP RIGHT like the example */
+  .code-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+    z-index: 10;
+  }
+
+  .copy-code-button {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.2s;
+  }
+
+  .main-content pre:hover .copy-code-button,
+  .main-content .highlight:hover .copy-code-button {
+    opacity: 1;
+  }
+
+  .copy-code-button:hover {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+  }
+
+  .copy-code-button.copied {
+    background: var(--color-success);
+    color: white;
+    border-color: var(--color-success);
+  }
+
+  /* Prevent flash */
+  body.preload * {
+    transition: none !important;
+  }
+
+  /* Math blocks */
   .math-block {
     overflow-x: auto;
     margin: 1rem 0;
     padding: 1rem;
-    background-color: #f8f9fa;
+    background-color: var(--color-code-bg);
     border-radius: 0.5rem;
     position: relative;
   }
-  .copy-btn {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    padding: 0.25rem 0.5rem;
-    background-color: #e2e8f0;
-    border-radius: 0.25rem;
-    font-size: 0.75rem;
-    cursor: pointer;
-  }
-  .tf-container {
-    margin: 2rem 0;
-    padding: 1rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 0.5rem;
-  }
+
   .tikz-container {
     display: flex;
     justify-content: center;
@@ -140,96 +280,70 @@ function addCopyButtonsToCodeBlocks() {
   // Find all code blocks
   const codeBlocks = document.querySelectorAll('.main-content .highlight, .main-content pre');
 
-  console.log('Found code blocks:', codeBlocks.length);
+  codeBlocks.forEach((block) => {
+    // Skip if already has a copy button
+    if (block.querySelector('.copy-code-button')) return;
 
-  codeBlocks.forEach((block, index) => {
-    // Skip if already has a copy button or is inside a .highlight
-    if (block.querySelector('.code-copy-btn')) {
-      console.log('Block', index, 'already has button');
-      return;
-    }
+    // Skip if it's a PRE inside a .highlight (avoid duplicates)
+    if (block.tagName === 'PRE' && block.parentElement.classList.contains('highlight')) return;
 
-    if (block.tagName === 'PRE' && block.parentElement.classList.contains('highlight')) {
-      console.log('Block', index, 'is inside .highlight, skipping');
-      return;
-    }
+    // Create header container for top-right positioning
+    const header = document.createElement('div');
+    header.className = 'code-header';
 
-    console.log('Adding button to block', index);
-
-    // Create container
-    const container = document.createElement('div');
-    container.className = 'code-copy-container';
-
-    // Create copy button with SVG icons
+    // Create simple copy button
     const copyBtn = document.createElement('button');
-    copyBtn.className = 'code-copy-btn';
-    copyBtn.setAttribute('aria-label', 'Copy to clipboard');
-    copyBtn.setAttribute('data-tooltip', 'Copy');
-
-    // Copy icon SVG (two overlapping squares)
-    copyBtn.innerHTML = `
-      <svg class="copy-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M12.5 3C13.3284 3 14 3.67157 14 4.5V6H15.5C16.3284 6 17 6.67157 17 7.5V15.5C17 16.3284 16.3284 17 15.5 17H7.5C6.67157 17 6 16.3284 6 15.5V14H4.5C3.67157 14 3 13.3284 3 12.5V4.5C3 3.67157 3.67157 3 4.5 3H12.5ZM14 12.5C14 13.3284 13.3284 14 12.5 14H7V15.5C7 15.7761 7.22386 16 7.5 16H15.5C15.7761 16 16 15.7761 16 15.5V7.5C16 7.22386 15.7761 7 15.5 7H14V12.5ZM4.5 4C4.22386 4 4 4.22386 4 4.5V12.5C4 12.7761 4.22386 13 4.5 13H12.5C12.7761 13 13 12.7761 13 12.5V4.5C13 4.22386 12.7761 4 12.5 4H4.5Z"></path>
-      </svg>
-      <svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M15.1883 5.10908C15.3699 4.96398 15.6346 4.96153 15.8202 5.11592C16.0056 5.27067 16.0504 5.53125 15.9403 5.73605L15.8836 5.82003L8.38354 14.8202C8.29361 14.9279 8.16242 14.9925 8.02221 14.9989C7.88203 15.0051 7.74545 14.9526 7.64622 14.8534L4.14617 11.3533L4.08172 11.2752C3.95384 11.0811 3.97542 10.817 4.14617 10.6463C4.31693 10.4755 4.58105 10.4539 4.77509 10.5818L4.85321 10.6463L7.96556 13.7586L15.1161 5.1794L15.1883 5.10908Z"></path>
-      </svg>
-    `;
+    copyBtn.className = 'copy-code-button';
+    copyBtn.textContent = 'Copy';
+    copyBtn.setAttribute('aria-label', 'Copy code to clipboard');
 
     // Add click handler
-    copyBtn.addEventListener('click', function(e) {
+    copyBtn.addEventListener('click', async function(e) {
       e.preventDefault();
 
       // Find the code element
       const codeElement = block.querySelector('code') || block;
-      if (!codeElement) return;
-
-      // Get the code text
       const codeText = codeElement.textContent;
 
-      // Copy to clipboard
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(codeText).then(() => {
-          copyBtn.classList.add('copied');
-          copyBtn.setAttribute('data-tooltip', 'Copied!');
-          setTimeout(() => {
-            copyBtn.classList.remove('copied');
-            copyBtn.setAttribute('data-tooltip', 'Copy');
-          }, 2000);
-        }).catch(err => {
-          console.error('Failed to copy:', err);
-        });
-      } else {
-        // Fallback for older browsers
-        const textArea = document.createElement('textarea');
-        textArea.value = codeText;
-        textArea.style.position = 'fixed';
-        textArea.style.left = '-999999px';
-        document.body.appendChild(textArea);
-        textArea.select();
-        try {
+      try {
+        // Try modern clipboard API
+        if (navigator.clipboard) {
+          await navigator.clipboard.writeText(codeText);
+        } else {
+          // Fallback for older browsers
+          const textArea = document.createElement('textarea');
+          textArea.value = codeText;
+          textArea.style.position = 'fixed';
+          textArea.style.opacity = '0';
+          document.body.appendChild(textArea);
+          textArea.select();
           document.execCommand('copy');
-          copyBtn.classList.add('copied');
-          copyBtn.setAttribute('data-tooltip', 'Copied!');
-          setTimeout(() => {
-            copyBtn.classList.remove('copied');
-            copyBtn.setAttribute('data-tooltip', 'Copy');
-          }, 2000);
-        } catch (err) {
-          console.error('Fallback copy failed:', err);
+          document.body.removeChild(textArea);
         }
-        document.body.removeChild(textArea);
+
+        // Show feedback
+        copyBtn.textContent = 'Copied!';
+        copyBtn.classList.add('copied');
+        setTimeout(() => {
+          copyBtn.textContent = 'Copy';
+          copyBtn.classList.remove('copied');
+        }, 2000);
+      } catch (err) {
+        console.error('Failed to copy:', err);
+        copyBtn.textContent = 'Failed';
+        setTimeout(() => {
+          copyBtn.textContent = 'Copy';
+        }, 2000);
       }
     });
 
-    // Make sure block is positioned
-    const position = window.getComputedStyle(block).position;
-    if (position === 'static') {
+    // Ensure block is positioned
+    if (window.getComputedStyle(block).position === 'static') {
       block.style.position = 'relative';
     }
 
-    container.appendChild(copyBtn);
-    block.appendChild(container);
+    header.appendChild(copyBtn);
+    block.appendChild(header);
   });
 }
 

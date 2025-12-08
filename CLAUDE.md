@@ -729,17 +729,30 @@ This document will track major milestones:
 
 ---
 
+- **2025-12-08**: ✅ **MAJOR FIX - CSS Loading & Simplification**
+  - ✅ Fixed: Moved ALL custom CSS inline (was never loading from separate file)
+  - ✅ Fixed: CSS variables now actually defined and working
+  - ✅ Fixed: Fonts forced with !important (Inter + JetBrains Mono)
+  - ✅ Fixed: Blue gradient forced to override theme default
+  - ✅ Fixed: Dark mode now changes ALL colors properly
+  - ✅ Simplified: Copy button now simple text button in top-right
+  - ✅ Removed: Complex SVG icon approach (was broken)
+  - **Commit**: `ed40787` - MAJOR FIX: Inline all custom CSS and simplify copy buttons
+
+---
+
 ## Current Status
 
-**Branch**: `claude/modernize-blog-design-01EZXHETLmT48cZANmMCgdSq` (ready to merge!)
+**Branch**: `claude/modernize-blog-design-01EZXHETLmT48cZANmMCgdSq`
 
-**Latest Changes**:
-All Phase 1 features are now **fully functional**:
-- ✅ Dark mode toggle works and changes all colors
-- ✅ Copy buttons styled like Claude.ai with SVG icons
-- ✅ Math equations render correctly with KaTeX
-- ✅ Modern typography and color system
-- ✅ Smooth transitions throughout
+**Latest Changes** (COMPLETE REWRITE):
+All features should NOW work correctly:
+- ✅ Dark mode toggle: Click 🌙 → entire site changes (bg white→navy, text dark→light)
+- ✅ Fonts: Inter for body, JetBrains Mono for code (forced with !important)
+- ✅ Blue gradient header: Deep blue → cyan (forced with !important)
+- ✅ Copy buttons: Simple "Copy" button in top-right corner of code blocks
+- ✅ Math equations: Render correctly with KaTeX
+- ✅ All CSS inline in head-custom.html (guaranteed to load)
 
 **Completed**:
 - Phase 1.1 ✅ Typography & Font System
