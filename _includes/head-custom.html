@@ -6,7 +6,7 @@
 <!-- KaTeX for math rendering -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="initKaTeX()"></script>
 
 <!-- TikZJax for TikZ rendering -->
 <link rel="stylesheet" type="text/css" href="https://tikzjax.pages.dev/fonts.css">
@@ -50,67 +50,74 @@
 
 
 <script>
-// Enhanced dark mode with system preference support
+// ============================================
+// Dark Mode System
+// ============================================
+
+// Prevent flash of unstyled content
+document.documentElement.classList.add('preload');
+
+// Initialize dark mode immediately
 (function() {
-  // Prevent flash of unstyled content
-  document.documentElement.classList.add('preload');
+  const savedMode = localStorage.getItem('darkMode');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-  function initDarkMode() {
-    const savedMode = localStorage.getItem('darkMode');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    // Use saved preference, or fall back to system preference
-    if (savedMode === 'true' || (savedMode === null && prefersDark)) {
-      document.body.classList.add('dark-mode');
-    }
-
-    // Remove preload class after a short delay
-    setTimeout(() => {
-      document.documentElement.classList.remove('preload');
-    }, 100);
+  // Use saved preference, or fall back to system preference
+  if (savedMode === 'true' || (savedMode === null && prefersDark)) {
+    document.body.classList.add('dark-mode');
   }
 
-  // Initialize immediately
-  initDarkMode();
-
-  // Update button icon based on current mode
-  function updateToggleButton() {
-    const isDark = document.body.classList.contains('dark-mode');
-    const themeIcon = document.getElementById('theme-icon');
-    if (themeIcon) {
-      themeIcon.textContent = isDark ? '☀️' : '🌙';
-    }
-    const toggleBtn = document.getElementById('dark-mode-toggle');
-    if (toggleBtn) {
-      toggleBtn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-    }
-  }
-
-  // Toggle function (will be called by button)
-  window.toggleDarkMode = function() {
-    document.body.classList.toggle('dark-mode');
-    const isDark = document.body.classList.contains('dark-mode');
-    localStorage.setItem('darkMode', isDark);
-    updateToggleButton();
-  };
-
-  // Update button on page load
-  window.addEventListener('DOMContentLoaded', updateToggleButton);
-
-  // Listen for system theme changes
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    if (localStorage.getItem('darkMode') === null) {
-      if (e.matches) {
-        document.body.classList.add('dark-mode');
-      } else {
-        document.body.classList.remove('dark-mode');
-      }
-    }
-  });
+  // Remove preload class after a short delay
+  setTimeout(() => {
+    document.documentElement.classList.remove('preload');
+  }, 100);
 })();
 
-// Initialize KaTeX auto-render when DOM is loaded
-document.addEventListener("DOMContentLoaded", function() {
+// Update button icon based on current mode
+function updateToggleButton() {
+  const isDark = document.body.classList.contains('dark-mode');
+  const themeIcon = document.getElementById('theme-icon');
+  if (themeIcon) {
+    themeIcon.textContent = isDark ? '☀️' : '🌙';
+  }
+  const toggleBtn = document.getElementById('dark-mode-toggle');
+  if (toggleBtn) {
+    toggleBtn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+}
+
+// Toggle function (called by button onclick)
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+  const isDark = document.body.classList.contains('dark-mode');
+  localStorage.setItem('darkMode', isDark);
+  updateToggleButton();
+}
+
+// Update button icon when page loads
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', updateToggleButton);
+} else {
+  updateToggleButton();
+}
+
+// Listen for system theme changes
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+  if (localStorage.getItem('darkMode') === null) {
+    if (e.matches) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+    updateToggleButton();
+  }
+});
+
+// ============================================
+// KaTeX Math Rendering
+// ============================================
+
+function initKaTeX() {
   if (typeof renderMathInElement !== 'undefined') {
     renderMathInElement(document.body, {
       delimiters: [
@@ -123,18 +130,31 @@ document.addEventListener("DOMContentLoaded", function() {
       strict: false
     });
   }
+}
 
-  // Add copy buttons to code blocks
-  addCopyButtonsToCodeBlocks();
-});
+// ============================================
+// Code Block Copy Buttons
+// ============================================
 
 function addCopyButtonsToCodeBlocks() {
-  // Find all code blocks (both .highlight divs and standalone pre elements)
-  const codeBlocks = document.querySelectorAll('.main-content .highlight, .main-content pre:not(.highlight pre)');
+  // Find all code blocks
+  const codeBlocks = document.querySelectorAll('.main-content .highlight, .main-content pre');
 
-  codeBlocks.forEach(block => {
-    // Skip if already has a copy button
-    if (block.querySelector('.code-copy-btn')) return;
+  console.log('Found code blocks:', codeBlocks.length);
+
+  codeBlocks.forEach((block, index) => {
+    // Skip if already has a copy button or is inside a .highlight
+    if (block.querySelector('.code-copy-btn')) {
+      console.log('Block', index, 'already has button');
+      return;
+    }
+
+    if (block.tagName === 'PRE' && block.parentElement.classList.contains('highlight')) {
+      console.log('Block', index, 'is inside .highlight, skipping');
+      return;
+    }
+
+    console.log('Adding button to block', index);
 
     // Create copy button
     const copyBtn = document.createElement('button');
@@ -143,37 +163,81 @@ function addCopyButtonsToCodeBlocks() {
     copyBtn.setAttribute('aria-label', 'Copy code to clipboard');
 
     // Add click handler
-    copyBtn.addEventListener('click', function() {
+    copyBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+
       // Find the code element
-      const codeElement = block.querySelector('code') || block.querySelector('pre');
+      const codeElement = block.querySelector('code') || block;
       if (!codeElement) return;
 
       // Get the code text
       const codeText = codeElement.textContent;
 
       // Copy to clipboard
-      navigator.clipboard.writeText(codeText).then(() => {
-        // Show success feedback
-        copyBtn.textContent = 'Copied!';
-        copyBtn.classList.add('copied');
-
-        // Reset after 2 seconds
-        setTimeout(() => {
-          copyBtn.textContent = 'Copy';
-          copyBtn.classList.remove('copied');
-        }, 2000);
-      }).catch(err => {
-        console.error('Failed to copy code:', err);
-        copyBtn.textContent = 'Failed';
-        setTimeout(() => {
-          copyBtn.textContent = 'Copy';
-        }, 2000);
-      });
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(codeText).then(() => {
+          copyBtn.textContent = 'Copied!';
+          copyBtn.classList.add('copied');
+          setTimeout(() => {
+            copyBtn.textContent = 'Copy';
+            copyBtn.classList.remove('copied');
+          }, 2000);
+        }).catch(err => {
+          console.error('Failed to copy:', err);
+          copyBtn.textContent = 'Error';
+          setTimeout(() => {
+            copyBtn.textContent = 'Copy';
+          }, 2000);
+        });
+      } else {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = codeText;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+          document.execCommand('copy');
+          copyBtn.textContent = 'Copied!';
+          copyBtn.classList.add('copied');
+          setTimeout(() => {
+            copyBtn.textContent = 'Copy';
+            copyBtn.classList.remove('copied');
+          }, 2000);
+        } catch (err) {
+          console.error('Fallback copy failed:', err);
+        }
+        document.body.removeChild(textArea);
+      }
     });
 
-    // Add button to the block
-    block.style.position = 'relative';
+    // Make sure block is positioned
+    const position = window.getComputedStyle(block).position;
+    if (position === 'static') {
+      block.style.position = 'relative';
+    }
+
     block.appendChild(copyBtn);
   });
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function() {
+    addCopyButtonsToCodeBlocks();
+    if (typeof renderMathInElement === 'undefined') {
+      // KaTeX not loaded yet, will be called by onload
+      console.log('KaTeX not ready, waiting...');
+    } else {
+      initKaTeX();
+    }
+  });
+} else {
+  // DOM already loaded
+  addCopyButtonsToCodeBlocks();
+  if (typeof renderMathInElement !== 'undefined') {
+    initKaTeX();
+  }
 }
 </script>
