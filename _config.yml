@@ -9,10 +9,6 @@ author:
   name:             Diego Porres
   url:              https://blog.diegoporres.com
 
-# Gems
-gems:
-  - jekyll-paginate
-
 #Others
 markdown:           kramdown
 theme:              jekyll-theme-cayman
@@ -34,6 +30,7 @@ plugins:
 # Exclude from processing
 exclude:
   - README.md
+  - CLAUDE.md
   - Gemfile
   - Gemfile.lock
   - node_modules
