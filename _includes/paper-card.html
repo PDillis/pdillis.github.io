@@ -1,0 +1,110 @@
+<!-- Paper Card Component
+     Usage: {% include paper-card.html paper=paper %}
+     where 'paper' is a paper object from _data/papers.yml
+-->
+
+<div class="paper-card">
+  <div class="paper-card-header">
+    <h3 class="paper-title">
+      {% if include.paper.page %}
+        <a href="{{ include.paper.page }}" target="_blank">{{ include.paper.title }}</a>
+      {% else %}
+        {{ include.paper.title }}
+      {% endif %}
+    </h3>
+
+    <div class="paper-venue">
+      <span class="venue-badge">{{ include.paper.venue_short }}</span>
+      {% if include.paper.featured %}
+        <span class="featured-badge">⭐ Featured</span>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="paper-authors">
+    {% for author in include.paper.authors %}
+      {% if author == "Diego Porres" %}
+        <span class="author-highlight">{{ author }}</span>
+      {% else %}
+        <span class="author">{{ author }}</span>
+      {% endif %}
+      {% unless forloop.last %}, {% endunless %}
+    {% endfor %}
+  </div>
+
+  {% if include.paper.abstract %}
+  <div class="paper-abstract">
+    <p>{{ include.paper.abstract }}</p>
+  </div>
+  {% endif %}
+
+  <div class="paper-links">
+    {% if include.paper.pdf %}
+      <a href="{{ include.paper.pdf }}" class="paper-link pdf-link" target="_blank">
+        📄 PDF
+      </a>
+    {% endif %}
+
+    {% if include.paper.arxiv %}
+      <a href="{{ include.paper.arxiv }}" class="paper-link arxiv-link" target="_blank">
+        📚 arXiv
+      </a>
+    {% endif %}
+
+    {% if include.paper.code %}
+      <a href="{{ include.paper.code }}" class="paper-link code-link" target="_blank">
+        💻 Code
+      </a>
+    {% endif %}
+
+    {% if include.paper.page %}
+      <a href="{{ include.paper.page }}" class="paper-link page-link" target="_blank">
+        🌐 Project Page
+      </a>
+    {% endif %}
+
+    {% if include.paper.blog_post %}
+      <a href="{{ include.paper.blog_post }}" class="paper-link blog-link">
+        ✍️ Blog Post
+      </a>
+    {% endif %}
+
+    <button class="paper-link bibtex-link" onclick="copyBibtex_{{ include.paper.title | slugify }}()">
+      📋 BibTeX
+    </button>
+  </div>
+
+  {% if include.paper.tags %}
+  <div class="paper-tags">
+    {% for tag in include.paper.tags %}
+      <span class="tag">{{ tag }}</span>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- Hidden BibTeX for copying -->
+  <pre id="bibtex-{{ include.paper.title | slugify }}" style="display: none;">@inproceedings{{ '{' }}{{ include.paper.title | slugify }},
+  title={{ '{' }}{{ include.paper.title }}},
+  author={{ '{' }}{{ include.paper.authors | join: ' and ' }}},
+  booktitle={{ '{' }}{{ include.paper.venue }}},
+  year={{ '{' }}{{ include.paper.year }}},
+  {% if include.paper.arxiv %}url={{ '{' }}{{ include.paper.arxiv }}},{% endif %}
+}</pre>
+
+  <script>
+  function copyBibtex_{{ include.paper.title | slugify }}() {
+    const bibtex = document.getElementById('bibtex-{{ include.paper.title | slugify }}').textContent;
+    navigator.clipboard.writeText(bibtex).then(function() {
+      const btn = event.target;
+      const originalText = btn.textContent;
+      btn.textContent = '✅ Copied!';
+      setTimeout(() => {
+        btn.textContent = originalText;
+      }, 2000);
+    }).catch(function(err) {
+      console.error('Failed to copy BibTeX: ', err);
+      alert('BibTeX copied to clipboard!');
+    });
+  }
+  </script>
+</div>
