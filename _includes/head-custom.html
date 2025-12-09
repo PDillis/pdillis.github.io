@@ -1022,10 +1022,42 @@ function addCopyButtonsToCodeBlocks() {
   });
 }
 
+// ============================================
+// BibTeX Copy Functionality for Paper Cards
+// ============================================
+
+function initBibtexButtons() {
+  const bibtexButtons = document.querySelectorAll('.bibtex-btn');
+
+  bibtexButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      const bibtex = this.getAttribute('data-bibtex');
+
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(bibtex).then(() => {
+          const originalText = this.textContent;
+          this.textContent = '✅ Copied!';
+          setTimeout(() => {
+            this.textContent = originalText;
+          }, 2000);
+        }).catch(err => {
+          console.error('Failed to copy BibTeX:', err);
+          this.textContent = '❌ Failed';
+          setTimeout(() => {
+            this.textContent = '📋 BibTeX';
+          }, 2000);
+        });
+      }
+    });
+  });
+}
+
 // Initialize when DOM is ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', function() {
     addCopyButtonsToCodeBlocks();
+    initBibtexButtons();
     if (typeof renderMathInElement === 'undefined') {
       // KaTeX not loaded yet, will be called by onload
       console.log('KaTeX not ready, waiting...');
@@ -1036,6 +1068,7 @@ if (document.readyState === 'loading') {
 } else {
   // DOM already loaded
   addCopyButtonsToCodeBlocks();
+  initBibtexButtons();
   if (typeof renderMathInElement !== 'undefined') {
     initKaTeX();
   }
