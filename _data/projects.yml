@@ -1,0 +1,34 @@
+# Research Projects and Code Repositories
+# Add your projects here in order of importance/recency
+
+- title: "Guiding Attention in End-to-End Driving Models"
+  description: "PyTorch implementation of attention-guided end-to-end autonomous driving. Includes pre-trained models, training scripts, and visualization tools."
+  category: "Research Implementation"
+  tags: [autonomous-driving, pytorch, attention, deep-learning]
+  github: "https://github.com/PDillis/guiding-attention-e2e"
+  demo: null
+  paper: "https://arxiv.org/abs/2209.08133"
+  stars: null  # Will be updated automatically if you add GitHub API integration
+  featured: true
+  image: null  # Path to project screenshot/thumbnail
+
+- title: "StyleGAN-NADA"
+  description: "Zero-shot domain adaptation for StyleGAN using CLIP. Modify pre-trained GANs with natural language prompts."
+  category: "Generative AI"
+  tags: [stylegan, clip, generative-ai, pytorch]
+  github: "https://github.com/PDillis/stylegan-nada"
+  demo: null
+  paper: null
+  featured: true
+  image: null
+
+# Template for adding new projects:
+# - title: "Project Name"
+#   description: "Brief description of the project (1-2 sentences)"
+#   category: "Research Implementation | Tool | Demo | Other"
+#   tags: [tag1, tag2, tag3]
+#   github: "https://github.com/username/repo"
+#   demo: "https://demo-url.com"  # or null
+#   paper: "https://arxiv.org/abs/..."  # or null if not research
+#   featured: true  # Show on homepage
+#   image: "/img/projects/project-screenshot.jpg"  # or null

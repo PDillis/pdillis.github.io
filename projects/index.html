@@ -1,0 +1,138 @@
+---
+layout: default
+title: Projects & Code
+description: Open-source projects, research implementations, and code repositories by Diego Porres.
+---
+
+<div class="projects-page">
+  <header class="projects-header">
+    <h1>Projects & Code</h1>
+    <p class="projects-subtitle">
+      Open-source implementations, research code, and experimental projects.
+      All code is available on <a href="https://github.com/PDillis" target="_blank">GitHub</a>.
+    </p>
+  </header>
+
+  <!-- Featured Projects -->
+  {% assign featured_projects = site.data.projects | where: "featured", true %}
+  {% if featured_projects.size > 0 %}
+  <section class="featured-projects-section">
+    <h2>⭐ Featured Projects</h2>
+    <div class="projects-grid">
+      {% for project in featured_projects %}
+        <div class="project-card">
+          <div class="project-card-header">
+            <h3 class="project-title">
+              {% if project.github %}
+                <a href="{{ project.github }}" target="_blank">{{ project.title }}</a>
+              {% else %}
+                {{ project.title }}
+              {% endif %}
+            </h3>
+            <span class="project-category-badge">{{ project.category }}</span>
+          </div>
+
+          <p class="project-description">{{ project.description }}</p>
+
+          <div class="project-links">
+            {% if project.github %}
+              <a href="{{ project.github }}" class="project-link github-link" target="_blank">
+                💻 GitHub
+              </a>
+            {% endif %}
+
+            {% if project.demo %}
+              <a href="{{ project.demo }}" class="project-link demo-link" target="_blank">
+                🚀 Demo
+              </a>
+            {% endif %}
+
+            {% if project.paper %}
+              <a href="{{ project.paper }}" class="project-link paper-link" target="_blank">
+                📄 Paper
+              </a>
+            {% endif %}
+          </div>
+
+          {% if project.tags %}
+          <div class="project-tags">
+            {% for tag in project.tags %}
+              <span class="tag">{{ tag }}</span>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- All Projects -->
+  <section class="all-projects-section">
+    <h2>📦 All Projects</h2>
+
+    <!-- Group by category -->
+    {% assign projects_by_category = site.data.projects | group_by: "category" %}
+
+    {% for category_group in projects_by_category %}
+      <div class="category-section">
+        <h3 class="category-heading">{{ category_group.name }}</h3>
+        <div class="projects-grid">
+          {% for project in category_group.items %}
+            <div class="project-card">
+              <div class="project-card-header">
+                <h4 class="project-title">
+                  {% if project.github %}
+                    <a href="{{ project.github }}" target="_blank">{{ project.title }}</a>
+                  {% else %}
+                    {{ project.title }}
+                  {% endif %}
+                </h4>
+              </div>
+
+              <p class="project-description">{{ project.description }}</p>
+
+              <div class="project-links">
+                {% if project.github %}
+                  <a href="{{ project.github }}" class="project-link github-link" target="_blank">
+                    💻 GitHub
+                  </a>
+                {% endif %}
+
+                {% if project.demo %}
+                  <a href="{{ project.demo }}" class="project-link demo-link" target="_blank">
+                    🚀 Demo
+                  </a>
+                {% endif %}
+
+                {% if project.paper %}
+                  <a href="{{ project.paper }}" class="project-link paper-link" target="_blank">
+                    📄 Paper
+                  </a>
+                {% endif %}
+              </div>
+
+              {% if project.tags %}
+              <div class="project-tags">
+                {% for tag in project.tags %}
+                  <span class="tag">{{ tag }}</span>
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </section>
+
+  <!-- GitHub CTA -->
+  <div class="projects-cta">
+    <p>
+      💡 More projects and experiments on
+      <a href="https://github.com/PDillis" target="_blank" class="github-profile-link">
+        <strong>GitHub @PDillis</strong>
+      </a>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+# Research Papers
+# Add your papers here in reverse chronological order (newest first)
+
+- title: "Guiding Attention in End-to-End Driving Models"
+  authors: ["Diego Porres", "Yi Xiao", "Gabriel Villalonga", "Alexandre Levy"]
+  venue: "European Conference on Computer Vision (ECCV) Workshop 2022"
+  venue_short: "ECCV Workshop 2022"
+  year: 2022
+  abstract: "We propose a novel method to guide attention in end-to-end driving models, improving interpretability and performance in autonomous driving tasks."
+  # Links
+  pdf: "https://arxiv.org/pdf/2209.08133.pdf"
+  arxiv: "https://arxiv.org/abs/2209.08133"
+  code: "https://github.com/PDillis/guiding-attention-e2e"
+  page: "https://blog.diegoporres.com/guiding-attention-e2e/"
+  blog_post: null  # Link to related blog post if exists
+  # Categories (for filtering)
+  tags: [autonomous-driving, computer-vision, attention-mechanisms, end-to-end-learning]
+  # Display options
+  featured: true
+  thumbnail: null  # Path to thumbnail image (optional)
+
+# Template for adding new papers:
+# - title: "Your Paper Title"
+#   authors: ["First Author", "Second Author", "Third Author"]
+#   venue: "Full Conference/Journal Name"
+#   venue_short: "SHORT NAME YEAR"
+#   year: 2024
+#   abstract: "Brief description of your paper (1-2 sentences)"
+#   pdf: "https://arxiv.org/pdf/..."
+#   arxiv: "https://arxiv.org/abs/..."
+#   code: "https://github.com/..."
+#   page: "https://blog.diegoporres.com/paper-name/"  # or null if no dedicated page
+#   blog_post: "/2024/01/01/blog-post-name/"  # or null
+#   tags: [autonomous-driving, generative-ai, computer-vision]
+#   featured: true  # Show on homepage
+#   thumbnail: "/img/papers/paper-thumbnail.jpg"  # or null

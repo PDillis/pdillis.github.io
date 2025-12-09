@@ -1,0 +1,82 @@
+---
+layout: default
+title: Research & Publications
+description: Research papers and publications by Diego Porres on autonomous driving, computer vision, and generative AI.
+---
+
+<div class="research-page">
+  <header class="research-header">
+    <h1>Research & Publications</h1>
+    <p class="research-subtitle">
+      My research focuses on <strong>autonomous driving</strong>, <strong>computer vision</strong>,
+      and <strong>generative AI</strong>. I work on end-to-end learning, attention mechanisms,
+      and neural network interpretability for safety-critical systems.
+    </p>
+  </header>
+
+  <!-- Filter/Search Section (Future Enhancement) -->
+  <div class="research-filters">
+    <div class="filter-info">
+      <p>
+        📊 <strong>{{ site.data.papers | size }} publications</strong>
+        | 🏷️ Topics: Autonomous Driving, Computer Vision, Deep Learning, GANs
+      </p>
+    </div>
+  </div>
+
+  <!-- Featured Papers Section -->
+  {% assign featured_papers = site.data.papers | where: "featured", true %}
+  {% if featured_papers.size > 0 %}
+  <section class="featured-papers-section">
+    <h2>⭐ Featured Work</h2>
+    <div class="papers-grid">
+      {% for paper in featured_papers %}
+        {% include paper-card.html paper=paper %}
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- All Papers Section -->
+  <section class="all-papers-section">
+    <h2>📚 All Publications</h2>
+
+    <!-- Group by year -->
+    {% assign papers_by_year = site.data.papers | group_by: "year" | sort: "name" | reverse %}
+
+    {% for year_group in papers_by_year %}
+      <div class="year-section">
+        <h3 class="year-heading">{{ year_group.name }}</h3>
+        <div class="papers-grid">
+          {% for paper in year_group.items %}
+            {% include paper-card.html paper=paper %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </section>
+
+  <!-- Research Areas / Tags Cloud (Future Enhancement) -->
+  <section class="research-areas">
+    <h2>🔬 Research Areas</h2>
+    <div class="tags-cloud">
+      <span class="area-tag">Autonomous Driving</span>
+      <span class="area-tag">Computer Vision</span>
+      <span class="area-tag">Attention Mechanisms</span>
+      <span class="area-tag">End-to-End Learning</span>
+      <span class="area-tag">Generative AI</span>
+      <span class="area-tag">GANs</span>
+      <span class="area-tag">Neural Networks</span>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <div class="research-cta">
+    <p>
+      💬 Interested in collaborating? Check out my
+      <a href="https://github.com/PDillis" target="_blank">GitHub</a>
+      or read more on my
+      <a href="{{ site.baseurl }}/">blog</a>.
+    </p>
+  </div>
+</div>
