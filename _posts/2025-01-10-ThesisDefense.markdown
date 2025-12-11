@@ -114,13 +114,12 @@ between predicted and ground truth action, meaning we give equal weight when the
 vice versa. What I mean by the question above is that reality is *asymmetric*, as the consequences of accelerating when 
 the correct action is to brake is not the same as the opposite, as the former may lead to a collision with another object
 in an urban scenario. As such, we must either look at asymmetric losses (such as Quantile Regression Loss) or find a way
-to make the loss function adaptive in function of the previous batch, i.e.: 
-\[
-  \tau_{\text{AQR}} = f \left( \mathbb{E}_{a\in\mathcal{B}} [a-\hat{a}] \right)
-\]
+to make the loss function adaptive in function of the previous batch, i.e.:
 
-with $\tau_{\text{AQR}}$ being the quantile to use for the next batch, $a$ the ground truth action, $\hat{a}$ the predicted
-action, and $\mathcal{B}$ the batch of actions.
+$$\tau_{\text{AQR}} = f \left( \mathbb{E}_{a\in\mathcal{B}} [a-\hat{a}] \right)$$
+
+  with $\tau_{\text{AQR}}$ being the quantile to use for the next batch, $a$ the ground truth action, $\hat{a}$ the predicted action, and $\mathcal{B}$ the batch of actions.
+
 * **What should an end-to-end driving car look like?** This one has been something that has bugged me for a while now:
 most work dealing with trust in autonomous vehicles has failed to take into account that these things are basically black
 boxes from the perspective of third parties ***outside*** of the vehicle: if you're crossing a road and a car is coming, 

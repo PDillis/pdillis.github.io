@@ -1,23 +1,95 @@
 # Research Papers
 # Add your papers here in reverse chronological order (newest first)
 
+- title: "Towards Kinetic Manipulation of the Latent Space"
+  authors: ["Diego Porres"]
+  venue: "NeurIPS 2024 Creative AI Track"
+  venue_short: "NeurIPS 2024 Creative AI"
+  year: 2024
+  abstract: "We introduce a novel approach for manipulating the image synthesis process of generative models with a simple camera, enabling dynamic and controllable generation of content without the need of specialized hardware."
+  # Links
+  pdf: "https://arxiv.org/pdf/2409.09867.pdf"
+  arxiv: "https://arxiv.org/abs/2409.09867"
+  code: "https://github.com/PDillis/stylegan3-fun"
+  page: null
+  blog_post: null  # Link to related blog post if exists
+  # Categories (for filtering)
+  tags: [generative AI, latent space, computer-vision, creativity, neural-networks]
+  # Display options
+  featured: true
+  thumbnail: null  # Path to thumbnail image (optional); TODO
+
+- title: "At the edge of a generative cultural precipice"
+  authors: ["Diego Porres", "Alexandra Gomez-Villa"]
+  venue: "CVPR 2024 Workshop on Ethical Considerations in Creative Applications of Computer Vision"
+  venue_short: "CVPR 2024 WECCACV"
+  year: 2024
+  abstract: "Analyzed sustainability and data scarcity challenges in training large-scale generative models and their implications for both new models and incoming artists."
+  # Links
+  pdf: "https://arxiv.org/pdf/2406.08739.pdf"
+  arxiv: "https://arxiv.org/abs/2406.08739"
+  code: null
+  page: null
+  blog_post: null  # Link to related blog post if exists
+  # Categories (for filtering)
+  tags: [generative AI, ethics, creativity, computer-vision]
+  # Display options
+  featured: false
+  thumbnail: null  # Path to thumbnail image (optional); TODO
+
 - title: "Guiding Attention in End-to-End Driving Models"
-  authors: ["Diego Porres", "Yi Xiao", "Gabriel Villalonga", "Alexandre Levy"]
-  venue: "European Conference on Computer Vision (ECCV) Workshop 2022"
-  venue_short: "ECCV Workshop 2022"
-  year: 2022
+  authors: ["Diego Porres", "Yi Xiao", "Gabriel Villalonga", "Alexandre Levy", "Antonio M. López"]
+  venue: "IEEE Intelligent Vehicles Symposium (IV) 2024"
+  venue_short: "IV 2024"
+  year: 2024
   abstract: "We propose a novel method to guide attention in end-to-end driving models, improving interpretability and performance in autonomous driving tasks."
   # Links
-  pdf: "https://arxiv.org/pdf/2209.08133.pdf"
-  arxiv: "https://arxiv.org/abs/2209.08133"
+  pdf: "https://arxiv.org/pdf/2405.00242.pdf"
+  arxiv: "https://arxiv.org/abs/2405.00242"
   code: "https://github.com/PDillis/guiding-attention-e2e"
   page: "https://blog.diegoporres.com/guiding-attention-e2e/"
   blog_post: null  # Link to related blog post if exists
   # Categories (for filtering)
-  tags: [autonomous-driving, computer-vision, attention-mechanisms, end-to-end-learning]
+  tags: [autonomous driving, computer-vision, attention mechanisms, end-to-end learning]
   # Display options
   featured: true
-  thumbnail: null  # Path to thumbnail image (optional)
+  thumbnail: null  # Path to thumbnail image (optional); TODO
+
+- title: "Scaling Vision-based End-to-End Driving with Multi-View Attention Learning"
+  authors: ["Yi Xiao", "Felipe Codevilla", "Diego Porres", "Antonio M. López"]
+  venue: "IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) 2023"
+  venue_short: "IROS 2023"
+  year: 2023
+  abstract: "We present a scalable approach for vision-based end-to-end driving using multi-view attention learning, enhancing the model's ability to process and integrate information from multiple camera views."
+  # Links
+  pdf: "https://arxiv.org/pdf/2302.03198.pdf"
+  arxiv: "https://arxiv.org/abs/2302.03198"
+  code: "https://github.com/yixiao1/CILv2_multiview"
+  page: null
+  blog_post: null  # Link to related blog post if exists
+  # Categories (for filtering)
+  tags: [autonomous driving, computer-vision, attention mechanisms, end-to-end learning]
+  # Display options
+  featured: true
+  thumbnail: null  # Path to thumbnail image (optional); TODO
+
+- title "Discriminator Synthesis: On reusing the other half of Generative Adversarial Networks"
+  authors: ["Diego Porres"]
+  venue: "Neurips 2021 Workshop on Machine Learning for Creativity and Design"
+  venue_short: "NeurIPS 2021 WMLCD"
+  year: 2021
+  abstract: "Call to action to repurpose GAN discriminators for novel image synthesis tasks."
+  # Links
+  pdf: "https://arxiv.org/pdf/2111.02175.pdf"
+  arxiv: "https://arxiv.org/abs/2111.02175"
+  code: "https://github.com/PDillis/stylegan3-fun"
+  page: null
+  blog_post: null  # Link to related blog post if exists
+  # Categories (for filtering)
+  tags: [generative AI, computer-vision, creativity, neural-networks]
+  # Display options
+  featured: false
+  thumbnail: null  # Path to thumbnail image (optional); TODO
 
 # Template for adding new papers:
 # - title: "Your Paper Title"
