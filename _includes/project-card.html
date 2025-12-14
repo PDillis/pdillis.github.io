@@ -1,4 +1,4 @@
-<div class="project-card{% if include.project.image %} has-thumbnail{% endif %}">
+<div class="project-card{% if include.project.image %} has-thumbnail{% endif %}"{% if include.project.github %} data-github-repo="{{ include.project.github | remove: 'https://github.com/' }}"{% endif %}>
   {% if include.project.image %}
   <div class="project-thumbnail">
     <img src="{{ site.baseurl }}/{{ include.project.image }}" alt="{{ include.project.title }} thumbnail" loading="lazy">
@@ -17,8 +17,8 @@
         {% if include.project.category %}
         <span class="project-category-badge">{{ include.project.category }}</span>
         {% endif %}
-        {% if include.project.stars %}
-        <span class="project-stars-badge">⭐ {{ include.project.stars }}</span>
+        {% if include.project.github %}
+        <span class="project-stars-badge" style="display: none;">⭐ <span class="star-count">-</span></span>
         {% endif %}
       </div>
     </div>

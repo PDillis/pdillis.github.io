@@ -71,7 +71,6 @@ Edit `_data/projects.yml`:
   demo: null  # or demo URL
   paper: null  # or arxiv URL
   featured: true
-  stars: 100  # Update manually periodically
   image: "img/project_thumbnails/filename.png"
 ```
 
@@ -80,8 +79,11 @@ Edit `_data/projects.yml`:
 2. Recommended size: 360x240px for papers, 320x200px for projects
 3. Use JPG/PNG format
 
-### Update Star Counts
-Star counts in `_data/projects.yml` need to be updated manually. Check GitHub periodically and update the `stars` field.
+### GitHub Star Counts
+Star counts are fetched automatically from the GitHub API:
+- Cached in localStorage for 24 hours to avoid rate limits
+- Displays formatted counts (e.g., "1.2k" for 1200 stars)
+- Falls back gracefully if API is unavailable
 
 ## Features
 
@@ -99,6 +101,15 @@ Star counts in `_data/projects.yml` need to be updated manually. Check GitHub pe
 - Copy button appears on hover
 - Syntax highlighting via Rouge
 - JetBrains Mono font
+
+### Table of Contents
+- Auto-generated for posts with 3+ headings
+- Smooth scroll navigation
+- Nested hierarchy for h2/h3 headings
+
+### Lazy Loading
+- Images in posts automatically get `loading="lazy"`
+- Improves initial page load performance
 
 ### Math Rendering
 - KaTeX for fast math rendering
@@ -214,10 +225,13 @@ Search and replace in the codebase:
 
 ## Changelog
 
-### 2025-12-14: Bug Fixes & Improvements
+### 2025-12-14: GitHub Stars API, ToC & Optimizations
+- ✅ Added: Dynamic GitHub star counts via API (cached 24h)
+- ✅ Added: Auto-generated table of contents for long posts
+- ✅ Added: Lazy loading for images
+- ✅ Changed: Site title to "Diego Porres" (professional)
 - ✅ Fixed: Paper/project thumbnails now display correctly
 - ✅ Fixed: Theme persistence across page navigation (uses `html.dark-mode`)
-- ✅ Added: Star count badges for projects
 - ✅ Added: Mobile hamburger menu for better navigation
 - ✅ Fixed: papers.yml syntax error
 - ✅ Created: `project-card.html` include component
@@ -242,7 +256,4 @@ Search and replace in the codebase:
 ## TODO
 
 - [ ] Improve syntax highlighting colors for dark mode
-- [ ] Add table of contents for long posts
 - [ ] Consider adding search functionality
-- [ ] Performance optimization (lazy loading, image optimization)
-- [ ] Add more papers and projects to data files
