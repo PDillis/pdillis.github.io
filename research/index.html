@@ -24,19 +24,6 @@ description: Research papers and publications by Diego Porres on autonomous driv
     </div>
   </div>
 
-  <!-- Featured Papers Section -->
-  {% assign featured_papers = site.data.papers | where: "featured", true %}
-  {% if featured_papers.size > 0 %}
-  <section class="featured-papers-section">
-    <h2>⭐ Featured Work</h2>
-    <div class="papers-grid">
-      {% for paper in featured_papers %}
-        {% include paper-card.html paper=paper %}
-      {% endfor %}
-    </div>
-  </section>
-  {% endif %}
-
   <!-- All Papers Section -->
   <section class="all-papers-section">
     <h2>📚 All Publications</h2>

@@ -2,25 +2,65 @@
 # Add your projects here in order of importance/recency
 
 - title: "Guiding Attention in End-to-End Driving Models"
-  description: "PyTorch implementation of attention-guided end-to-end autonomous driving. Includes pre-trained models, training scripts, and visualization tools."
+  description: "Official PyTorch implementation of attention-guided end-to-end vision-based autonomous driving. Includes pre-trained models, training scripts, and visualization tools."
   category: "Research Implementation"
   tags: [autonomous-driving, pytorch, attention, deep-learning]
-  github: "https://github.com/PDillis/guiding-attention-e2e"
+  github: "https://github.com/PDillis/guiding-e2e"
   demo: null
-  paper: "https://arxiv.org/abs/2209.08133"
+  paper: "https://arxiv.org/abs/2405.00242"
   stars: null  # Will be updated automatically if you add GitHub API integration
   featured: true
-  image: null  # Path to project screenshot/thumbnail
+  image: "img/paper_thumbnails/guiding_e2e_thumbnail.png"
 
-- title: "StyleGAN-NADA"
-  description: "Zero-shot domain adaptation for StyleGAN using CLIP. Modify pre-trained GANs with natural language prompts."
-  category: "Generative AI"
-  tags: [stylegan, clip, generative-ai, pytorch]
-  github: "https://github.com/PDillis/stylegan-nada"
+- title: "Sketchbook Drawings"
+  description: "Ongoing experiment where the script is flipped and the reader is invited to draw their own interpretations of the description of a sketch given by an LLM."
+  category: "Research Implementation"
+  tags: [creativity, LLM, human-AI interaction]
+  github: "https://github.com/PDillis/sketchbook"
+  demo: "https://blog.diegoporres.com/sketchbook"
+  paper: null
+  featured: false
+  image: null
+
+- title: "Kinetic Text-to-Image Generation"
+  description: "Experiment extending our kinetic manipulation using a simple camera to manipulate the latent space of text-to-image generative models in real-time."
+  category: "Tool/Demo"
+  tags: [generative-AI, latent-space, computer-vision, creativity]
+  github: "https://github.com/PDillis/kinetic-t2i"
+  demo: null
+  paper: "https://arxiv.org/abs/2409.09867"
+  featured: false
+  image: null
+
+- title: "StyleGAN3 Fun"
+  description: "A collection of fun experiments and tools built around StyleGAN3, including latent space manipulation, image synthesis, and interactive demos."
+  category: "Tool"
+  tags: [generative-AI, stylegan3, latent-space, computer-vision]
+  github: "https://github.com/PDillis/stylegan3-fun"
   demo: null
   paper: null
   featured: true
-  image: null
+  image: "img/project_thumbnails/stylegan3_fun_thumbnail.jpg"
+  
+- title: "StyleGAN2 Fun"
+  description: "In-depth exploration of training strategies and latent space dynamics of pre-trained StyleGAN2 models; precursor to StyleGAN3 fun."
+  category: "Tool"
+  tags: [generative-AI, stylegan2, latent-space, computer-vision]
+  github: "https://github.com/PDillis/stylegan2-fun"
+  demo: null
+  paper: null
+  featured: false
+  image: "img/project_thumbnails/stylegan2_fun_thumbnail.gif"
+
+- title: "Earth View"
+  description: "Simple script to download high-resolution satellite images from beautiful locations pre-selecte by Google Earth. Dataset of 2,000+ images included, with over 1000 new images from the original project."
+  category: "Tool"
+  tags: [satellite-imagery, dataset, python, earth-view]
+  github: "https://github.com/PDillis/earthview"
+  demo: null
+  paper: null
+  featured: false
+  image: "img/project_thumbnails/map_earthview_new.png"
 
 # Template for adding new projects:
 # - title: "Project Name"
