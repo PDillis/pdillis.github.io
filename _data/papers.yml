@@ -53,7 +53,7 @@
   tags: [autonomous driving, computer-vision, attention mechanisms, end-to-end learning]
   # Display options
   featured: true
-  image: "img/paper_thumbnails/guiding_e2e_thumbnail.png"
+  thumbnail: "img/paper_thumbnails/guiding_e2e_thumbnail.png"
 
 - title: "Scaling Vision-based End-to-End Driving with Multi-View Attention Learning"
   authors: ["Yi Xiao", "Felipe Codevilla", "Diego Porres", "Antonio M. López"]
@@ -73,7 +73,7 @@
   featured: true
   thumbnail: "img/paper_thumbnails/cilpp_thumbnail.png"
 
-- title "Discriminator Synthesis: On reusing the other half of Generative Adversarial Networks"
+- title: "Discriminator Synthesis: On reusing the other half of Generative Adversarial Networks"
   authors: ["Diego Porres"]
   venue: "Neurips 2021 Workshop on Machine Learning for Creativity and Design"
   venue_short: "NeurIPS 2021 Workshop ML4CD"

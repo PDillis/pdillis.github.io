@@ -40,6 +40,7 @@
   demo: null
   paper: null
   featured: true
+  stars: 930
   image: "img/project_thumbnails/stylegan3_fun_thumbnail.jpg"
   
 - title: "StyleGAN2 Fun"
@@ -50,6 +51,7 @@
   demo: null
   paper: null
   featured: false
+  stars: 204
   image: "img/project_thumbnails/stylegan2_fun_thumbnail.gif"
 
 - title: "Earth View"

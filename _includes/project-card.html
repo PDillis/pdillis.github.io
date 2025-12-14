@@ -1,0 +1,56 @@
+<div class="project-card{% if include.project.image %} has-thumbnail{% endif %}">
+  {% if include.project.image %}
+  <div class="project-thumbnail">
+    <img src="{{ site.baseurl }}/{{ include.project.image }}" alt="{{ include.project.title }} thumbnail" loading="lazy">
+  </div>
+  {% endif %}
+  <div class="project-card-content">
+    <div class="project-card-header">
+      <h3 class="project-title">
+        {% if include.project.github %}
+          <a href="{{ include.project.github }}" target="_blank">{{ include.project.title }}</a>
+        {% else %}
+          {{ include.project.title }}
+        {% endif %}
+      </h3>
+      <div class="project-badges">
+        {% if include.project.category %}
+        <span class="project-category-badge">{{ include.project.category }}</span>
+        {% endif %}
+        {% if include.project.stars %}
+        <span class="project-stars-badge">⭐ {{ include.project.stars }}</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <p class="project-description">{{ include.project.description }}</p>
+
+    <div class="project-links">
+      {% if include.project.github %}
+        <a href="{{ include.project.github }}" class="project-link github-link" target="_blank">
+          💻 GitHub
+        </a>
+      {% endif %}
+
+      {% if include.project.demo %}
+        <a href="{{ include.project.demo }}" class="project-link demo-link" target="_blank">
+          🚀 Demo
+        </a>
+      {% endif %}
+
+      {% if include.project.paper %}
+        <a href="{{ include.project.paper }}" class="project-link paper-link" target="_blank">
+          📄 Paper
+        </a>
+      {% endif %}
+    </div>
+
+    {% if include.project.tags %}
+    <div class="project-tags">
+      {% for tag in include.project.tags %}
+        <span class="tag">{{ tag }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div><!-- /.project-card-content -->
+</div>
