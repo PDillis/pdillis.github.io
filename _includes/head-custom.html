@@ -43,7 +43,7 @@
     --color-success: #10b981;
   }
 
-  body.dark-mode {
+  html.dark-mode {
     /* Dark Mode */
     --color-primary: #3b82f6;
     --color-secondary: #06b6d4;
@@ -832,6 +832,161 @@
     color: rgba(255, 255, 255, 0.8) !important;
   }
 
+  /* ============================================
+     Thumbnail Styles for Papers and Projects
+     ============================================ */
+
+  /* Paper card with thumbnail - horizontal layout */
+  .paper-card.has-thumbnail {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .paper-thumbnail {
+    flex-shrink: 0;
+    width: 180px;
+    height: 120px;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    background-color: var(--color-code-bg);
+  }
+
+  .paper-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .paper-card:hover .paper-thumbnail img {
+    transform: scale(1.05);
+  }
+
+  .paper-card-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Project card with thumbnail */
+  .project-card.has-thumbnail {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .project-thumbnail {
+    flex-shrink: 0;
+    width: 160px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    background-color: var(--color-code-bg);
+  }
+
+  .project-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .project-card:hover .project-thumbnail img {
+    transform: scale(1.05);
+  }
+
+  .project-card-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Project badges container */
+  .project-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* Star badge for projects */
+  .project-stars-badge {
+    padding: 0.25rem 0.75rem;
+    background-color: #fbbf24;
+    color: #1f2937;
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* ============================================
+     Mobile Navigation - Hamburger Menu
+     ============================================ */
+
+  .nav-toggle {
+    display: none;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    color: white;
+    font-size: 1.5rem;
+    transition: all 0.2s;
+  }
+
+  .nav-toggle:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .nav-menu {
+    display: contents;
+  }
+
+  /* Mobile styles */
+  @media (max-width: 768px) {
+    .nav-toggle {
+      display: block;
+      margin: 0.5rem auto;
+    }
+
+    .nav-menu {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      gap: 0.5rem;
+      padding: 1rem 0;
+    }
+
+    .nav-menu.active {
+      display: flex;
+    }
+
+    .main-nav, .external-nav {
+      flex-direction: column;
+      width: 100%;
+      gap: 0.5rem;
+    }
+
+    .main-nav .btn, .external-nav .btn {
+      width: 100%;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+
+    /* Thumbnail adjustments for mobile */
+    .paper-card.has-thumbnail,
+    .project-card.has-thumbnail {
+      flex-direction: column;
+    }
+
+    .paper-thumbnail,
+    .project-thumbnail {
+      width: 100%;
+      height: 150px;
+    }
+  }
+
   /* Responsive Design */
   @media (max-width: 768px) {
     .hero-title {
@@ -850,16 +1005,69 @@
     .research-areas-grid {
       grid-template-columns: 1fr;
     }
+  }
 
-    .main-nav, .external-nav {
-      flex-direction: column;
-      width: 100%;
+  /* Desktop - ensure nav is visible */
+  @media (min-width: 769px) {
+    .nav-menu {
+      display: contents !important;
     }
 
-    .main-nav .btn, .external-nav .btn {
-      width: 100%;
-      max-width: 300px;
+    .nav-toggle {
+      display: none !important;
     }
+  }
+
+  /* ============================================
+     Table of Contents Styles
+     ============================================ */
+
+  .table-of-contents {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .table-of-contents h4 {
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .toc-list li {
+    margin: 0.5rem 0;
+  }
+
+  .toc-list a {
+    color: var(--color-text-secondary) !important;
+    text-decoration: none;
+    transition: color 0.2s;
+    font-size: 0.95rem;
+  }
+
+  .toc-list a:hover {
+    color: var(--color-primary) !important;
+  }
+
+  .toc-h3 {
+    padding-left: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .toc-h3::before {
+    content: "└ ";
+    color: var(--color-text-tertiary);
   }
 </style>
 
@@ -872,14 +1080,15 @@
 // Prevent flash of unstyled content
 document.documentElement.classList.add('preload');
 
-// Initialize dark mode immediately
+// Initialize dark mode immediately (before body exists)
+// Use document.documentElement (html element) for immediate access
 (function() {
   const savedMode = localStorage.getItem('darkMode');
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
   // Use saved preference, or fall back to system preference
   if (savedMode === 'true' || (savedMode === null && prefersDark)) {
-    document.body.classList.add('dark-mode');
+    document.documentElement.classList.add('dark-mode');
   }
 
   // Remove preload class after a short delay
@@ -890,7 +1099,7 @@ document.documentElement.classList.add('preload');
 
 // Update button icon based on current mode
 function updateToggleButton() {
-  const isDark = document.body.classList.contains('dark-mode');
+  const isDark = document.documentElement.classList.contains('dark-mode');
   const themeIcon = document.getElementById('theme-icon');
   if (themeIcon) {
     themeIcon.textContent = isDark ? '☀️' : '🌙';
@@ -903,8 +1112,8 @@ function updateToggleButton() {
 
 // Toggle function (called by button onclick)
 function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
-  const isDark = document.body.classList.contains('dark-mode');
+  document.documentElement.classList.toggle('dark-mode');
+  const isDark = document.documentElement.classList.contains('dark-mode');
   localStorage.setItem('darkMode', isDark);
   updateToggleButton();
 }
@@ -920,9 +1129,9 @@ if (document.readyState === 'loading') {
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
   if (localStorage.getItem('darkMode') === null) {
     if (e.matches) {
-      document.body.classList.add('dark-mode');
+      document.documentElement.classList.add('dark-mode');
     } else {
-      document.body.classList.remove('dark-mode');
+      document.documentElement.classList.remove('dark-mode');
     }
     updateToggleButton();
   }
@@ -1053,11 +1262,157 @@ function initBibtexButtons() {
   });
 }
 
+// ============================================
+// Lazy Loading for Images
+// ============================================
+
+function initLazyLoading() {
+  // Add lazy loading to all images in post content that don't already have it
+  const images = document.querySelectorAll('.post-content img, .main-content img');
+  images.forEach(img => {
+    if (!img.hasAttribute('loading')) {
+      img.setAttribute('loading', 'lazy');
+    }
+  });
+}
+
+// ============================================
+// Table of Contents for Long Posts
+// ============================================
+
+function generateTableOfContents() {
+  const postContent = document.querySelector('.post-content');
+  if (!postContent) return;
+
+  // Find all headings h2 and h3
+  const headings = postContent.querySelectorAll('h2, h3');
+  if (headings.length < 3) return; // Only show ToC for posts with 3+ headings
+
+  // Create ToC container
+  const tocContainer = document.createElement('nav');
+  tocContainer.className = 'table-of-contents';
+  tocContainer.innerHTML = '<h4>Table of Contents</h4>';
+
+  const tocList = document.createElement('ul');
+  tocList.className = 'toc-list';
+
+  headings.forEach((heading, index) => {
+    // Ensure heading has an ID
+    if (!heading.id) {
+      heading.id = 'heading-' + index;
+    }
+
+    const li = document.createElement('li');
+    li.className = heading.tagName.toLowerCase() === 'h3' ? 'toc-h3' : 'toc-h2';
+
+    const link = document.createElement('a');
+    link.href = '#' + heading.id;
+    link.textContent = heading.textContent;
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      heading.scrollIntoView({ behavior: 'smooth' });
+      history.pushState(null, null, '#' + heading.id);
+    });
+
+    li.appendChild(link);
+    tocList.appendChild(li);
+  });
+
+  tocContainer.appendChild(tocList);
+
+  // Insert ToC at the beginning of post content
+  postContent.insertBefore(tocContainer, postContent.firstChild);
+}
+
+// ============================================
+// GitHub Stars Fetching
+// ============================================
+
+const GITHUB_CACHE_KEY = 'github_stars_cache';
+const GITHUB_CACHE_TTL = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
+function getStarsCache() {
+  try {
+    const cache = localStorage.getItem(GITHUB_CACHE_KEY);
+    return cache ? JSON.parse(cache) : {};
+  } catch {
+    return {};
+  }
+}
+
+function setStarsCache(cache) {
+  try {
+    localStorage.setItem(GITHUB_CACHE_KEY, JSON.stringify(cache));
+  } catch {
+    // localStorage might be full or disabled
+  }
+}
+
+function formatStarCount(count) {
+  if (count >= 1000) {
+    return (count / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+  }
+  return count.toString();
+}
+
+async function fetchGitHubStars(repoPath) {
+  const cache = getStarsCache();
+  const cached = cache[repoPath];
+
+  // Check if we have a fresh cached value
+  if (cached && (Date.now() - cached.timestamp) < GITHUB_CACHE_TTL) {
+    return cached.stars;
+  }
+
+  try {
+    const response = await fetch(`https://api.github.com/repos/${repoPath}`);
+    if (!response.ok) {
+      throw new Error(`GitHub API error: ${response.status}`);
+    }
+    const data = await response.json();
+    const stars = data.stargazers_count;
+
+    // Update cache
+    cache[repoPath] = { stars, timestamp: Date.now() };
+    setStarsCache(cache);
+
+    return stars;
+  } catch (err) {
+    console.warn(`Failed to fetch stars for ${repoPath}:`, err);
+    // Return cached value even if stale, or null
+    return cached ? cached.stars : null;
+  }
+}
+
+async function initGitHubStars() {
+  const projectCards = document.querySelectorAll('.project-card[data-github-repo]');
+
+  for (const card of projectCards) {
+    const repoPath = card.getAttribute('data-github-repo');
+    if (!repoPath) continue;
+
+    const starsBadge = card.querySelector('.project-stars-badge');
+    const starCount = card.querySelector('.star-count');
+
+    if (!starsBadge || !starCount) continue;
+
+    const stars = await fetchGitHubStars(repoPath);
+
+    if (stars !== null) {
+      starCount.textContent = formatStarCount(stars);
+      starsBadge.style.display = '';
+    }
+  }
+}
+
 // Initialize when DOM is ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', function() {
     addCopyButtonsToCodeBlocks();
     initBibtexButtons();
+    initGitHubStars();
+    initLazyLoading();
+    generateTableOfContents();
     if (typeof renderMathInElement === 'undefined') {
       // KaTeX not loaded yet, will be called by onload
       console.log('KaTeX not ready, waiting...');
@@ -1069,6 +1424,9 @@ if (document.readyState === 'loading') {
   // DOM already loaded
   addCopyButtonsToCodeBlocks();
   initBibtexButtons();
+  initGitHubStars();
+  initLazyLoading();
+  generateTableOfContents();
   if (typeof renderMathInElement !== 'undefined') {
     initKaTeX();
   }

@@ -1,18 +1,25 @@
-<div class="paper-card">
-  <div class="paper-card-header">
-    <h3 class="paper-title">
-      {% if include.paper.page %}<a href="{{ include.paper.page }}" target="_blank">{{ include.paper.title }}</a>{% else %}{{ include.paper.title }}{% endif %}
-    </h3>
-    <div class="paper-venue">
-      <span class="venue-badge">{{ include.paper.venue_short }}</span>
-      {% if include.paper.featured %}<span class="featured-badge">⭐ Featured</span>{% endif %}
+<div class="paper-card{% if include.paper.thumbnail or include.paper.image %} has-thumbnail{% endif %}">
+  {% assign thumb = include.paper.thumbnail | default: include.paper.image %}
+  {% if thumb %}
+  <div class="paper-thumbnail">
+    <img src="{{ site.baseurl }}/{{ thumb }}" alt="{{ include.paper.title }} thumbnail" loading="lazy">
+  </div>
+  {% endif %}
+  <div class="paper-card-content">
+    <div class="paper-card-header">
+      <h3 class="paper-title">
+        {% if include.paper.page %}<a href="{{ include.paper.page }}" target="_blank">{{ include.paper.title }}</a>{% else %}{{ include.paper.title }}{% endif %}
+      </h3>
+      <div class="paper-venue">
+        <span class="venue-badge">{{ include.paper.venue_short }}</span>
+        {% if include.paper.featured %}<span class="featured-badge">⭐ Featured</span>{% endif %}
+      </div>
     </div>
-  </div>
 
-  <div class="paper-authors">
-    {% assign author_list = include.paper.authors | join: ", " %}
-    {{ author_list | replace: "Diego Porres", "<strong>Diego Porres</strong>" }}
-  </div>
+    <div class="paper-authors">
+      {% assign author_list = include.paper.authors | join: ", " %}
+      {{ author_list | replace: "Diego Porres", "<strong>Diego Porres</strong>" }}
+    </div>
 
   {% if include.paper.abstract %}
   <div class="paper-abstract">
@@ -35,4 +42,5 @@
     {% for tag in include.paper.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
   </div>
   {% endif %}
+  </div><!-- /.paper-card-content -->
 </div>

@@ -41,7 +41,7 @@
   paper: null
   featured: true
   image: "img/project_thumbnails/stylegan3_fun_thumbnail.jpg"
-  
+
 - title: "StyleGAN2 Fun"
   description: "In-depth exploration of training strategies and latent space dynamics of pre-trained StyleGAN2 models; precursor to StyleGAN3 fun."
   category: "Tool"

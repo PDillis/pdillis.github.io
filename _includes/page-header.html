@@ -2,21 +2,38 @@
   <h1 class="project-name"><a href="{{ site.baseurl }}/" style="color: inherit; text-decoration: none;">{{ site.title }}</a></h1>
   <h2 class="project-tagline">{{ site.tagline }}</h2>
 
-  <!-- Main Navigation -->
-  <div class="main-nav">
-    <a href="{{ site.baseurl }}/research/" class="btn nav-btn">📚 Research</a>
-    <a href="{{ site.baseurl }}/projects/" class="btn nav-btn">💡 Projects</a>
-    <a href="{{ site.baseurl }}/" class="btn nav-btn">✍️ Blog</a>
-  </div>
+  <!-- Hamburger Menu Toggle (Mobile Only) -->
+  <button class="nav-toggle" onclick="toggleMobileNav()" aria-label="Toggle navigation menu">
+    <span id="nav-icon">☰</span>
+  </button>
 
-  <!-- External Links -->
-  <div class="external-nav">
-    <a href="https://github.com/PDillis/pdillis.github.io/blob/master/_data/Resume_DiegoPorres.pdf" class="btn" target="_blank">📄 CV</a>
-    <a href="https://github.com/PDillis/" class="btn" target="_blank">💻 GitHub</a>
-    <a href="https://scholar.google.com/citations?user=Xuv3WuIAAAAJ" class="btn" target="_blank">🎓 Scholar</a>
-    <a href="https://www.linkedin.com/in/diego-porres/" class="btn" target="_blank">💼 LinkedIn</a>
-    <button id="dark-mode-toggle" class="btn" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
-      <span id="theme-icon">🌙</span>
-    </button>
+  <!-- Navigation Menu (collapsible on mobile) -->
+  <div class="nav-menu" id="nav-menu">
+    <!-- Main Navigation -->
+    <div class="main-nav">
+      <a href="{{ site.baseurl }}/research/" class="btn nav-btn">📚 Research</a>
+      <a href="{{ site.baseurl }}/projects/" class="btn nav-btn">💡 Projects</a>
+      <a href="{{ site.baseurl }}/" class="btn nav-btn">✍️ Blog</a>
+    </div>
+
+    <!-- External Links -->
+    <div class="external-nav">
+      <a href="https://github.com/PDillis/pdillis.github.io/blob/master/_data/Resume_DiegoPorres.pdf" class="btn" target="_blank">📄 CV</a>
+      <a href="https://github.com/PDillis/" class="btn" target="_blank">💻 GitHub</a>
+      <a href="https://scholar.google.com/citations?user=Xuv3WuIAAAAJ" class="btn" target="_blank">🎓 Scholar</a>
+      <a href="https://www.linkedin.com/in/diego-porres/" class="btn" target="_blank">💼 LinkedIn</a>
+      <button id="dark-mode-toggle" class="btn" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+        <span id="theme-icon">🌙</span>
+      </button>
+    </div>
   </div>
 </section>
+
+<script>
+function toggleMobileNav() {
+  const navMenu = document.getElementById('nav-menu');
+  const navIcon = document.getElementById('nav-icon');
+  navMenu.classList.toggle('active');
+  navIcon.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+}
+</script>

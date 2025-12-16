@@ -20,48 +20,7 @@ description: Open-source projects, research implementations, and code repositori
     <h2>⭐ Featured Projects</h2>
     <div class="projects-grid">
       {% for project in featured_projects %}
-        <div class="project-card">
-          <div class="project-card-header">
-            <h3 class="project-title">
-              {% if project.github %}
-                <a href="{{ project.github }}" target="_blank">{{ project.title }}</a>
-              {% else %}
-                {{ project.title }}
-              {% endif %}
-            </h3>
-            <span class="project-category-badge">{{ project.category }}</span>
-          </div>
-
-          <p class="project-description">{{ project.description }}</p>
-
-          <div class="project-links">
-            {% if project.github %}
-              <a href="{{ project.github }}" class="project-link github-link" target="_blank">
-                💻 GitHub
-              </a>
-            {% endif %}
-
-            {% if project.demo %}
-              <a href="{{ project.demo }}" class="project-link demo-link" target="_blank">
-                🚀 Demo
-              </a>
-            {% endif %}
-
-            {% if project.paper %}
-              <a href="{{ project.paper }}" class="project-link paper-link" target="_blank">
-                📄 Paper
-              </a>
-            {% endif %}
-          </div>
-
-          {% if project.tags %}
-          <div class="project-tags">
-            {% for tag in project.tags %}
-              <span class="tag">{{ tag }}</span>
-            {% endfor %}
-          </div>
-          {% endif %}
-        </div>
+        {% include project-card.html project=project %}
       {% endfor %}
     </div>
   </section>
@@ -79,47 +38,7 @@ description: Open-source projects, research implementations, and code repositori
         <h3 class="category-heading">{{ category_group.name }}</h3>
         <div class="projects-grid">
           {% for project in category_group.items %}
-            <div class="project-card">
-              <div class="project-card-header">
-                <h4 class="project-title">
-                  {% if project.github %}
-                    <a href="{{ project.github }}" target="_blank">{{ project.title }}</a>
-                  {% else %}
-                    {{ project.title }}
-                  {% endif %}
-                </h4>
-              </div>
-
-              <p class="project-description">{{ project.description }}</p>
-
-              <div class="project-links">
-                {% if project.github %}
-                  <a href="{{ project.github }}" class="project-link github-link" target="_blank">
-                    💻 GitHub
-                  </a>
-                {% endif %}
-
-                {% if project.demo %}
-                  <a href="{{ project.demo }}" class="project-link demo-link" target="_blank">
-                    🚀 Demo
-                  </a>
-                {% endif %}
-
-                {% if project.paper %}
-                  <a href="{{ project.paper }}" class="project-link paper-link" target="_blank">
-                    📄 Paper
-                  </a>
-                {% endif %}
-              </div>
-
-              {% if project.tags %}
-              <div class="project-tags">
-                {% for tag in project.tags %}
-                  <span class="tag">{{ tag }}</span>
-                {% endfor %}
-              </div>
-              {% endif %}
-            </div>
+            {% include project-card.html project=project %}
           {% endfor %}
         </div>
       </div>
