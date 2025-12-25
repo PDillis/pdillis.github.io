@@ -5,6 +5,21 @@
   {% include head-custom.html %}
 
   <body>
+    <!-- Sticky Navigation (appears on scroll) -->
+    <nav class="sticky-nav" id="sticky-nav">
+      <span class="site-name">Diego Porres</span>
+      <a href="{{ site.baseurl }}/research/">Research</a>
+      <span class="nav-separator">|</span>
+      <a href="{{ site.baseurl }}/projects/">Projects</a>
+      <span class="nav-separator">|</span>
+      <a href="{{ site.baseurl }}/blog/">Blog</a>
+      <span class="nav-separator">|</span>
+      <button onclick="openSearch()" style="background: none; border: none; cursor: pointer; font-size: 1rem;" title="Search (Ctrl+K)">🔍</button>
+      <button id="sticky-dark-toggle" onclick="toggleDarkMode()" style="background: none; border: none; cursor: pointer; font-size: 1rem;">
+        <span id="sticky-theme-icon">🌙</span>
+      </button>
+    </nav>
+
     {% include page-header.html %}
 
     <section class="main-content">
@@ -16,6 +31,8 @@
       {% include footer-scripts.html %}
 
     </section>
+
+    {% include search.html %}
 
   </body>
 </html>
