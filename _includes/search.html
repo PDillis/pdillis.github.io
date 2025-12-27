@@ -2,8 +2,14 @@
 <div id="search-modal" class="search-modal" style="display: none;">
   <div class="search-modal-content">
     <div class="search-header">
-      <input type="text" id="search-input" placeholder="Search posts..." autocomplete="off">
+      <input type="text" id="search-input" placeholder="Search posts, papers, projects..." autocomplete="off">
       <button class="search-close" onclick="closeSearch()">&times;</button>
+    </div>
+    <div class="search-filters">
+      <button class="search-filter-btn active" data-filter="all">All</button>
+      <button class="search-filter-btn" data-filter="post">Posts</button>
+      <button class="search-filter-btn" data-filter="paper">Papers</button>
+      <button class="search-filter-btn" data-filter="project">Projects</button>
     </div>
     <div id="search-results" class="search-results"></div>
   </div>
@@ -120,6 +126,88 @@
     color: var(--color-text-secondary);
   }
 
+  /* Search filters */
+  .search-filters {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+    flex-wrap: wrap;
+  }
+
+  .search-filter-btn {
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    background: var(--color-surface);
+    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .search-filter-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .search-filter-btn.active {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+  }
+
+  /* Result type badges */
+  .result-type-badge {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+
+  .result-type-badge.post {
+    background: var(--color-secondary);
+    color: white;
+  }
+
+  .result-type-badge.paper {
+    background: var(--color-primary);
+    color: white;
+  }
+
+  .result-type-badge.project {
+    background: var(--color-accent);
+    color: white;
+  }
+
+  .search-result-item:hover .result-type-badge {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .result-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.25rem;
+  }
+
+  .result-venue {
+    font-size: 0.8rem;
+    color: var(--color-text-tertiary);
+    font-style: italic;
+  }
+
+  .search-result-item:hover .result-venue {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+
   /* Keyboard shortcut hint */
   .search-hint {
     text-align: center;
@@ -139,19 +227,52 @@
 </style>
 
 <script>
-// Search data will be populated by Jekyll
+// Search data will be populated by Jekyll - includes posts, papers, and projects
 const searchData = [
+  // Blog Posts
   {% for post in site.posts %}
   {
+    type: "post",
     title: {{ post.title | jsonify }},
     url: "{{ site.baseurl }}{{ post.url }}",
     date: "{{ post.date | date: '%B %d, %Y' }}",
     excerpt: {{ post.excerpt | strip_html | truncatewords: 30 | jsonify }},
     content: {{ post.content | strip_html | truncatewords: 200 | jsonify }},
-    tags: {{ post.tags | jsonify }}
+    tags: {{ post.tags | jsonify }},
+    venue: null
+  },
+  {% endfor %}
+  // Research Papers
+  {% for paper in site.data.papers %}
+  {
+    type: "paper",
+    title: {{ paper.title | jsonify }},
+    url: {% if paper.page %}{{ paper.page | jsonify }}{% elsif paper.arxiv %}{{ paper.arxiv | jsonify }}{% elsif paper.pdf %}{{ paper.pdf | jsonify }}{% else %}null{% endif %},
+    date: "{{ paper.year }}",
+    excerpt: {{ paper.abstract | default: "" | jsonify }},
+    content: {{ paper.abstract | default: "" | jsonify }},
+    tags: {{ paper.tags | jsonify }},
+    venue: {{ paper.venue_short | jsonify }},
+    authors: {{ paper.authors | jsonify }}
+  },
+  {% endfor %}
+  // Projects
+  {% for project in site.data.projects %}
+  {
+    type: "project",
+    title: {{ project.title | jsonify }},
+    url: {{ project.github | jsonify }},
+    date: null,
+    excerpt: {{ project.description | default: "" | jsonify }},
+    content: {{ project.description | default: "" | jsonify }},
+    tags: {{ project.tags | jsonify }},
+    venue: null,
+    category: {{ project.category | jsonify }}
   }{% unless forloop.last %},{% endunless %}
   {% endfor %}
 ];
+
+let activeFilter = 'all';
 
 function openSearch() {
   document.getElementById('search-modal').style.display = 'flex';
@@ -166,6 +287,17 @@ function closeSearch() {
   document.body.style.overflow = '';
 }
 
+function setFilter(filter) {
+  activeFilter = filter;
+  // Update active button
+  document.querySelectorAll('.search-filter-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.filter === filter);
+  });
+  // Re-run search with current query
+  const query = document.getElementById('search-input').value;
+  performSearch(query);
+}
+
 function performSearch(query) {
   const resultsContainer = document.getElementById('search-results');
 
@@ -175,30 +307,49 @@ function performSearch(query) {
   }
 
   const queryLower = query.toLowerCase();
-  const results = searchData.filter(post => {
-    return post.title.toLowerCase().includes(queryLower) ||
-           post.excerpt.toLowerCase().includes(queryLower) ||
-           post.content.toLowerCase().includes(queryLower) ||
-           (post.tags && post.tags.some(tag => tag.toLowerCase().includes(queryLower)));
+  let results = searchData.filter(item => {
+    // Apply type filter
+    if (activeFilter !== 'all' && item.type !== activeFilter) {
+      return false;
+    }
+    // Search in title, excerpt, content, tags
+    const matchesTitle = item.title && item.title.toLowerCase().includes(queryLower);
+    const matchesExcerpt = item.excerpt && item.excerpt.toLowerCase().includes(queryLower);
+    const matchesContent = item.content && item.content.toLowerCase().includes(queryLower);
+    const matchesTags = item.tags && item.tags.some(tag => tag.toLowerCase().includes(queryLower));
+    const matchesVenue = item.venue && item.venue.toLowerCase().includes(queryLower);
+    const matchesAuthors = item.authors && item.authors.some(author => author.toLowerCase().includes(queryLower));
+
+    return matchesTitle || matchesExcerpt || matchesContent || matchesTags || matchesVenue || matchesAuthors;
   });
 
   if (results.length === 0) {
-    resultsContainer.innerHTML = '<div class="no-results">No posts found matching your search.</div>';
+    const filterText = activeFilter === 'all' ? 'results' : activeFilter + 's';
+    resultsContainer.innerHTML = `<div class="no-results">No ${filterText} found matching your search.</div>`;
     return;
   }
 
-  resultsContainer.innerHTML = results.map(post => `
-    <div class="search-result-item" onclick="window.location.href='${post.url}'">
-      <div class="result-title">${highlightMatch(post.title, query)}</div>
-      <div class="result-excerpt">${highlightMatch(post.excerpt, query)}</div>
-      <div class="result-date">${post.date}</div>
-    </div>
-  `).join('');
+  resultsContainer.innerHTML = results.map(item => {
+    const typeBadge = `<span class="result-type-badge ${item.type}">${item.type}</span>`;
+    const venueInfo = item.venue ? `<span class="result-venue">${item.venue}</span>` : '';
+    const dateInfo = item.date ? `<span class="result-date">${item.date}</span>` : '';
+
+    return `
+      <div class="search-result-item" onclick="window.location.href='${item.url}'">
+        <div class="result-title">${highlightMatch(item.title, query)}${typeBadge}</div>
+        <div class="result-excerpt">${highlightMatch(item.excerpt || '', query)}</div>
+        <div class="result-meta">
+          ${dateInfo}
+          ${venueInfo}
+        </div>
+      </div>
+    `;
+  }).join('');
 }
 
 function highlightMatch(text, query) {
-  if (!query) return text;
-  const regex = new RegExp(`(${query})`, 'gi');
+  if (!query || !text) return text || '';
+  const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
   return text.replace(regex, '<mark>$1</mark>');
 }
 
@@ -208,6 +359,11 @@ document.addEventListener('DOMContentLoaded', function() {
   if (searchInput) {
     searchInput.addEventListener('input', (e) => performSearch(e.target.value));
   }
+
+  // Filter button click handlers
+  document.querySelectorAll('.search-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => setFilter(btn.dataset.filter));
+  });
 
   // Close on escape
   document.addEventListener('keydown', (e) => {

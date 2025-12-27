@@ -225,6 +225,14 @@ Search and replace in the codebase:
 
 ## Changelog
 
+### 2025-12-27: Expanded Search & Interactive Generative Models Post
+- ✅ Added: Search now includes papers and projects (not just blog posts)
+- ✅ Added: Type badges (Post, Paper, Project) in search results
+- ✅ Added: Search filters to filter by content type
+- ✅ Added: Author and venue search for papers
+- ✅ Added: New blog post "Interactive 1D Generative Models" with TensorFlow.js
+- ✅ Added: In-browser GAN training with real-time visualization
+
 ### 2025-12-14: GitHub Stars API, ToC & Optimizations
 - ✅ Added: Dynamic GitHub star counts via API (cached 24h)
 - ✅ Added: Auto-generated table of contents for long posts
@@ -256,4 +264,4 @@ Search and replace in the codebase:
 ## TODO
 
 - [ ] Improve syntax highlighting colors for dark mode
-- [ ] Consider adding search functionality
+- [x] Consider adding search functionality (expanded to include papers/projects with type badges)
