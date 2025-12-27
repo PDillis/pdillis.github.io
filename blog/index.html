@@ -1,0 +1,89 @@
+---
+layout: default
+title: Blog
+description: Blog posts on machine learning, computer vision, generative AI, and autonomous driving by Diego Porres.
+---
+
+<div class="blog-page">
+  <header class="blog-header">
+    <h1>Blog</h1>
+    <p class="blog-subtitle">
+      Thoughts on machine learning, computer vision, generative AI, and autonomous driving.
+    </p>
+  </header>
+
+  <!-- All Posts -->
+  <section class="all-posts-section">
+    {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+
+    {% for year_group in posts_by_year %}
+      <div class="year-section">
+        <h2 class="year-heading">{{ year_group.name }}</h2>
+        <div class="posts-list">
+          {% for post in year_group.items %}
+            <article class="post-item">
+              <div class="post-meta">
+                <span class="post-date">📅 {{ post.date | date: "%B %d, %Y" }}</span>
+                {% assign words = post.content | number_of_words %}
+                {% assign reading_time = words | divided_by: 200 | plus: 1 %}
+                <span class="post-reading-time">⏱️ {{ reading_time }} min read</span>
+                {% if post.tags %}
+                  <span class="post-tags">
+                    {% for tag in post.tags limit:3 %}
+                      <span class="tag-mini">{{ tag }}</span>
+                    {% endfor %}
+                  </span>
+                {% endif %}
+              </div>
+              <h3 class="post-title">
+                <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+              </h3>
+              {% if post.excerpt %}
+                <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
+              {% endif %}
+              <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read more →</a>
+            </article>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </section>
+</div>
+
+<style>
+  .blog-page {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .blog-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .blog-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary) !important;
+  }
+
+  .blog-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary) !important;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .year-section {
+    margin-bottom: 3rem;
+  }
+
+  .year-heading {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--color-primary) !important;
+    border-bottom: 2px solid var(--color-border);
+    padding-bottom: 0.5rem;
+  }
+</style>
