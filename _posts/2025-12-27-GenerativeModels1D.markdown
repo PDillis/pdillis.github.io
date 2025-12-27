@@ -6,13 +6,13 @@ categories: main
 tags: [generative-AI, deep-learning, tensorflow-js, interactive, tutorial]
 ---
 
-What if you could train a neural network to learn *any* probability distribution, right here in your browser? In this interactive tutorial, we'll explore the fundamentals of generative modeling by starting with the simplest possible case: one-dimensional data.
+Generative Adversarial Networks, Variational Autoencoders, Diffusion Models—these algorithms power much of the recent progress in image synthesis. Yet when learning about them, most tutorials jump straight to generating images. While visually impressive, this approach obscures the underlying mechanics behind layers of convolutions, normalization tricks, and massive datasets.
 
-By working in 1D, we strip away the complexity of images and focus on what really matters: **how do these models actually work?** You'll see GANs, VAEs, and diffusion models learn distributions in real-time, making it easier to understand their dynamics before scaling up to more complex domains.
+This post takes a different approach: we'll implement and train generative models on **one-dimensional data**, directly in your browser using TensorFlow.js. By stripping away the complexity of images, we can focus on what these models actually do and observe their training dynamics in real-time.
 
 ## Why 1D?
 
-When learning about generative models, most tutorials jump straight to generating images. While visually impressive, this approach hides the underlying mechanics. A 1D setting lets us:
+Working with 1D distributions offers several pedagogical advantages:
 
 1. **Visualize everything**: We can plot the true distribution, generated samples, and model outputs on simple 2D graphs
 2. **Train instantly**: Models converge in seconds, not hours
