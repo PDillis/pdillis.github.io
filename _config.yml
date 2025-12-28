@@ -17,6 +17,7 @@ theme:              jekyll-theme-cayman
 permalink:          pretty
 
 highlighter:        rouge
+future:             true
 kramdown:
   input:            GFM
   auto_ids:         true
