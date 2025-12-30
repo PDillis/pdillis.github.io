@@ -265,3 +265,5 @@ Search and replace in the codebase:
 
 - [ ] Improve syntax highlighting colors for dark mode
 - [x] Consider adding search functionality (expanded to include papers/projects with type badges)
+- [ ] Anchor table of contents to left side of screen (sticky TOC that follows scroll)
+- [ ] Make TOC collapsible
