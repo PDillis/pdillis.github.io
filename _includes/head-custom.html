@@ -1185,57 +1185,6 @@
     }
   }
 
-  /* ============================================
-     Table of Contents Styles
-     ============================================ */
-
-  .table-of-contents {
-    background-color: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 0.75rem;
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .table-of-contents h4 {
-    margin: 0 0 1rem 0;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-primary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .toc-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .toc-list li {
-    margin: 0.5rem 0;
-  }
-
-  .toc-list a {
-    color: var(--color-text-secondary) !important;
-    text-decoration: none;
-    transition: color 0.2s;
-    font-size: 0.95rem;
-  }
-
-  .toc-list a:hover {
-    color: var(--color-primary) !important;
-  }
-
-  .toc-h3 {
-    padding-left: 1rem;
-    font-size: 0.9rem;
-  }
-
-  .toc-h3::before {
-    content: "└ ";
-    color: var(--color-text-tertiary);
-  }
 </style>
 
 
@@ -1443,53 +1392,6 @@ function initLazyLoading() {
   });
 }
 
-// ============================================
-// Table of Contents for Long Posts
-// ============================================
-
-function generateTableOfContents() {
-  const postContent = document.querySelector('.post-content');
-  if (!postContent) return;
-
-  // Find all headings h2 and h3
-  const headings = postContent.querySelectorAll('h2, h3');
-  if (headings.length < 3) return; // Only show ToC for posts with 3+ headings
-
-  // Create ToC container
-  const tocContainer = document.createElement('nav');
-  tocContainer.className = 'table-of-contents';
-  tocContainer.innerHTML = '<h4>Table of Contents</h4>';
-
-  const tocList = document.createElement('ul');
-  tocList.className = 'toc-list';
-
-  headings.forEach((heading, index) => {
-    // Ensure heading has an ID
-    if (!heading.id) {
-      heading.id = 'heading-' + index;
-    }
-
-    const li = document.createElement('li');
-    li.className = heading.tagName.toLowerCase() === 'h3' ? 'toc-h3' : 'toc-h2';
-
-    const link = document.createElement('a');
-    link.href = '#' + heading.id;
-    link.textContent = heading.textContent;
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      heading.scrollIntoView({ behavior: 'smooth' });
-      history.pushState(null, null, '#' + heading.id);
-    });
-
-    li.appendChild(link);
-    tocList.appendChild(li);
-  });
-
-  tocContainer.appendChild(tocList);
-
-  // Insert ToC at the beginning of post content
-  postContent.insertBefore(tocContainer, postContent.firstChild);
-}
 
 // ============================================
 // GitHub Stars Fetching
@@ -1580,21 +1482,17 @@ if (document.readyState === 'loading') {
     initBibtexButtons();
     initGitHubStars();
     initLazyLoading();
-    generateTableOfContents();
     if (typeof renderMathInElement === 'undefined') {
-      // KaTeX not loaded yet, will be called by onload
       console.log('KaTeX not ready, waiting...');
     } else {
       initKaTeX();
     }
   });
 } else {
-  // DOM already loaded
   addCopyButtonsToCodeBlocks();
   initBibtexButtons();
   initGitHubStars();
   initLazyLoading();
-  generateTableOfContents();
   if (typeof renderMathInElement !== 'undefined') {
     initKaTeX();
   }
