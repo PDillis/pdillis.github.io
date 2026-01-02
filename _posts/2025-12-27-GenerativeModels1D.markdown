@@ -27,32 +27,34 @@ tags: [generative-AI, deep-learning, tensorflow-js, interactive, tutorial]
         <option value="1024">1024</option>
         <option value="2048" selected>2048</option>
         <option value="4096">4096</option>
+        <option value="10000">10000</option>
       </select>
     </div>
     <div class="control-group">
       <label>Batch:</label>
       <select id="batch-size">
+        <option value="32">32</option>
         <option value="64">64</option>
-        <option value="128">128</option>
-        <option value="256" selected>256</option>
+        <option value="128" selected>128</option>
+        <option value="256">256</option>
       </select>
     </div>
     <div class="control-group">
       <label>LR:</label>
-      <input type="range" id="learning-rate" min="-4" max="-2" step="0.1" value="-3">
-      <span id="lr-display">1e-3</span>
+      <input type="range" id="learning-rate" min="-4" max="-1" step="0.1" value="-2.5">
+      <span id="lr-display">3e-3</span>
     </div>
     <div class="control-group">
       <label>Latent:</label>
-      <input type="range" id="latent-dim" min="1" max="16" value="5">
-      <span id="latent-display">5</span>
+      <input type="range" id="latent-dim" min="1" max="32" value="10">
+      <span id="latent-dim-display">10</span>
     </div>
   </div>
   <div class="control-grid">
     <div class="control-group">
       <label>G Layers:</label>
-      <input type="range" id="g-layers" min="1" max="4" value="2">
-      <span id="g-layers-display">2</span>
+      <input type="range" id="g-layers" min="1" max="4" value="1">
+      <span id="g-layers-display">1</span>
     </div>
     <div class="control-group">
       <label>G Width:</label>
@@ -61,8 +63,8 @@ tags: [generative-AI, deep-learning, tensorflow-js, interactive, tutorial]
     </div>
     <div class="control-group">
       <label>D Layers:</label>
-      <input type="range" id="d-layers" min="1" max="4" value="2">
-      <span id="d-layers-display">2</span>
+      <input type="range" id="d-layers" min="1" max="4" value="1">
+      <span id="d-layers-display">1</span>
     </div>
     <div class="control-group">
       <label>D Width:</label>
@@ -102,7 +104,7 @@ tags: [generative-AI, deep-learning, tensorflow-js, interactive, tutorial]
 
 This post is based on an exercise I developed for the [Master in Computer Vision](https://pagines.uab.cat/mcv/) at the [Computer Vision Center (CVC)](https://www.cvc.uab.es/). The goal: understand GANs by working with 1D data instead of images.
 
-[Generative Adversarial Networks](https://en.wikipedia.org/wiki/Generative_adversarial_network) (GANs) are one of the most widely known algorithms in Machine Learning. Unlike discriminative models that learn $P(y|x)$, GANs are *generative* models that learn $P(x)$ directly—they learn to generate data.
+[Generative Adversarial Networks](https://en.wikipedia.org/wiki/Generative_adversarial_network) (GANs) are one of the most widely known algorithms in Machine Learning. Unlike discriminative models that learn $P(y \mid x)$, GANs are *generative* models that learn $P(x)$ directly—they learn to generate data.
 
 While images are the most common application, training GANs on 1D data offers several advantages for learning:
 
@@ -182,8 +184,10 @@ We'd get noise. The number of possible images is $256^{196608}$—an astronomica
 
 Here's the key insight: **meaningful images lie on a lower-dimensional manifold**. All images of dogs, for example, can be parameterized by a relatively small number of factors: breed, pose, lighting, background, etc. This is the [Manifold Hypothesis](https://arxiv.org/abs/1310.0425).
 
-![Space of images](https://user-images.githubusercontent.com/24496178/75053034-2b9f1c00-54d1-11ea-98a7-6ad9a4b79deb.png)
-*Different regions of the high-dimensional image space contain different categories of images. The manifold of dogs is distinct from the manifold of cats.*
+<div class="figure-container">
+<img src="https://user-images.githubusercontent.com/24496178/75723169-0e422d80-5cdc-11ea-88e8-0c0685a07372.png" alt="Space of images showing different manifolds for dogs, cats, cars, etc.">
+<p class="figure-caption">Different regions of the high-dimensional image space contain different categories of images. The manifold of dogs is distinct from the manifold of cats.</p>
+</div>
 
 ---
 
@@ -216,8 +220,10 @@ $$\min_G \max_D V(D, G) = \mathbb{E}_{x \sim p_{\text{data}}}[\log D(x)] + \math
 - **Discriminator** $D$: Tries to distinguish real samples from fake ones. It wants $D(x) \to 1$ for real data and $D(G(z)) \to 0$ for fake data.
 - **Generator** $G$: Tries to fool $D$. It wants $D(G(z)) \to 1$.
 
-![GAN Architecture](https://user-images.githubusercontent.com/24496178/73466054-96ea4880-4381-11ea-9898-3e0dcbfaa451.png)
-*The Generator transforms noise into fake samples, while the Discriminator classifies real vs. fake.*
+<div class="figure-container">
+<img src="https://user-images.githubusercontent.com/24496178/73466054-96ea4880-4381-11ea-9898-3e0dcbfaa451.png" alt="GAN Architecture showing Generator and Discriminator">
+<p class="figure-caption">The Generator transforms noise into fake samples, while the Discriminator classifies real vs. fake.</p>
+</div>
 
 ---
 
@@ -225,8 +231,10 @@ $$\min_G \max_D V(D, G) = \mathbb{E}_{x \sim p_{\text{data}}}[\log D(x)] + \math
 
 The GAN training process can be visualized as follows:
 
-![GAN Training](https://user-images.githubusercontent.com/24496178/73085503-1635d300-3ecf-11ea-85de-1514d8085c43.png)
-*From the [original GAN paper](https://arxiv.org/abs/1406.2661). As training progresses, the generated distribution (green) matches the real distribution (black dashed).*
+<div class="figure-container">
+<img src="https://user-images.githubusercontent.com/24496178/73085503-1635d300-3ecf-11ea-85de-1514d8085c43.png" alt="GAN training progression">
+<p class="figure-caption">From the <a href="https://arxiv.org/abs/1406.2661">original GAN paper</a>. As training progresses, the generated distribution (green) matches the real distribution (black dashed).</p>
+</div>
 
 At **Nash equilibrium**, the Discriminator can no longer distinguish real from fake:
 
@@ -236,52 +244,122 @@ This means the optimal Discriminator outputs 0.5 for all inputs—it's essential
 
 ### Optimal Loss Values
 
-When the GAN reaches equilibrium:
+When the GAN reaches equilibrium, we can derive the optimal loss values. Recall that we use Binary Cross-Entropy (BCE) loss:
 
-- **Generator loss**: $\log(2) \approx 0.693$
-- **Discriminator loss**: $2\log(2) \approx 1.386$
+$$\mathcal{L}_{\text{BCE}}(y, \hat{y}) = -[y \log(\hat{y}) + (1-y) \log(1-\hat{y})]$$
 
-Watch the demo above—you should see the losses converge toward these values!
+**For the Discriminator**, we minimize the BCE for both real data (target $y=1$) and fake data (target $y=0$):
+
+$$\mathcal{L}_D = -[\log D(x) + \log(1 - D(G(z)))]$$
+
+At equilibrium, $D^*(x) = 0.5$ for all inputs. Substituting:
+
+$$\mathcal{L}_D^* = -[\log(0.5) + \log(1 - 0.5)] = -[2\log(0.5)] = -2\log(0.5) = 2\log(2) \approx 1.386$$
+
+**For the Generator**, using the non-saturating loss (explained below), we minimize:
+
+$$\mathcal{L}_G = -\log D(G(z))$$
+
+At equilibrium:
+
+$$\mathcal{L}_G^* = -\log(0.5) = \log(2) \approx 0.693$$
 
 <div class="callout warning">
-<strong>Why 2·log(2) for D?</strong> The discriminator loss is the sum of two cross-entropy terms: one for real data (target=1) and one for fake data (target=0). At equilibrium, each contributes log(2), giving a total of 2·log(2).
+<strong>Summary:</strong> At equilibrium, G loss → log(2) ≈ 0.693 and D loss → 2·log(2) ≈ 1.386. Watch the demo plots to see these values approached!
 </div>
 
 ---
 
-## Practical Implementation
+## The Training Algorithm
 
-Here's how we implement the training loop. For each iteration:
+Here is the GAN training algorithm from the [original paper](https://arxiv.org/abs/1406.2661):
 
-### Step 1: Train the Discriminator
+<div class="algorithm-box">
+<strong>Algorithm: GAN Training Loop</strong>
+<hr>
+<strong>for</strong> number of training iterations <strong>do</strong>
+<ul style="margin-left: 1.5rem;">
+<li><strong>for</strong> k steps <strong>do</strong> (typically k=1)
+  <ul>
+  <li>Sample minibatch of m noise samples {z<sup>(1)</sup>, ..., z<sup>(m)</sup>} from p<sub>z</sub>(z)</li>
+  <li>Sample minibatch of m examples {x<sup>(1)</sup>, ..., x<sup>(m)</sup>} from p<sub>data</sub>(x)</li>
+  <li>Update D by <strong>ascending</strong> its stochastic gradient:
+    <br>∇<sub>θ<sub>d</sub></sub> (1/m) Σ [log D(x<sup>(i)</sup>) + log(1 - D(G(z<sup>(i)</sup>)))]
+  </li>
+  </ul>
+</li>
+<li>Sample minibatch of m noise samples {z<sup>(1)</sup>, ..., z<sup>(m)</sup>} from p<sub>z</sub>(z)</li>
+<li>Update G by <strong>descending</strong> its stochastic gradient:
+  <br>∇<sub>θ<sub>g</sub></sub> (1/m) Σ log(1 - D(G(z<sup>(i)</sup>)))
+</li>
+</ul>
+</div>
+
+### The Non-Saturating Heuristic
+
+There's a practical issue with the original G loss. Early in training, when G produces garbage, D is very confident and outputs D(G(z)) ≈ 0. This means:
+
+$$\log(1 - D(G(z))) \approx \log(1) = 0$$
+
+The gradient is nearly zero! G can't learn because D is too good.
+
+The solution is a clever heuristic: instead of minimizing $\log(1 - D(G(z)))$, we **maximize** $\log(D(G(z)))$:
 
 ```python
-# Sample real data
-real_batch = sample_real_data(batch_size)
-# Sample noise and generate fake data
-z = sample_noise(batch_size, latent_dim)
-fake_batch = G(z)
+# Original (saturating) - PROBLEMATIC
+g_loss = -log(1 - D(G(z)))  # Gradient vanishes when D(G(z)) ≈ 0
 
-# Discriminator loss: maximize log(D(real)) + log(1-D(fake))
-d_loss = BCE(D(real_batch), ones) + BCE(D(fake_batch), zeros)
-d_optimizer.step(d_loss)
+# Non-saturating heuristic - USED IN PRACTICE
+g_loss = -log(D(G(z)))      # Strong gradient even when D is confident
 ```
 
-### Step 2: Train the Generator
+Both have the same optimum (G fools D), but the non-saturating version provides stronger gradients early in training.
+
+### Implementation in Python
+
+Here's how you'd implement this in PyTorch:
 
 ```python
-# Sample new noise
-z = sample_noise(batch_size, latent_dim)
-fake_batch = G(z)
+# Define loss criterion
+criterion = nn.BCELoss()
+real_label, fake_label = 1.0, 0.0
 
-# Generator loss: maximize log(D(fake))
-# We use the "non-saturating" trick: minimize -log(D(fake))
-g_loss = BCE(D(fake_batch), ones)  # Note: ones, not zeros!
-g_optimizer.step(g_loss)
+for epoch in range(num_epochs):
+    for real_batch in dataloader:
+        batch_size = real_batch.size(0)
+
+        # === Train Discriminator ===
+        D.zero_grad()
+
+        # Real data
+        label = torch.full((batch_size,), real_label)
+        output = D(real_batch)
+        loss_real = criterion(output, label)
+
+        # Fake data
+        noise = torch.randn(batch_size, latent_dim)
+        fake = G(noise)
+        label.fill_(fake_label)
+        output = D(fake.detach())  # detach to avoid training G
+        loss_fake = criterion(output, label)
+
+        loss_D = loss_real + loss_fake
+        loss_D.backward()
+        optimizer_D.step()
+
+        # === Train Generator ===
+        G.zero_grad()
+
+        label.fill_(real_label)  # G wants D to think fake is real
+        output = D(fake)
+        loss_G = criterion(output, label)  # Non-saturating!
+
+        loss_G.backward()
+        optimizer_G.step()
 ```
 
 <div class="callout hint">
-<strong>The Non-Saturating Trick:</strong> Instead of minimizing log(1-D(G(z))), we maximize log(D(G(z))). This provides stronger gradients early in training when D is confident that G's output is fake.
+<strong>Key implementation detail:</strong> When training D on fake data, we use <code>fake.detach()</code> to prevent gradients from flowing back to G. When training G, we don't detach, so gradients flow through D to update G's parameters.
 </div>
 
 ---
@@ -294,7 +372,7 @@ When you run the training demo above, watch for:
 
 2. **Loss Plot**:
    - G loss (green) should approach log(2) ≈ 0.693 (yellow dashed line)
-   - D loss (blue) should approach 2·log(2) ≈ 1.386 (yellow dashed line)
+   - D loss (blue) should approach 2·log(2) ≈ 1.386 (orange dashed line)
 
 3. **Discriminator Response**:
    - D(x) for real data (blue) should start near 1 and drop to 0.5
@@ -354,13 +432,32 @@ Here are some experiments to deepen your understanding:
 
 Once trained, we can explore the latent space. But be careful with linear interpolation! In high dimensions, linear interpolation between two points passes through regions of low probability density.
 
+The issue is the [curse of dimensionality](https://en.wikipedia.org/wiki/Curse_of_dimensionality): in high-dimensional Gaussian space, most of the probability mass lies in a thin shell at a specific radius from the origin. Linear interpolation cuts through the low-density center.
+
 Instead, use **spherical linear interpolation** (slerp):
 
 $$\text{slerp}(z_1, z_2, t) = \frac{\sin((1-t)\theta)}{\sin\theta}z_1 + \frac{\sin(t\theta)}{\sin\theta}z_2$$
 
 where $\theta = \arccos\left(\frac{z_1 \cdot z_2}{\|z_1\|\|z_2\|}\right)$
 
-This is particularly important when your latent space is high-dimensional (e.g., 100+), as linear interpolation would pass through the "hollow center" of the Gaussian distribution.
+This keeps the interpolated points on the high-probability shell throughout the interpolation.
+
+### Real-World Example: Text-to-Image Models
+
+This isn't just theoretical—it matters for modern text-to-image models too! Here's a comparison using SDXL Turbo, interpolating between two prompts:
+
+<div class="figure-row">
+<div class="figure-container">
+<img src="https://pbs.twimg.com/media/GsO_wkOXEAA02B2.jpg" alt="Linear interpolation between prompts showing artifacts">
+<p class="figure-caption"><strong>Linear interpolation:</strong> Notice how the forest trees incorrectly turn into palm trees in the middle frames.</p>
+</div>
+<div class="figure-container">
+<img src="https://pbs.twimg.com/media/GsO_y5aWMAAMNEs.jpg" alt="Spherical interpolation between prompts with smoother transitions">
+<p class="figure-caption"><strong>Spherical interpolation (slerp):</strong> The forest remains coherent throughout the transition.</p>
+</div>
+</div>
+
+The model can still decode visually-coherent images with linear interpolation, but the semantic content suffers because the embedded prompt representation passes through low-probability regions. Slerp maintains coherent semantics throughout the interpolation.
 
 ---
 
@@ -385,6 +482,44 @@ This is particularly important when your latent space is high-dimensional (e.g.,
 .callout strong { display: block; margin-bottom: 0.3rem; }
 .callout ul { margin: 0.5rem 0 0 1rem; padding: 0; }
 .callout li { margin: 0.25rem 0; }
+
+.algorithm-box {
+  background: var(--color-surface, #f8fafc);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+.algorithm-box hr { margin: 0.75rem 0; border-color: var(--color-border, #e2e8f0); }
+.algorithm-box ul { margin: 0.5rem 0; }
+.algorithm-box li { margin: 0.4rem 0; }
+
+.figure-container {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+.figure-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.figure-caption {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary, #64748b);
+  font-style: italic;
+}
+.figure-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+@media (max-width: 768px) {
+  .figure-row { grid-template-columns: 1fr; }
+}
 
 .training-panel {
   background: var(--color-surface);
@@ -436,14 +571,15 @@ let G=null, D=null, gOpt=null, dOpt=null, training=false, ep=0;
 let gL=[], dL=[], dxHist=[], dgzHist=[], meanHist=[], stdHist=[];
 let data=null, targetMean=4, targetStd=0.5;
 
-const cfg = { N:2048, B:256, z:5, gL:2, gH:16, dL:2, dH:32, lr:0.001, dist:'normal' };
+// Default config matching notebook better
+const cfg = { N:2048, B:128, z:10, gL:1, gH:16, dL:1, dH:32, lr:0.003, dist:'normal' };
 
 function getDistParams(t) {
   if (t==='normal') return {mean:4, std:0.5};
-  if (t==='bimodal') return {mean:4, std:2}; // approx
-  if (t==='uniform') return {mean:4, std:1.15}; // (6-2)/sqrt(12)
-  if (t==='exponential') return {mean:2, std:2}; // 1/lambda
-  if (t==='mixture') return {mean:4.17, std:2.3}; // approx
+  if (t==='bimodal') return {mean:4, std:2};
+  if (t==='uniform') return {mean:4, std:1.15};
+  if (t==='exponential') return {mean:2, std:2};
+  if (t==='mixture') return {mean:4.17, std:2.3};
   return {mean:4, std:0.5};
 }
 
@@ -489,34 +625,46 @@ function makeD() {
   return m;
 }
 
-function step() {
-  let dl,gl,dx,dgz;
-  tf.tidy(()=>{
-    const real=batch(), z=latent(cfg.B), fake=G.predict(z);
-    const realPred=D.predict(real), fakePred=D.predict(fake);
-    dx=tf.mean(realPred).dataSync()[0];
-    dgz=tf.mean(fakePred).dataSync()[0];
+function trainStep() {
+  let dl=0,gl=0,dx=0,dgz=0,genMean=0,genStd=0;
 
-    const dg=tf.variableGrads(()=>{
-      const rp=D.predict(real), fp=D.predict(fake);
-      return tf.losses.sigmoidCrossEntropy(tf.ones([cfg.B,1]),rp)
-        .add(tf.losses.sigmoidCrossEntropy(tf.zeros([cfg.B,1]),fp));
+  // Train Discriminator
+  tf.tidy(()=>{
+    const real=batch();
+    const z=latent(cfg.B);
+    const fake=G.predict(z);
+
+    const dGrads=tf.variableGrads(()=>{
+      const realOut=D.predict(real);
+      const fakeOut=D.predict(fake);
+      dx=tf.mean(realOut).dataSync()[0];
+      dgz=tf.mean(fakeOut).dataSync()[0];
+      const lossReal=tf.losses.sigmoidCrossEntropy(tf.ones([cfg.B,1]),realOut);
+      const lossFake=tf.losses.sigmoidCrossEntropy(tf.zeros([cfg.B,1]),fakeOut);
+      return lossReal.add(lossFake);
     });
-    dl=dg.value.dataSync()[0]; dOpt.applyGradients(dg.grads);
-    Object.values(dg.grads).forEach(g=>g.dispose());
+    dl=dGrads.value.dataSync()[0];
+    dOpt.applyGradients(dGrads.grads);
+    Object.values(dGrads.grads).forEach(g=>g.dispose());
   });
 
-  let genMean, genStd;
+  // Train Generator
   tf.tidy(()=>{
-    const gg=tf.variableGrads(()=>{
-      const z=latent(cfg.B), fake=G.predict(z), fp=D.predict(fake);
-      return tf.losses.sigmoidCrossEntropy(tf.ones([cfg.B,1]),fp);
+    const gGrads=tf.variableGrads(()=>{
+      const z=latent(cfg.B);
+      const fake=G.predict(z);
+      const fakeOut=D.predict(fake);
+      return tf.losses.sigmoidCrossEntropy(tf.ones([cfg.B,1]),fakeOut);
     });
-    gl=gg.value.dataSync()[0]; gOpt.applyGradients(gg.grads);
-    Object.values(gg.grads).forEach(g=>g.dispose());
+    gl=gGrads.value.dataSync()[0];
+    gOpt.applyGradients(gGrads.grads);
+    Object.values(gGrads.grads).forEach(g=>g.dispose());
+  });
 
-    // Calculate generated stats
-    const z=latent(500), fake=G.predict(z);
+  // Calculate stats
+  tf.tidy(()=>{
+    const z=latent(500);
+    const fake=G.predict(z);
     const m=tf.moments(fake);
     genMean=m.mean.dataSync()[0];
     genStd=Math.sqrt(m.variance.dataSync()[0]);
@@ -526,18 +674,21 @@ function step() {
 }
 
 async function epoch() {
-  const nb=Math.max(1,Math.floor(cfg.N/cfg.B));
+  const numBatches=Math.max(1,Math.floor(cfg.N/cfg.B));
   let tg=0,td=0,tdx=0,tdgz=0,tm=0,ts=0;
-  for(let i=0;i<nb;i++){
-    const{gl,dl,dx,dgz,genMean,genStd}=step();
-    tg+=gl;td+=dl;tdx+=dx;tdgz+=dgz;tm+=genMean;ts+=genStd;
+
+  for(let i=0;i<numBatches;i++){
+    const r=trainStep();
+    tg+=r.gl; td+=r.dl; tdx+=r.dx; tdgz+=r.dgz; tm+=r.genMean; ts+=r.genStd;
   }
+
   ep++;
-  gL.push(tg/nb); dL.push(td/nb);
-  dxHist.push(tdx/nb); dgzHist.push(tdgz/nb);
-  meanHist.push(tm/nb); stdHist.push(ts/nb);
+  gL.push(tg/numBatches); dL.push(td/numBatches);
+  dxHist.push(tdx/numBatches); dgzHist.push(tdgz/numBatches);
+  meanHist.push(tm/numBatches); stdHist.push(ts/numBatches);
+
   updDisp(); updPlots();
-  if(ep%5===0) await tf.nextFrame();
+  if(ep%3===0) await tf.nextFrame();
 }
 
 async function loop() { while(training){await epoch();await tf.nextFrame();} }
@@ -549,33 +700,32 @@ function updDisp() {
   document.getElementById('loss-display').textContent=`G: ${g} | D: ${d}`;
 }
 
-function style() {
-  const dk=document.documentElement.classList.contains('dark-mode');
-  return {
-    txt:dk?'#f1f5f9':'#1e293b',
-    ax:dk?'#cbd5e1':'#475569',
-    gr:dk?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.06)',
-    bg:'rgba(0,0,0,0)'
-  };
-}
+// Simple white background style for all plots
+const plotStyle = {
+  paper_bgcolor: '#ffffff',
+  plot_bgcolor: '#ffffff',
+  font: { color: '#1e293b', size: 12 },
+  xaxis: { color: '#475569', tickcolor: '#94a3b8', gridcolor: '#e2e8f0', linecolor: '#94a3b8', tickfont: { color: '#475569' } },
+  yaxis: { color: '#475569', tickcolor: '#94a3b8', gridcolor: '#e2e8f0', linecolor: '#94a3b8', tickfont: { color: '#475569' } }
+};
 
 function updPlots() {
-  const s=style(), n=800;
+  const n=800;
   tf.tidy(()=>{
     const real=sample(n,cfg.dist), rV=Array.from(real.dataSync());
     const z=latent(n), fake=G.predict(z), fV=Array.from(fake.dataSync());
 
-    // Distribution plot
     Plotly.react('distribution-plot',[
       {x:rV,type:'histogram',name:'Real',opacity:0.7,marker:{color:'#3b82f6'},histnorm:'probability density',nbinsx:50},
       {x:fV,type:'histogram',name:'Generated',opacity:0.7,marker:{color:'#10b981'},histnorm:'probability density',nbinsx:50}
     ],{
-      title:{text:`Distribution — Epoch ${ep}`,font:{color:s.txt,size:14}},
+      ...plotStyle,
+      title:{text:`Distribution — Epoch ${ep}`,font:{color:'#1e293b',size:14}},
       barmode:'overlay',
-      xaxis:{title:'x',range:[-1,10],color:s.ax,tickcolor:s.ax,gridcolor:s.gr,linecolor:s.ax,tickfont:{color:s.ax}},
-      yaxis:{title:'Density',color:s.ax,tickcolor:s.ax,gridcolor:s.gr,linecolor:s.ax,tickfont:{color:s.ax}},
-      paper_bgcolor:s.bg,plot_bgcolor:s.bg,font:{color:s.txt},
-      legend:{x:0.75,y:1,font:{color:s.txt}},margin:{t:40,b:45,l:50,r:20}
+      xaxis:{...plotStyle.xaxis,title:'x',range:[-1,10]},
+      yaxis:{...plotStyle.yaxis,title:'Density'},
+      legend:{x:0.75,y:1,font:{color:'#1e293b'}},
+      margin:{t:40,b:45,l:50,r:20}
     },{responsive:true});
   });
 
@@ -583,79 +733,75 @@ function updPlots() {
     const e=Array.from({length:gL.length},(_,i)=>i);
     const log2=Math.log(2), log2x2=2*Math.log(2);
 
-    // Loss plot with theoretical optimal lines
     Plotly.react('loss-plot',[
       {x:e,y:gL,type:'scatter',name:'G Loss',line:{color:'#10b981',width:2}},
       {x:e,y:dL,type:'scatter',name:'D Loss',line:{color:'#3b82f6',width:2}},
-      {x:[0,e.length-1],y:[log2,log2],type:'scatter',name:'G Optimal',line:{color:'#fbbf24',width:2,dash:'dash'}},
-      {x:[0,e.length-1],y:[log2x2,log2x2],type:'scatter',name:'D Optimal',line:{color:'#f59e0b',width:2,dash:'dash'}}
+      {x:[0,Math.max(1,e.length-1)],y:[log2,log2],type:'scatter',name:'G Opt (log2)',line:{color:'#fbbf24',width:2,dash:'dash'}},
+      {x:[0,Math.max(1,e.length-1)],y:[log2x2,log2x2],type:'scatter',name:'D Opt (2log2)',line:{color:'#f59e0b',width:2,dash:'dash'}}
     ],{
-      title:{text:'Loss Curves',font:{color:s.txt,size:14}},
-      xaxis:{title:'Epoch',color:s.ax,tickcolor:s.ax,gridcolor:s.gr,linecolor:s.ax,tickfont:{color:s.ax}},
-      yaxis:{title:'Loss',color:s.ax,tickcolor:s.ax,gridcolor:s.gr,linecolor:s.ax,tickfont:{color:s.ax}},
-      paper_bgcolor:s.bg,plot_bgcolor:s.bg,font:{color:s.txt},
-      legend:{x:0.65,y:1,font:{color:s.txt,size:10}},margin:{t:40,b:45,l:50,r:20},
-      showlegend:true
+      ...plotStyle,
+      title:{text:'Loss Curves',font:{color:'#1e293b',size:14}},
+      xaxis:{...plotStyle.xaxis,title:'Epoch'},
+      yaxis:{...plotStyle.yaxis,title:'Loss'},
+      legend:{x:0.6,y:1,font:{color:'#1e293b',size:10}},
+      margin:{t:40,b:45,l:50,r:20}
     },{responsive:true});
 
-    // Discriminator output over time
     Plotly.react('discriminator-plot',[
       {x:e,y:dxHist,type:'scatter',name:'D(x) real',line:{color:'#3b82f6',width:2}},
       {x:e,y:dgzHist,type:'scatter',name:'D(G(z)) fake',line:{color:'#10b981',width:2}},
-      {x:[0,e.length-1],y:[0.5,0.5],type:'scatter',name:'Optimal',line:{color:'#fbbf24',width:2,dash:'dash'}}
+      {x:[0,Math.max(1,e.length-1)],y:[0.5,0.5],type:'scatter',name:'Optimal (0.5)',line:{color:'#fbbf24',width:2,dash:'dash'}}
     ],{
-      title:{text:'Discriminator Response',font:{color:s.txt,size:14}},
-      xaxis:{title:'Epoch',color:s.ax,tickcolor:s.ax,gridcolor:s.gr,linecolor:s.ax,tickfont:{color:s.ax}},
-      yaxis:{title:'D output',range:[0,1],color:s.ax,tickcolor:s.ax,gridcolor:s.gr,linecolor:s.ax,tickfont:{color:s.ax}},
-      paper_bgcolor:s.bg,plot_bgcolor:s.bg,font:{color:s.txt},
-      legend:{x:0.6,y:1,font:{color:s.txt,size:10}},margin:{t:40,b:45,l:50,r:20}
+      ...plotStyle,
+      title:{text:'Discriminator Response',font:{color:'#1e293b',size:14}},
+      xaxis:{...plotStyle.xaxis,title:'Epoch'},
+      yaxis:{...plotStyle.yaxis,title:'D output',range:[0,1]},
+      legend:{x:0.55,y:1,font:{color:'#1e293b',size:10}},
+      margin:{t:40,b:45,l:50,r:20}
     },{responsive:true});
 
-    // Statistics plot (mean and std)
     Plotly.react('stats-plot',[
       {x:e,y:meanHist,type:'scatter',name:'Gen Mean',line:{color:'#10b981',width:2}},
       {x:e,y:stdHist,type:'scatter',name:'Gen Std',line:{color:'#f97316',width:2}},
-      {x:[0,e.length-1],y:[targetMean,targetMean],type:'scatter',name:'Target Mean',line:{color:'#10b981',width:2,dash:'dash'}},
-      {x:[0,e.length-1],y:[targetStd,targetStd],type:'scatter',name:'Target Std',line:{color:'#f97316',width:2,dash:'dash'}}
+      {x:[0,Math.max(1,e.length-1)],y:[targetMean,targetMean],type:'scatter',name:'Target Mean',line:{color:'#10b981',width:2,dash:'dash'}},
+      {x:[0,Math.max(1,e.length-1)],y:[targetStd,targetStd],type:'scatter',name:'Target Std',line:{color:'#f97316',width:2,dash:'dash'}}
     ],{
-      title:{text:'Generated Statistics',font:{color:s.txt,size:14}},
-      xaxis:{title:'Epoch',color:s.ax,tickcolor:s.ax,gridcolor:s.gr,linecolor:s.ax,tickfont:{color:s.ax}},
-      yaxis:{title:'Value',color:s.ax,tickcolor:s.ax,gridcolor:s.gr,linecolor:s.ax,tickfont:{color:s.ax}},
-      paper_bgcolor:s.bg,plot_bgcolor:s.bg,font:{color:s.txt},
-      legend:{x:0.6,y:1,font:{color:s.txt,size:10}},margin:{t:40,b:45,l:50,r:20}
+      ...plotStyle,
+      title:{text:'Generated Statistics',font:{color:'#1e293b',size:14}},
+      xaxis:{...plotStyle.xaxis,title:'Epoch'},
+      yaxis:{...plotStyle.yaxis,title:'Value'},
+      legend:{x:0.55,y:1,font:{color:'#1e293b',size:10}},
+      margin:{t:40,b:45,l:50,r:20}
     },{responsive:true});
   }
 }
 
 function initPlots() {
-  const s=style();
   tf.tidy(()=>{
     const r=sample(800,cfg.dist);
     Plotly.newPlot('distribution-plot',[
       {x:Array.from(r.dataSync()),type:'histogram',name:'Target',opacity:0.7,marker:{color:'#3b82f6'},histnorm:'probability density',nbinsx:50}
     ],{
-      title:{text:'Click Start to Train',font:{color:s.txt,size:14}},
-      xaxis:{title:'x',range:[-1,10],color:s.ax,tickcolor:s.ax,gridcolor:s.gr,linecolor:s.ax,tickfont:{color:s.ax}},
-      yaxis:{title:'Density',color:s.ax,tickcolor:s.ax,gridcolor:s.gr,linecolor:s.ax,tickfont:{color:s.ax}},
-      paper_bgcolor:s.bg,plot_bgcolor:s.bg,font:{color:s.txt},margin:{t:40,b:45,l:50,r:20}
+      ...plotStyle,
+      title:{text:'Click Start to Train',font:{color:'#1e293b',size:14}},
+      xaxis:{...plotStyle.xaxis,title:'x',range:[-1,10]},
+      yaxis:{...plotStyle.yaxis,title:'Density'},
+      margin:{t:40,b:45,l:50,r:20}
     },{responsive:true});
   });
 
-  const baseLay={paper_bgcolor:s.bg,plot_bgcolor:s.bg,font:{color:s.txt},
-    xaxis:{title:'Epoch',color:s.ax,tickcolor:s.ax,gridcolor:s.gr,linecolor:s.ax,tickfont:{color:s.ax}},
-    yaxis:{color:s.ax,tickcolor:s.ax,gridcolor:s.gr,linecolor:s.ax,tickfont:{color:s.ax}},
-    margin:{t:40,b:45,l:50,r:20}};
-
-  Plotly.newPlot('loss-plot',[],{...baseLay,title:{text:'Loss Curves',font:{color:s.txt,size:14}}},{responsive:true});
-  Plotly.newPlot('discriminator-plot',[],{...baseLay,title:{text:'Discriminator Response',font:{color:s.txt,size:14}},yaxis:{...baseLay.yaxis,range:[0,1]}},{responsive:true});
-  Plotly.newPlot('stats-plot',[],{...baseLay,title:{text:'Generated Statistics',font:{color:s.txt,size:14}}},{responsive:true});
+  const baseLay={...plotStyle,margin:{t:40,b:45,l:50,r:20}};
+  Plotly.newPlot('loss-plot',[],{...baseLay,title:{text:'Loss Curves',font:{color:'#1e293b',size:14}},xaxis:{...plotStyle.xaxis,title:'Epoch'}},{responsive:true});
+  Plotly.newPlot('discriminator-plot',[],{...baseLay,title:{text:'Discriminator Response',font:{color:'#1e293b',size:14}},xaxis:{...plotStyle.xaxis,title:'Epoch'},yaxis:{...plotStyle.yaxis,range:[0,1]}},{responsive:true});
+  Plotly.newPlot('stats-plot',[],{...baseLay,title:{text:'Generated Statistics',font:{color:'#1e293b',size:14}},xaxis:{...plotStyle.xaxis,title:'Epoch'}},{responsive:true});
 }
 
 function init() {
   if(G) G.dispose(); if(D) D.dispose();
   G=makeG(); D=makeD();
   gOpt=tf.train.adam(cfg.lr); dOpt=tf.train.adam(cfg.lr);
-  genData(); ep=0; gL=[]; dL=[]; dxHist=[]; dgzHist=[]; meanHist=[]; stdHist=[];
+  genData();
+  ep=0; gL=[]; dL=[]; dxHist=[]; dgzHist=[]; meanHist=[]; stdHist=[];
   updDisp();
 }
 
@@ -669,6 +815,10 @@ document.addEventListener('DOMContentLoaded',()=>{
   const wait=setInterval(()=>{
     if(typeof tf!=='undefined' && typeof Plotly!=='undefined'){
       clearInterval(wait);
+
+      // Set initial LR display
+      document.getElementById('lr-display').textContent=cfg.lr.toExponential(0);
+
       init(); initPlots();
 
       document.getElementById('train-btn').onclick=async()=>{
@@ -687,18 +837,26 @@ document.addEventListener('DOMContentLoaded',()=>{
       document.getElementById('data-distribution').onchange=e=>{cfg.dist=e.target.value;reset();};
       document.getElementById('dataset-size').onchange=e=>{cfg.N=+e.target.value;genData();};
       document.getElementById('batch-size').onchange=e=>{cfg.B=+e.target.value;};
+
       document.getElementById('learning-rate').oninput=e=>{
         cfg.lr=Math.pow(10,+e.target.value);
         document.getElementById('lr-display').textContent=cfg.lr.toExponential(0);
         gOpt=tf.train.adam(cfg.lr);dOpt=tf.train.adam(cfg.lr);
       };
 
-      const sliders=['latent-dim','g-layers','g-hidden','d-layers','d-hidden'];
-      const keys=['z','gL','gH','dL','dH'];
-      sliders.forEach((id,i)=>{
+      // Latent dim slider - fixed ID
+      document.getElementById('latent-dim').oninput=e=>{
+        cfg.z=+e.target.value;
+        document.getElementById('latent-dim-display').textContent=e.target.value;
+      };
+      document.getElementById('latent-dim').onchange=()=>{if(!training)reset();};
+
+      // Architecture sliders
+      ['g-layers','g-hidden','d-layers','d-hidden'].forEach(id=>{
+        const key=id==='g-layers'?'gL':id==='g-hidden'?'gH':id==='d-layers'?'dL':'dH';
         const el=document.getElementById(id);
         el.oninput=e=>{
-          cfg[keys[i]]=+e.target.value;
+          cfg[key]=+e.target.value;
           document.getElementById(id+'-display').textContent=e.target.value;
         };
         el.onchange=()=>{if(!training)reset();};
