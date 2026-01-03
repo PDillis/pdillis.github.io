@@ -625,6 +625,21 @@ function makeD() {
   return m;
 }
 
+// BCE loss for probability outputs (D has sigmoid activation)
+const eps = 1e-7;
+function bceReal(prob) {
+  // -log(p) for real samples (want D(x) = 1)
+  return tf.neg(tf.log(tf.clipByValue(prob, eps, 1))).mean();
+}
+function bceFake(prob) {
+  // -log(1-p) for fake samples (want D(G(z)) = 0)
+  return tf.neg(tf.log(tf.clipByValue(tf.sub(1, prob), eps, 1))).mean();
+}
+function bceGen(prob) {
+  // -log(p) for generator (want D(G(z)) = 1, non-saturating)
+  return tf.neg(tf.log(tf.clipByValue(prob, eps, 1))).mean();
+}
+
 function trainStep() {
   let dl=0,gl=0,dx=0,dgz=0,genMean=0,genStd=0;
 
@@ -639,8 +654,9 @@ function trainStep() {
       const fakeOut=D.predict(fake);
       dx=tf.mean(realOut).dataSync()[0];
       dgz=tf.mean(fakeOut).dataSync()[0];
-      const lossReal=tf.losses.sigmoidCrossEntropy(tf.ones([cfg.B,1]),realOut);
-      const lossFake=tf.losses.sigmoidCrossEntropy(tf.zeros([cfg.B,1]),fakeOut);
+      // Proper BCE for probability outputs
+      const lossReal=bceReal(realOut);
+      const lossFake=bceFake(fakeOut);
       return lossReal.add(lossFake);
     });
     dl=dGrads.value.dataSync()[0];
@@ -648,18 +664,21 @@ function trainStep() {
     Object.values(dGrads.grads).forEach(g=>g.dispose());
   });
 
-  // Train Generator
+  // Train Generator - freeze D to only compute G gradients
+  D.trainable = false;
   tf.tidy(()=>{
     const gGrads=tf.variableGrads(()=>{
       const z=latent(cfg.B);
       const fake=G.predict(z);
       const fakeOut=D.predict(fake);
-      return tf.losses.sigmoidCrossEntropy(tf.ones([cfg.B,1]),fakeOut);
+      // Non-saturating loss: maximize log(D(G(z)))
+      return bceGen(fakeOut);
     });
     gl=gGrads.value.dataSync()[0];
     gOpt.applyGradients(gGrads.grads);
     Object.values(gGrads.grads).forEach(g=>g.dispose());
   });
+  D.trainable = true;
 
   // Calculate stats
   tf.tidy(()=>{
