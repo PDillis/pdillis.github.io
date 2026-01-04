@@ -606,6 +606,7 @@ function genData() {
   data=sample(cfg.N,cfg.dist);
   const p=getDistParams(cfg.dist);
   targetMean=p.mean; targetStd=p.std;
+  cacheRealKDE(); // Precompute KDE for the real dataset
 }
 function batch() { return tf.tidy(()=>tf.gather(data,tf.randomUniform([cfg.B],0,cfg.N,'int32'))); }
 function latent(n) { return tf.randomNormal([n,cfg.z]); }
@@ -728,21 +729,69 @@ const plotStyle = {
   yaxis: { color: '#475569', tickcolor: '#94a3b8', gridcolor: '#e2e8f0', linecolor: '#94a3b8', tickfont: { color: '#475569' } }
 };
 
+// Gaussian KDE with Silverman's rule of thumb
+let realDataCache = null;
+let realKdeX = null;
+let realKdeY = null;
+
+function computeKDE(samples, evalPoints, bandwidth) {
+  const n = samples.length;
+  const mean = samples.reduce((a, b) => a + b, 0) / n;
+  const variance = samples.reduce((a, b) => a + (b - mean) ** 2, 0) / n;
+  const std = Math.sqrt(variance);
+  // Silverman's rule of thumb
+  const h = bandwidth || 1.06 * std * Math.pow(n, -0.2);
+
+  const result = [];
+  const sqrt2pi = Math.sqrt(2 * Math.PI);
+
+  for (let i = 0; i < evalPoints.length; i++) {
+    let sum = 0;
+    for (let j = 0; j < n; j++) {
+      const u = (evalPoints[i] - samples[j]) / h;
+      sum += Math.exp(-0.5 * u * u);
+    }
+    result.push(sum / (n * h * sqrt2pi));
+  }
+  return result;
+}
+
+function cacheRealKDE() {
+  realDataCache = Array.from(data.dataSync());
+  realKdeX = Array.from({length: 200}, (_, i) => -1 + i * 11 / 199); // -1 to 10
+  realKdeY = computeKDE(realDataCache, realKdeX);
+}
+
 function updPlots() {
-  const n=800;
+  const nGen = 500;
   tf.tidy(()=>{
-    const real=sample(n,cfg.dist), rV=Array.from(real.dataSync());
-    const z=latent(n), fake=G.predict(z), fV=Array.from(fake.dataSync());
+    const z = latent(nGen);
+    const fake = G.predict(z);
+    const fV = Array.from(fake.dataSync());
+
+    // Compute KDE for generated data
+    const genKdeY = computeKDE(fV, realKdeX);
+
+    // Get max density for rug plot positioning
+    const maxDensity = Math.max(...realKdeY, ...genKdeY);
+    const rugY = -maxDensity * 0.08; // Position rug below x-axis
 
     Plotly.react('distribution-plot',[
-      {x:rV,type:'histogram',name:'Real',opacity:0.7,marker:{color:'#3b82f6'},histnorm:'probability density',nbinsx:50},
-      {x:fV,type:'histogram',name:'Generated',opacity:0.7,marker:{color:'#10b981'},histnorm:'probability density',nbinsx:50}
+      // Real data KDE (precomputed, dotted line like seaborn)
+      {x:realKdeX, y:realKdeY, type:'scatter', mode:'lines', name:'Real',
+       line:{color:'#3b82f6', width:3, dash:'dot'}},
+      // Generated data KDE
+      {x:realKdeX, y:genKdeY, type:'scatter', mode:'lines', name:'Generated',
+       line:{color:'#10b981', width:2}},
+      // Rug plot for generated samples
+      {x:fV, y:Array(fV.length).fill(rugY), type:'scatter', mode:'markers', name:'Samples',
+       marker:{symbol:'line-ns', size:8, color:'#10b981', opacity:0.3, line:{width:1}},
+       showlegend:false}
     ],{
       ...plotStyle,
       title:{text:`Distribution — Epoch ${ep}`,font:{color:'#1e293b',size:14}},
-      barmode:'overlay',
-      xaxis:{...plotStyle.xaxis,title:'x',range:[-1,10]},
-      yaxis:{...plotStyle.yaxis,title:'Density'},
+      xaxis:{...plotStyle.xaxis, title:'x', range:[-1,10]},
+      yaxis:{...plotStyle.yaxis, title:'Density', rangemode:'tozero'},
       legend:{x:0.75,y:1,font:{color:'#1e293b'}},
       margin:{t:40,b:45,l:50,r:20}
     },{responsive:true});
@@ -796,18 +845,17 @@ function updPlots() {
 }
 
 function initPlots() {
-  tf.tidy(()=>{
-    const r=sample(800,cfg.dist);
-    Plotly.newPlot('distribution-plot',[
-      {x:Array.from(r.dataSync()),type:'histogram',name:'Target',opacity:0.7,marker:{color:'#3b82f6'},histnorm:'probability density',nbinsx:50}
-    ],{
-      ...plotStyle,
-      title:{text:'Click Start to Train',font:{color:'#1e293b',size:14}},
-      xaxis:{...plotStyle.xaxis,title:'x',range:[-1,10]},
-      yaxis:{...plotStyle.yaxis,title:'Density'},
-      margin:{t:40,b:45,l:50,r:20}
-    },{responsive:true});
-  });
+  // Use cached KDE for initial plot
+  Plotly.newPlot('distribution-plot',[
+    {x:realKdeX, y:realKdeY, type:'scatter', mode:'lines', name:'Target',
+     line:{color:'#3b82f6', width:3, dash:'dot'}}
+  ],{
+    ...plotStyle,
+    title:{text:'Click Start to Train',font:{color:'#1e293b',size:14}},
+    xaxis:{...plotStyle.xaxis, title:'x', range:[-1,10]},
+    yaxis:{...plotStyle.yaxis, title:'Density', rangemode:'tozero'},
+    margin:{t:40,b:45,l:50,r:20}
+  },{responsive:true});
 
   const baseLay={...plotStyle,margin:{t:40,b:45,l:50,r:20}};
   Plotly.newPlot('loss-plot',[],{...baseLay,title:{text:'Loss Curves',font:{color:'#1e293b',size:14}},xaxis:{...plotStyle.xaxis,title:'Epoch'}},{responsive:true});
