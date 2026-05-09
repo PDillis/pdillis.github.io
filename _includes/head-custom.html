@@ -238,6 +238,13 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
 
 @media (max-width: 768px) { .main-content { padding: 2rem 1.25rem; } }
 
+/* Wide-page layouts (homepage, research, projects) break out of 820px column */
+.main-content:has(.homepage),
+.main-content:has(.research-page),
+.main-content:has(.projects-page) {
+  max-width: 1200px;
+}
+
 .main-content h1, .main-content h2, .main-content h3,
 .main-content h4, .main-content h5, .main-content h6 {
   font-family: var(--font-display);
@@ -428,7 +435,6 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
    Footer
    ================================================ */
 .site-footer {
-  margin-top: 6rem;
   padding: 3rem 2rem;
   background: var(--surface);
   border-top: 1px solid var(--border);
