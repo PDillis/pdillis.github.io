@@ -1,30 +1,19 @@
 <nav class="main-nav-bar" id="main-nav">
   <div class="nav-container">
-    <a href="{{ site.baseurl }}/" class="nav-brand">{{ site.title }}</a>
+    <a href="{{ site.baseurl }}/" class="nav-brand">Diego Porres</a>
 
-    <!-- Hamburger Menu Toggle (Mobile Only) -->
-    <button class="nav-toggle" onclick="toggleMobileNav()" aria-label="Toggle navigation menu">
-      <span id="nav-icon">☰</span>
+    <button class="nav-toggle" onclick="toggleMobileNav()" aria-label="Toggle navigation">
+      &#8801;
     </button>
 
-    <!-- Navigation Links -->
     <div class="nav-links" id="nav-links">
       <a href="{{ site.baseurl }}/research/">Research</a>
       <a href="{{ site.baseurl }}/projects/">Projects</a>
       <a href="{{ site.baseurl }}/blog/">Blog</a>
-      <button onclick="openSearch()" class="nav-icon-btn" title="Search (Ctrl+K)">🔍</button>
-      <button id="dark-mode-toggle" onclick="toggleDarkMode()" class="nav-icon-btn" aria-label="Toggle dark mode">
-        <span id="theme-icon">🌙</span>
+      <button onclick="openSearch()" class="nav-icon-btn" title="Search (Ctrl+K)">&#x2315;</button>
+      <button id="dark-mode-toggle" onclick="toggleDarkMode()" class="nav-icon-btn" aria-label="Toggle theme">
+        <span id="theme-icon">&#x25D1;</span>
       </button>
     </div>
   </div>
 </nav>
-
-<script>
-function toggleMobileNav() {
-  const navLinks = document.getElementById('nav-links');
-  const navIcon = document.getElementById('nav-icon');
-  navLinks.classList.toggle('active');
-  navIcon.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
-}
-</script>

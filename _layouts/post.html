@@ -8,13 +8,12 @@ comments: true
 
 <article class="blog-post">
   <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
+    <h1 class="post-title-main">{{ page.title }}</h1>
     <div class="post-meta">
-      <span class="post-date">📅 {{ page.date | date: "%B %-d, %Y" }}</span>
-      <span class="post-reading-time">⏱️ {{ reading_time }} min read</span>
+      <span class="post-meta-item">{{ page.date | date: "%Y-%m-%d" }}</span>
+      <span class="post-meta-item">{{ reading_time }} min read</span>
       {% if page.tags %}
         <span class="post-tags">
-          🏷️
           {% for tag in page.tags %}
             <span class="tag">{{ tag }}</span>
           {% endfor %}
@@ -31,64 +30,3 @@ comments: true
     {% include slider_scripts.html %}
   {% endif %}
 </article>
-
-<style>
-  .blog-post {
-    margin-bottom: 3rem;
-  }
-
-  .post-header {
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 2px solid var(--color-border);
-  }
-
-  .post-title {
-    margin-bottom: 0.75rem;
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1.2;
-  }
-
-  .post-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    font-size: 0.95rem;
-    color: var(--color-text-secondary);
-  }
-
-  .post-meta > span {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-  }
-
-  .post-tags {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .tag {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    background-color: var(--color-surface);
-    color: var(--color-primary);
-    border-radius: 1rem;
-    font-size: 0.85rem;
-    font-weight: 500;
-    border: 1px solid var(--color-border);
-  }
-
-  @media (max-width: 768px) {
-    .post-title {
-      font-size: 2rem;
-    }
-
-    .post-meta {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-  }
-</style>

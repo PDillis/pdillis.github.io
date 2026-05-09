@@ -1,23 +1,23 @@
 ---
 layout: default
-title: {{ site.name }}
+title: Diego Porres
 description: Diego Porres - Research on autonomous driving, computer vision, and generative AI. PhD candidate specializing in end-to-end learning and attention mechanisms.
 ---
 
 <div id="home" class="homepage">
-  <!-- Hero Section -->
+
+  <!-- Hero -->
   <section class="hero-section">
-    <div class="hero-content">
-      <h1 class="hero-title">Hi, I'm Diego Porres 👋</h1>
-      <p class="hero-subtitle">
-        I'm a researcher working on <strong>autonomous driving</strong>, <strong>computer vision</strong>,
-        and <strong>generative AI</strong>. My focus is on end-to-end learning, attention mechanisms,
-        and making neural networks more interpretable for safety-critical systems.
-      </p>
-      <div class="hero-cta">
-        <a href="{{ site.baseurl }}/research/" class="cta-btn primary-btn">📚 View Research</a>
-        <a href="{{ site.baseurl }}/projects/" class="cta-btn secondary-btn">💡 See Projects</a>
-      </div>
+    <span class="section-eyebrow">Machine Learning Researcher</span>
+    <h1 class="hero-title">Hi, I'm Diego Porres</h1>
+    <p class="hero-subtitle">
+      I work on <strong>autonomous driving</strong>, <strong>computer vision</strong>,
+      and <strong>generative AI</strong> &mdash; focusing on end-to-end learning,
+      attention mechanisms, and interpretability for safety-critical systems.
+    </p>
+    <div class="hero-cta">
+      <a href="{{ site.baseurl }}/research/" class="cta-btn primary-btn">Research</a>
+      <a href="{{ site.baseurl }}/projects/" class="cta-btn secondary-btn">Projects</a>
     </div>
   </section>
 
@@ -26,8 +26,8 @@ description: Diego Porres - Research on autonomous driving, computer vision, and
   {% if featured_papers.size > 0 %}
   <section class="home-featured-research">
     <div class="section-header">
-      <h2>⭐ Featured Research</h2>
-      <a href="{{ site.baseurl }}/research/" class="view-all-link">View all publications →</a>
+      <h2>Featured Research</h2>
+      <a href="{{ site.baseurl }}/research/" class="view-all-link">All publications &rarr;</a>
     </div>
     <div class="featured-grid">
       {% for paper in featured_papers %}
@@ -40,14 +40,14 @@ description: Diego Porres - Research on autonomous driving, computer vision, and
   <!-- Recent Blog Posts -->
   <section class="home-recent-posts">
     <div class="section-header">
-      <h2>✍️ Recent Blog Posts</h2>
-      <a href="{{ site.baseurl }}/blog/" class="view-all-link">View all posts →</a>
+      <h2>Recent Posts</h2>
+      <a href="{{ site.baseurl }}/blog/" class="view-all-link">All posts &rarr;</a>
     </div>
     <div class="posts-list">
       {% for post in site.posts limit:5 %}
         <article class="post-item">
           <div class="post-meta">
-            <span class="post-date">📅 {{ post.date | date: "%B %d, %Y" }}</span>
+            <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
             {% if post.tags %}
               <span class="post-tags">
                 {% for tag in post.tags limit:2 %}
@@ -62,44 +62,47 @@ description: Diego Porres - Research on autonomous driving, computer vision, and
           {% if post.excerpt %}
             <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
           {% endif %}
-          <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read more →</a>
+          <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read &rarr;</a>
         </article>
       {% endfor %}
     </div>
   </section>
 
-  <!-- Research Areas -->
+  <!-- Research Interests -->
   <section class="home-research-areas">
-    <h2>🔬 Research Interests</h2>
+    <div class="section-header">
+      <h2>Research Interests</h2>
+    </div>
     <div class="research-areas-grid">
       <div class="research-area-card">
-        <div class="area-icon">🚗</div>
+        <div class="area-icon">&#x25A6;</div>
         <h3>Autonomous Driving</h3>
         <p>End-to-end learning for self-driving cars, attention mechanisms, and interpretability</p>
       </div>
       <div class="research-area-card">
-        <div class="area-icon">👁️</div>
+        <div class="area-icon">&#x25C8;</div>
         <h3>Computer Vision</h3>
         <p>Deep learning for visual perception, 3D/4D vision, and scene understanding</p>
       </div>
       <div class="research-area-card">
-        <div class="area-icon">🎨</div>
+        <div class="area-icon">&#x223F;</div>
         <h3>Generative AI</h3>
         <p>GANs, StyleGAN, diffusion models, and creative applications of AI</p>
       </div>
     </div>
   </section>
 
-  <!-- Call to Action -->
+  <!-- Contact CTA -->
   <section class="home-cta">
     <div class="cta-content">
-      <h2>Let's Connect</h2>
+      <h2>Get in touch</h2>
       <p>
-        Interested in my research or potential collaboration? Feel free to reach out via
-        <a href="https://www.linkedin.com/in/diego-porres/" target="_blank">LinkedIn</a>
-        or check out my code on
-        <a href="https://github.com/PDillis" target="_blank">GitHub</a>.
+        Interested in my research or potential collaboration? Find me on
+        <a href="https://www.linkedin.com/in/diego-porres/" target="_blank" rel="noopener">LinkedIn</a>
+        or browse my code on
+        <a href="https://github.com/PDillis" target="_blank" rel="noopener">GitHub</a>.
       </p>
     </div>
   </section>
+
 </div>
