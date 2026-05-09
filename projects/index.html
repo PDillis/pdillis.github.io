@@ -6,18 +6,20 @@ description: Open-source projects, research implementations, and code repositori
 
 <div class="projects-page">
   <header class="projects-header">
-    <h1>Projects & Code</h1>
+    <span class="section-eyebrow">Open Source</span>
+    <h1>Projects</h1>
     <p class="projects-subtitle">
       Open-source implementations, research code, and experimental projects.
-      All code is available on <a href="https://github.com/PDillis" target="_blank">GitHub</a>.
+      All code is available on <a href="https://github.com/PDillis" target="_blank" rel="noopener">GitHub</a>.
     </p>
   </header>
 
-  <!-- Featured Projects -->
   {% assign featured_projects = site.data.projects | where: "featured", true %}
   {% if featured_projects.size > 0 %}
   <section class="featured-projects-section">
-    <h2>⭐ Featured Projects</h2>
+    <div class="section-header">
+      <h2>Featured</h2>
+    </div>
     <div class="projects-grid">
       {% for project in featured_projects %}
         {% include project-card.html project=project %}
@@ -26,11 +28,7 @@ description: Open-source projects, research implementations, and code repositori
   </section>
   {% endif %}
 
-  <!-- All Projects -->
   <section class="all-projects-section">
-    <h2>📦 All Projects</h2>
-
-    <!-- Group by category -->
     {% assign projects_by_category = site.data.projects | group_by: "category" %}
 
     {% for category_group in projects_by_category %}
@@ -45,13 +43,10 @@ description: Open-source projects, research implementations, and code repositori
     {% endfor %}
   </section>
 
-  <!-- GitHub CTA -->
   <div class="projects-cta">
     <p>
-      💡 More projects and experiments on
-      <a href="https://github.com/PDillis" target="_blank" class="github-profile-link">
-        <strong>GitHub @PDillis</strong>
-      </a>
+      More experiments and work-in-progress on
+      <a href="https://github.com/PDillis" target="_blank" rel="noopener">GitHub @PDillis</a>.
     </p>
   </div>
 </div>

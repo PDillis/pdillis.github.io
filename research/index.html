@@ -6,29 +6,25 @@ description: Research papers and publications by Diego Porres on autonomous driv
 
 <div class="research-page">
   <header class="research-header">
-    <h1>Research & Publications</h1>
+    <span class="section-eyebrow">Publications</span>
+    <h1>Research</h1>
     <p class="research-subtitle">
       My research focuses on <strong>autonomous driving</strong>, <strong>computer vision</strong>,
-      and <strong>generative AI</strong>. I work on end-to-end learning, attention mechanisms,
+      and <strong>generative AI</strong> &mdash; end-to-end learning, attention mechanisms,
       and neural network interpretability for safety-critical systems.
     </p>
   </header>
 
-  <!-- Filter/Search Section (Future Enhancement) -->
   <div class="research-filters">
     <div class="filter-info">
       <p>
-        📊 <strong>{{ site.data.papers | size }} publications</strong>
-        | 🏷️ Topics: Autonomous Driving, Computer Vision, Deep Learning, Generative Models
+        <strong>{{ site.data.papers | size }} publications</strong>
+        &middot; Topics: Autonomous Driving, Computer Vision, Deep Learning, Generative Models
       </p>
     </div>
   </div>
 
-  <!-- All Papers Section -->
   <section class="all-papers-section">
-    <h2>📚 All Publications</h2>
-
-    <!-- Group by year -->
     {% assign papers_by_year = site.data.papers | group_by: "year" | sort: "name" | reverse %}
 
     {% for year_group in papers_by_year %}
@@ -43,13 +39,12 @@ description: Research papers and publications by Diego Porres on autonomous driv
     {% endfor %}
   </section>
 
-  <!-- Research Areas / Tags Cloud (Future Enhancement) -->
   <section class="research-areas">
-    <h2>🔬 Research Areas</h2>
+    <h2>Research Areas</h2>
     <div class="tags-cloud">
       <span class="area-tag">Autonomous Driving</span>
       <span class="area-tag">Computer Vision</span>
-      <span class="area-tag">Explainability/XAI</span>
+      <span class="area-tag">Explainability / XAI</span>
       <span class="area-tag">End-to-End Learning</span>
       <span class="area-tag">Generative AI</span>
       <span class="area-tag">GANs</span>
@@ -59,13 +54,11 @@ description: Research papers and publications by Diego Porres on autonomous driv
     </div>
   </section>
 
-  <!-- Call to Action -->
   <div class="research-cta">
     <p>
-      💬 Interested in collaborating? Check out my
-      <a href="https://github.com/PDillis" target="_blank">GitHub</a>
-      or read more on my
-      <a href="{{ site.baseurl }}/blog/">blog</a>.
+      Interested in collaborating? Check out my
+      <a href="https://github.com/PDillis" target="_blank" rel="noopener">GitHub</a>
+      or read more on my <a href="{{ site.baseurl }}/blog/">blog</a>.
     </p>
   </div>
 </div>
