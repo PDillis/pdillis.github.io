@@ -22,173 +22,172 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.75);
     z-index: 2000;
     display: flex;
     align-items: flex-start;
     justify-content: center;
     padding-top: 10vh;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
 
   .search-modal-content {
-    background: var(--color-bg);
-    border-radius: 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius-lg);
     width: 90%;
-    max-width: 600px;
+    max-width: 620px;
     max-height: 70vh;
     overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
   }
 
   .search-header {
     display: flex;
     gap: 0.5rem;
     padding: 1rem;
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--border);
   }
 
   #search-input {
     flex: 1;
-    padding: 0.75rem 1rem;
-    font-size: 1.1rem;
-    border: 2px solid var(--color-border);
-    border-radius: 0.5rem;
-    background: var(--color-surface);
-    color: var(--color-text-primary);
-    font-family: 'Inter', sans-serif;
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius);
+    background: var(--surface-raised);
+    color: var(--text);
+    font-family: var(--font-sans);
   }
+
+  #search-input::placeholder { color: var(--text-dim); }
 
   #search-input:focus {
     outline: none;
-    border-color: var(--color-primary);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
   }
 
   .search-close {
-    background: none;
-    border: none;
-    font-size: 2rem;
-    color: var(--color-text-secondary);
+    background: var(--surface-raised);
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius);
+    font-size: 1.25rem;
+    color: var(--text-muted);
     cursor: pointer;
-    padding: 0 0.5rem;
-  }
-
-  .search-close:hover {
-    color: var(--color-text-primary);
-  }
-
-  .search-results {
-    max-height: calc(70vh - 80px);
-    overflow-y: auto;
-    padding: 1rem;
-  }
-
-  .search-result-item {
-    padding: 1rem;
-    border-radius: 0.5rem;
-    margin-bottom: 0.5rem;
-    background: var(--color-surface);
-    cursor: pointer;
+    padding: 0 0.75rem;
+    line-height: 1;
     transition: all 0.2s;
   }
 
-  .search-result-item:hover {
-    background: var(--color-primary);
-    color: white;
+  .search-close:hover {
+    background: var(--border);
+    color: var(--text);
   }
 
-  .search-result-item:hover .result-title,
-  .search-result-item:hover .result-excerpt,
-  .search-result-item:hover .result-date {
-    color: white !important;
-  }
-
-  .result-title {
-    font-weight: 600;
-    font-size: 1.1rem;
-    color: var(--color-primary);
-    margin-bottom: 0.25rem;
-  }
-
-  .result-excerpt {
-    font-size: 0.9rem;
-    color: var(--color-text-secondary);
-    margin-bottom: 0.25rem;
-  }
-
-  .result-date {
-    font-size: 0.8rem;
-    color: var(--color-text-tertiary);
-  }
-
-  .no-results {
-    text-align: center;
-    padding: 2rem;
-    color: var(--color-text-secondary);
-  }
-
-  /* Search filters */
   .search-filters {
     display: flex;
-    gap: 0.5rem;
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid var(--color-border);
+    gap: 0.4rem;
+    padding: 0.625rem 1rem;
+    border-bottom: 1px solid var(--border);
     flex-wrap: wrap;
   }
 
   .search-filter-btn {
-    padding: 0.4rem 0.8rem;
-    border: 1px solid var(--color-border);
-    border-radius: 1rem;
-    background: var(--color-surface);
-    color: var(--color-text-secondary);
-    font-size: 0.85rem;
-    font-family: 'Inter', sans-serif;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--border-accent);
+    border-radius: 100px;
+    background: var(--surface-raised);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-family: var(--font-sans);
     cursor: pointer;
     transition: all 0.2s;
   }
 
   .search-filter-btn:hover {
-    border-color: var(--color-primary);
-    color: var(--color-primary);
+    border-color: var(--accent);
+    color: var(--accent);
   }
 
   .search-filter-btn.active {
-    background: var(--color-primary);
-    color: white;
-    border-color: var(--color-primary);
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
   }
 
-  /* Result type badges */
+  .search-results {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.75rem;
+  }
+
+  .search-result-item {
+    padding: 0.875rem 1rem;
+    border-radius: var(--radius);
+    margin-bottom: 0.375rem;
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .search-result-item:hover {
+    background: var(--accent-glow);
+    border-color: var(--accent);
+  }
+
+  .result-title {
+    font-weight: 600;
+    font-size: 0.975rem;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+    font-family: var(--font-display);
+  }
+
+  .result-excerpt {
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .result-date {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+  }
+
+  .no-results {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  /* Type badges */
   .result-type-badge {
     display: inline-block;
-    padding: 0.15rem 0.5rem;
-    border-radius: 0.25rem;
-    font-size: 0.7rem;
-    font-weight: 600;
+    padding: 0.12rem 0.45rem;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.05em;
     margin-left: 0.5rem;
     vertical-align: middle;
   }
 
-  .result-type-badge.post {
-    background: var(--color-secondary);
-    color: white;
-  }
-
-  .result-type-badge.paper {
-    background: var(--color-primary);
-    color: white;
-  }
-
-  .result-type-badge.project {
-    background: var(--color-accent);
-    color: white;
-  }
-
-  .search-result-item:hover .result-type-badge {
-    background: rgba(255, 255, 255, 0.2);
-  }
+  .result-type-badge.post   { background: rgba(34,197,94,0.12); color: #4ade80; }
+  .result-type-badge.paper  { background: var(--accent-glow); color: var(--accent); }
+  .result-type-badge.project { background: rgba(251,191,36,0.12); color: #fbbf24; }
 
   .result-meta {
     display: flex;
@@ -199,35 +198,45 @@
   }
 
   .result-venue {
-    font-size: 0.8rem;
-    color: var(--color-text-tertiary);
+    font-size: 0.75rem;
+    color: var(--text-dim);
     font-style: italic;
   }
 
-  .search-result-item:hover .result-venue {
-    color: rgba(255, 255, 255, 0.8) !important;
+  /* Highlight matches */
+  .search-result-item mark {
+    background: rgba(59,130,246,0.25);
+    color: var(--accent-hover);
+    border-radius: 2px;
+    padding: 0 1px;
+  }
+
+  [data-theme="light"] .search-result-item mark {
+    background: rgba(37,99,235,0.15);
+    color: var(--accent);
   }
 
   /* Keyboard shortcut hint */
   .search-hint {
     text-align: center;
     padding: 0.5rem;
-    font-size: 0.8rem;
-    color: var(--color-text-tertiary);
-    border-top: 1px solid var(--color-border);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    border-top: 1px solid var(--border);
   }
 
   .search-hint kbd {
-    background: var(--color-surface);
-    padding: 0.2rem 0.5rem;
-    border-radius: 0.25rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
+    background: var(--surface-raised);
+    border: 1px solid var(--border-accent);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
   }
 </style>
 
 <script>
-// Search data will be populated by Jekyll - includes posts, papers, and projects
+// Search data populated by Jekyll
 const searchData = [
   // Blog Posts
   {% for post in site.posts %}
@@ -235,7 +244,7 @@ const searchData = [
     type: "post",
     title: {{ post.title | jsonify }},
     url: "{{ site.baseurl }}{{ post.url }}",
-    date: "{{ post.date | date: '%B %d, %Y' }}",
+    date: "{{ post.date | date: '%Y-%m-%d' }}",
     excerpt: {{ post.excerpt | strip_html | truncatewords: 30 | jsonify }},
     content: {{ post.content | strip_html | truncatewords: 200 | jsonify }},
     tags: {{ post.tags | jsonify }},
@@ -289,98 +298,73 @@ function closeSearch() {
 
 function setFilter(filter) {
   activeFilter = filter;
-  // Update active button
   document.querySelectorAll('.search-filter-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.filter === filter);
   });
-  // Re-run search with current query
-  const query = document.getElementById('search-input').value;
-  performSearch(query);
+  performSearch(document.getElementById('search-input').value);
 }
 
 function performSearch(query) {
   const resultsContainer = document.getElementById('search-results');
 
   if (!query || query.length < 2) {
-    resultsContainer.innerHTML = '<div class="no-results">Type at least 2 characters to search...</div>';
+    resultsContainer.innerHTML = '<div class="no-results">Type at least 2 characters to search&hellip;</div>';
     return;
   }
 
   const queryLower = query.toLowerCase();
   let results = searchData.filter(item => {
-    // Apply type filter
-    if (activeFilter !== 'all' && item.type !== activeFilter) {
-      return false;
-    }
-    // Search in title, excerpt, content, tags
-    const matchesTitle = item.title && item.title.toLowerCase().includes(queryLower);
-    const matchesExcerpt = item.excerpt && item.excerpt.toLowerCase().includes(queryLower);
-    const matchesContent = item.content && item.content.toLowerCase().includes(queryLower);
-    const matchesTags = item.tags && item.tags.some(tag => tag.toLowerCase().includes(queryLower));
-    const matchesVenue = item.venue && item.venue.toLowerCase().includes(queryLower);
-    const matchesAuthors = item.authors && item.authors.some(author => author.toLowerCase().includes(queryLower));
-
-    return matchesTitle || matchesExcerpt || matchesContent || matchesTags || matchesVenue || matchesAuthors;
+    if (activeFilter !== 'all' && item.type !== activeFilter) return false;
+    return (
+      (item.title   && item.title.toLowerCase().includes(queryLower)) ||
+      (item.excerpt && item.excerpt.toLowerCase().includes(queryLower)) ||
+      (item.content && item.content.toLowerCase().includes(queryLower)) ||
+      (item.tags    && item.tags.some(t => t.toLowerCase().includes(queryLower))) ||
+      (item.venue   && item.venue.toLowerCase().includes(queryLower)) ||
+      (item.authors && item.authors.some(a => a.toLowerCase().includes(queryLower)))
+    );
   });
 
   if (results.length === 0) {
-    const filterText = activeFilter === 'all' ? 'results' : activeFilter + 's';
-    resultsContainer.innerHTML = `<div class="no-results">No ${filterText} found matching your search.</div>`;
+    const label = activeFilter === 'all' ? 'results' : activeFilter + 's';
+    resultsContainer.innerHTML = `<div class="no-results">No ${label} found.</div>`;
     return;
   }
 
   resultsContainer.innerHTML = results.map(item => {
-    const typeBadge = `<span class="result-type-badge ${item.type}">${item.type}</span>`;
-    const venueInfo = item.venue ? `<span class="result-venue">${item.venue}</span>` : '';
-    const dateInfo = item.date ? `<span class="result-date">${item.date}</span>` : '';
-
+    const badge   = `<span class="result-type-badge ${item.type}">${item.type}</span>`;
+    const venue   = item.venue ? `<span class="result-venue">${item.venue}</span>` : '';
+    const date    = item.date  ? `<span class="result-date">${item.date}</span>` : '';
+    const excerpt = (item.excerpt || '').slice(0, 120) + ((item.excerpt || '').length > 120 ? '…' : '');
     return `
       <div class="search-result-item" onclick="window.location.href='${item.url}'">
-        <div class="result-title">${highlightMatch(item.title, query)}${typeBadge}</div>
-        <div class="result-excerpt">${highlightMatch(item.excerpt || '', query)}</div>
-        <div class="result-meta">
-          ${dateInfo}
-          ${venueInfo}
-        </div>
-      </div>
-    `;
+        <div class="result-title">${highlight(item.title, query)}${badge}</div>
+        <div class="result-excerpt">${highlight(excerpt, query)}</div>
+        <div class="result-meta">${date}${venue}</div>
+      </div>`;
   }).join('');
 }
 
-function highlightMatch(text, query) {
+function highlight(text, query) {
   if (!query || !text) return text || '';
-  const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-  return text.replace(regex, '<mark>$1</mark>');
+  const re = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+  return text.replace(re, '<mark>$1</mark>');
 }
 
-// Event listeners
 document.addEventListener('DOMContentLoaded', function() {
-  const searchInput = document.getElementById('search-input');
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => performSearch(e.target.value));
-  }
+  const input = document.getElementById('search-input');
+  if (input) input.addEventListener('input', e => performSearch(e.target.value));
 
-  // Filter button click handlers
   document.querySelectorAll('.search-filter-btn').forEach(btn => {
     btn.addEventListener('click', () => setFilter(btn.dataset.filter));
   });
 
-  // Close on escape
-  document.addEventListener('keydown', (e) => {
+  document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeSearch();
-    // Open search with Cmd/Ctrl + K
-    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-      e.preventDefault();
-      openSearch();
-    }
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
   });
 
-  // Close on backdrop click
   const modal = document.getElementById('search-modal');
-  if (modal) {
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeSearch();
-    });
-  }
+  if (modal) modal.addEventListener('click', e => { if (e.target === modal) closeSearch(); });
 });
 </script>
