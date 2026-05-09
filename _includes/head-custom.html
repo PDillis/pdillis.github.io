@@ -18,6 +18,10 @@
 <!-- Plotly.js -->
 <script src="https://cdn.plot.ly/plotly-2.27.0.min.js" charset="utf-8"></script>
 
+<!-- BeerSlider -->
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/BeerSlider.css">
+<script defer src="{{ site.baseurl }}/assets/js/BeerSlider.js"></script>
+
 <style>
 /* ================================================
    Design System — Dark-first (ssad2026-inspired)
@@ -254,8 +258,9 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
 .main-content strong { color: var(--text) !important; font-weight: 600; }
 .main-content em { color: var(--text-muted) !important; }
 
-.main-content a { color: var(--accent) !important; }
-.main-content a:hover { color: var(--accent-hover) !important; }
+/* Scope link color to non-button anchors to avoid overriding .cta-btn text */
+.main-content a:not(.cta-btn) { color: var(--accent) !important; }
+.main-content a:not(.cta-btn):hover { color: var(--accent-hover) !important; }
 
 /* Code */
 .main-content code {
@@ -263,7 +268,7 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
   font-size: 0.85em;
   padding: 0.15em 0.4em;
   background: var(--surface-raised) !important;
-  color: var(--text-muted) !important;
+  color: var(--text) !important;
   border-radius: 5px;
   border: 1px solid var(--border);
 }
@@ -286,7 +291,7 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
   border: none !important;
   padding: 0 !important;
   font-size: inherit;
-  color: var(--text-muted) !important;
+  color: var(--text) !important;
 }
 
 .main-content .highlight {
@@ -526,13 +531,14 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
 
 .cta-btn {
   display: inline-block;
-  padding: 0.6rem 1.375rem;
+  padding: 0.65rem 1.5rem;
   border-radius: var(--radius);
   font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   text-decoration: none !important;
   transition: all 0.2s;
   border: 1px solid transparent;
+  cursor: pointer;
 }
 
 .primary-btn {
@@ -545,18 +551,22 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
   opacity: 0.88;
   transform: translateY(-1px);
   box-shadow: 0 4px 16px var(--accent-glow);
+  color: #fff !important;
+  text-decoration: none !important;
 }
 
 .secondary-btn {
-  background: transparent;
-  color: var(--text-muted) !important;
+  background: var(--surface);
+  color: var(--text) !important;
   border-color: var(--border-accent);
 }
 
 .secondary-btn:hover {
   border-color: var(--accent);
   color: var(--accent) !important;
+  background: var(--accent-glow);
   transform: translateY(-1px);
+  text-decoration: none !important;
 }
 
 .home-featured-research, .home-recent-posts, .home-research-areas, .home-cta {
@@ -625,9 +635,9 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
 .tag, .tag-mini {
   display: inline-block;
   padding: 0.12rem 0.5rem;
-  background: var(--accent-glow);
-  color: var(--accent) !important;
-  border: 1px solid rgba(59,130,246,0.2);
+  background: var(--surface-raised);
+  color: var(--text-muted) !important;
+  border: 1px solid var(--border-accent);
   border-radius: 5px;
   font-size: 0.7rem;
   font-weight: 500;
@@ -635,8 +645,8 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
 }
 
 [data-theme="light"] .tag, [data-theme="light"] .tag-mini {
-  background: rgba(37,99,235,0.06);
-  border-color: rgba(37,99,235,0.18);
+  background: var(--surface-raised);
+  border-color: var(--border-accent);
 }
 
 .post-title {
@@ -652,7 +662,7 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
 .post-title a:hover { color: var(--accent) !important; text-decoration: none !important; }
 
 .post-excerpt {
-  color: var(--text-dim) !important;
+  color: var(--text-muted) !important;
   font-size: 0.875rem;
   margin: 0 0 0.625rem;
   line-height: 1.6;
@@ -685,8 +695,9 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
 }
 
 .research-area-card:hover {
-  border-color: var(--border-accent);
+  border-color: var(--accent);
   transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--accent-glow);
 }
 
 .area-icon {
@@ -1139,6 +1150,35 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
 .filter-info p { margin: 0; color: var(--text-muted) !important; font-size: 0.875rem; }
 
 /* ================================================
+   BeerSlider overrides for dark theme
+   ================================================ */
+.beer-slider {
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: block;
+  max-width: 100%;
+}
+
+.beer-handle {
+  background: rgba(255,255,255,0.9) !important;
+  border-color: rgba(255,255,255,0.9) !important;
+}
+
+.beer-handle::before, .beer-handle::after {
+  border-color: rgba(255,255,255,0.9) !important;
+}
+
+[data-theme="light"] .beer-handle {
+  background: rgba(0,0,0,0.75) !important;
+  border-color: rgba(0,0,0,0.75) !important;
+}
+
+[data-theme="light"] .beer-handle::before,
+[data-theme="light"] .beer-handle::after {
+  border-color: rgba(0,0,0,0.75) !important;
+}
+
+/* ================================================
    Math / TikZ / Plotly
    ================================================ */
 .math-block {
@@ -1286,6 +1326,16 @@ function initKaTeX() {
 }
 
 /* ================================================
+   BeerSlider
+   ================================================ */
+function initBeerSlider() {
+  if (typeof BeerSlider === 'undefined') return;
+  document.querySelectorAll('.beer-slider').forEach(function(el) {
+    new BeerSlider(el);
+  });
+}
+
+/* ================================================
    Code Copy Buttons
    ================================================ */
 function addCopyButtonsToCodeBlocks() {
@@ -1407,6 +1457,7 @@ function initLazyLoading() {
 function init() {
   addCopyButtonsToCodeBlocks();
   initBibtexButtons();
+  initBeerSlider();
   initGitHubStars();
   initLazyLoading();
   if (typeof renderMathInElement !== 'undefined') initKaTeX();
